@@ -1,97 +1,96 @@
 {
-    "name": "capdemogru",
-    "version": "1.0.0",
-    "description": "CAP project with objectstore",
-    "repository": "",
-    "license": "UNLICENSED",
-    "private": true,
-    "dependencies": {
-        "@sap/cds": "5.7.3",
-        "@sap/cds-dk": "4.7.2",
-        "@sap/cds-odata-v2-adapter-proxy": "^1.8.4",
-        "@sap/textbundle": "4.0.0",
-        "@sap/xsenv": "3.1.1",
-        "@sap/xssec": "3.2.11",
-        "aws-sdk": "^2.1051.0",
-        "cds-swagger-ui-express": "^0.3.0",
-        "convert-excel-to-json": "^1.7.0",
-        "express": "^4",
-        "hdb": "0.19.1",
-        "passport": "^0.5.2",
-        "xlsx": "^0.17.4"
+  "name": "capdemogru",
+  "version": "1.0.0",
+  "description": "CAP project with objectstore",
+  "repository": "",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "5.7.3",
+    "@sap/cds-dk": "4.7.2",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.8.4",
+    "@sap/textbundle": "4.0.0",
+    "@sap/xsenv": "3.1.1",
+    "@sap/xssec": "3.2.11",
+    "aws-sdk": "^2.1051.0",
+    "cds-swagger-ui-express": "^0.3.0",
+    "convert-excel-to-json": "^1.7.0",
+    "express": "^4",
+    "hdb": "0.19.1",
+    "passport": "^0.5.2",
+    "xlsx": "^0.17.4"
+  },
+  "devDependencies": {
+    "@sap/cds-compiler": "2.11.4",
+    "@sap/hdi-deploy": "^4.2.3",
+    "@sap/ux-specification": "^1.96.2",
+    "sqlite3": "^5.0.2"
+  },
+  "engines": {
+    "node": "14.18.1",
+    "npm": "6.14.15"
+  },
+  "scripts": {
+    "start": "cds run",
+    "undeploy": "cf undeploy capdemogru --delete-services --delete-service-keys",
+    "watch-type": "cds watch --open type/webapp/index.html#fe-lrop-v4",
+    "watch-material": "cds watch --open material/webapp/index.html#fe-lrop-v4",
+    "watch-airline": "cds watch --open airline/webapp/index.html#fe-lrop-v4"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "es2020": true,
+      "node": true,
+      "jest": true,
+      "mocha": true
     },
-    "devDependencies": {
-        "@sap/cds-compiler": "2.11.4",
-        "@sap/hdi-deploy": "^4.2.3",
-        "@sap/ux-specification": "^1.96.0",
-        "sqlite3": "^5.0.2"
+    "globals": {
+      "SELECT": true,
+      "INSERT": true,
+      "UPDATE": true,
+      "DELETE": true,
+      "CREATE": true,
+      "DROP": true,
+      "CDL": true,
+      "CQL": true,
+      "CXL": true,
+      "cds": true
     },
-    "engines": {
-        "node": "14.18.1",
-        "npm": "6.14.15"
+    "rules": {
+      "no-console": "off",
+      "require-atomic-updates": "off"
+    }
+  },
+  "cds": {
+    "i18n": {
+      "folders": [
+        "_i18n",
+        "i18n"
+      ]
     },
-    "scripts": {
-        "start": "cds run",
-        "undeploy": "cf undeploy capdemogru --delete-services --delete-service-keys",
-        "watch-type": "cds watch --open type/webapp/index.html#fe-lrop-v4",
-        "watch-material": "cds watch --open material/webapp/index.html#fe-lrop-v4"
-    },
-    "eslintConfig": {
-        "extends": "eslint:recommended",
-        "env": {
-            "es2020": true,
-            "node": true,
-            "jest": true,
-            "mocha": true
-        },
-        "globals": {
-            "SELECT": true,
-            "INSERT": true,
-            "UPDATE": true,
-            "DELETE": true,
-            "CREATE": true,
-            "DROP": true,
-            "CDL": true,
-            "CQL": true,
-            "CXL": true,
-            "cds": true
-        },
-        "rules": {
-            "no-console": "off",
-            "require-atomic-updates": "off"
+    "requires": {
+      "db": {
+        "model": [
+          "db",
+          "srv"
+        ],
+        "kind": "hana",
+        "pool": {
+          "acquireTimeoutMillis": 600000,
+          "min": 0,
+          "max": 600000
         }
+      },
+      "uaa": {
+        "kind": "xsuaa"
+      }
     },
-    "cds": {
-        "i18n": {
-            "folders": [
-                "_i18n",
-                "i18n"
-            ]
-        },
-        "requires": {
-            "db": {
-                "model": [
-                    "db",
-                    "srv"
-                ],
-                "kind": "hana",
-                "pool": {
-                    "acquireTimeoutMillis": 600000,
-                    "min": 0,
-                    "max": 600000
-                }
-            },
-            "uaa": {
-                "kind": "xsuaa"
-            }
-        },
-        "hana": {
-            "deploy-format": "hdbtable"
-        }
-    },
-    "sapux": [
-        "app/plant",
-        "app/type",
-        "app/material"
-    ]
+    "hana": {
+      "deploy-format": "hdbtable"
+    }
+  },
+  "sapux": [
+    "app/airline"
+  ]
 }

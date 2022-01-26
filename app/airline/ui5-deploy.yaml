@@ -1,6 +1,6 @@
 specVersion: '2.4'
 metadata:
-  name: capdemogru.uploadstock
+  name: capdemogru.app.airline
 type: application
 resources:
   configuration:
@@ -19,6 +19,6 @@ builder:
   - name: ui5-task-zipper
     afterTask: generateCachebusterInfo
     configuration:
-      archiveName: capdemogruuploadstock
+      archiveName: capdemogruappairline
       additionalFiles:
       - xs-app.json
