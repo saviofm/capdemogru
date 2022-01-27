@@ -270,8 +270,8 @@ annotate Airline with @(
 //------------------------------------------------------//
 //Entity
 entity Partner : cuid, managed {
-  CPNJ_CPF           : String(4) not null;
-  PatnerDescription  : String not null;
+  CNPJ_CPF           : String(4) not null;
+  partnerDescription  : String not null;
 }
 //Annotation
 annotate Partner with @(
@@ -279,33 +279,34 @@ annotate Partner with @(
     description        : '{i18n>Partner}',
     UI.TextArrangement : #TextOnly,
     cds.odata.valuelist,
-    Common.SemanticKey : [CPNJ_CPF],
+    Common.SemanticKey : [CNPJ_CPF],
     UI.Identification  : [{
         $Type : 'UI.DataField',
-        Value : CPNJ_CPF
+        Value : CNPJ_CPF
 
     }]
 ) {
     ID             @(
         Core.Computed,
         Common.Text : {
-            $value                 : CPNJ_CPF,
-            ![@UI.TextArrangement] : #TextFirst
+            $value                 : CNPJ_CPF,
+            ![@UI.TextArrangement] : #TextOnly
         }
     );
-    CPNJ_CPF           @(
-        title       : '{i18n>CPNJ_CPF}',
-        description : '{i18n>CPNJ_CPF}',
+    CNPJ_CPF           @(
+        title       : '{i18n>CNPJ_CPF}',
+        description : '{i18n>CNPJ_CPF}',
         Common      : {
             FieldControl             : #Mandatory,
             TextFor                  : ID
         }
     );
-    PartnerDescription    @(
-        title       : '{i18n>PartnerDescription}',
-        description : '{i18n>PartnerDescription}',
+    partnerDescription    @(
+        title       : '{i18n>partnerDescription}',
+        description : '{i18n>partnerDescription}',
         Common      : {
             FieldControl             : #Mandatory
+        //    TextFor                  : CNPJ_CPF
         }
     );
 };

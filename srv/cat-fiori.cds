@@ -442,8 +442,99 @@ annotate CatalogService.Package with @(
 
 
 
+//----------------------- Partner ----------------------//
+//------------------------------------------------------//
+//------------------------------------------------------//
+annotate CatalogService.Partner with @(
+//List Page
+	UI: {
+        LineItem: [
+			{   
+                $Type: 'UI.DataField', 
+                Value: CNPJ_CPF,
+                ![@UI.Importance] : #High
+            },
+            {   
+                $Type : 'UI.DataField', 
+                Value : partnerDescription,
+                ![@UI.Importance] : #High
+            }
+		],
+        PresentationVariant : {
+            $Type     : 'UI.PresentationVariantType',
+            SortOrder : [{Property : CNPJ_CPF}]
+        },
+        SelectionFields: [ 
+            CNPJ_CPF,
+            partnerDescription
+        ],
+	},
+//Object Page
+	UI: {
+        HeaderInfo: {          
+            Title : { 
+                $Type : 'UI.DataField',
+                Value: ID
+            },
+            TypeName: '{i18n>Partner}',
+            TypeNamePlural: '{i18n>Partner_plural}', 
+            Description: { 
+                Value: partnerDescription 
+            }
+        },
+		 HeaderFacets            : [
+            {
+                $Type             : 'UI.ReferenceFacet',
+                Target            : '@UI.FieldGroup#Admin',
+                ![@UI.Importance] : #Medium
+            }
+        ],
+        FieldGroup #GeneralData: {
+			Data: [
+                {
+                    $Type : 'UI.DataField',
+                    Value: CNPJ_CPF
+                },
+				{
+                    $Type : 'UI.DataField',
+                    Value: partnerDescription
+                },
 
-//------------------- Material Stock -------------------//
+			]                        
+        },
+        FieldGroup #Admin: {
+            Data : [
+                {
+                    $Type : 'UI.DataField',
+                    Value : createdBy
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : modifiedBy
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : createdAt
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : modifiedAt
+                }
+            ]
+        },
+        Facets: [
+         // Page Facets
+            {    
+                $Type: 'UI.ReferenceFacet', 
+                Label: '{i18n>GeneralData}', 
+                Target: '@UI.FieldGroup#GeneralData'
+            }
+		],      
+    }
+);
+
+
+//--------------------- PreParcel ----------------------//
 //------------------------------------------------------//
 //------------------------------------------------------//
 annotate CatalogService.PreParcel with @(
