@@ -100,16 +100,16 @@ modules:
     build-result: resources
     requires:
     - artifacts:
-      - capdemogruappairline.zip
-      name: capdemogruappairline
+      - capdemogruappairport.zip
+      name: capdemogruappairport
       target-path: resources/
   
 
 # --------------------- HTML5 MODULE --------------------------
-- name: capdemogruappairline
+- name: capdemogruappairport
 # ------------------------------------------------------------
   type: html5
-  path: app/airline
+  path: app/airport
   build-parameters:
     build-result: dist
     builder: custom

@@ -1,7 +1,7 @@
 {
     "_version": "1.32.0",
     "sap.app": {
-        "id": "capdemogru.app.airline",
+        "id": "capdemogru.app.airport",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -26,12 +26,12 @@
         },
         "crossNavigation": {
             "inbounds": {
-                "capdemogru-app-airline-inbound": {
+                "capdemogru-app-airport-inbound": {
                     "signature": {
                         "parameters": {},
                         "additionalParameters": "allowed"
                     },
-                    "semanticObject": "airline",
+                    "semanticObject": "airport",
                     "action": "manage",
                     "title": "{{flpTitle}}",
                     "subTitle": "{{flpSubtitle}}",

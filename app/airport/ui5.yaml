@@ -1,6 +1,6 @@
 specVersion: '2.4'
 metadata:
-  name: 'airline'
+  name: 'airport'
 type: application
 server:
   customMiddleware:

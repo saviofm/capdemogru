@@ -18,8 +18,8 @@ entity Airport : cuid , managed {
       iata              : String(3) not null;
       icao              : String(4) not null;
       airportDescription : localized String not null;
-      location          : String;
-      country           : String;
+      location          : String not null;
+      country           : String not null;
 }
 
 //Annotation
@@ -34,17 +34,28 @@ annotate Airport with @(
     Value : iata
   }]
 ) {
+  ID @(
+        Core.Computed,
+        Common.Text : {
+            $value                 : iata,
+            ![@UI.TextArrangement] : #TextOnly
+        }
+  );
   iata            @(
     title       : '{i18n>iata}',
     description : '{i18n>iata}',
     Common      : {
-      Text : {
-        $value                 : airportDescription,
-        ![@UI.TextArrangement] : #TextLast
-      }
+        FieldControl             : #Mandatory,
+    //  Text : {
+    //    $value                 : airportDescription,
+    //    ![@UI.TextArrangement] : #TextLast
+    //  }
     }
   );
   icao            @(
+    Common      : {
+        FieldControl             : #Mandatory
+    }, 
     title       : '{i18n>icao}',
     description : '{i18n>icao}'
   );
@@ -58,11 +69,17 @@ annotate Airport with @(
   );
   location            @(
     title       : '{i18n>location}',
-    description : '{i18n>location}'
+    description : '{i18n>location}',
+    Common      : {
+        FieldControl             : #Mandatory
+    }, 
   );
   country            @(
     title       : '{i18n>country}',
-    description : '{i18n>country}'
+    description : '{i18n>country}',
+    Common      : {
+        FieldControl             : #Mandatory
+    }
   );
 };
 
@@ -133,10 +150,11 @@ annotate Declaracao with @(
     title       : '{i18n>Declaracao}',
     description : '{i18n>Declaracao}',
     Common      : {
-      Text : {
-        $value                 : declaracaoDescription,
-        ![@UI.TextArrangement] : #TextLast
-      }
+        FieldControl : #Mandatory,
+        //Text : {
+        //    $value                 : declaracaoDescription,
+        //    ![@UI.TextArrangement] : #TextLast
+        //}
     }
   );
   declaracaoDescription @(
@@ -178,7 +196,7 @@ annotate Package with @(
         Core.Computed,
         Common.Text : {
             $value                 : packageCode,
-            ![@UI.TextArrangement] : #TextFirst
+            ![@UI.TextArrangement] : #TextOnly
         }
     );
     packageCode           @(

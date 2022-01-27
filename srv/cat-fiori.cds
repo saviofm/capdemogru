@@ -50,7 +50,7 @@ annotate CatalogService.Airport with @(
         HeaderInfo: {          
             Title : { 
                 $Type : 'UI.DataField',
-                Value: ID
+                Value: '{i18n>Airport}'
             },
             TypeName: '{i18n>Airport}',
             TypeNamePlural: '{i18n>Airport_plural}', 
