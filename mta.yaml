@@ -255,7 +255,7 @@ resources:
   type: org.cloudfoundry.managed-service
   parameters:
     service: objectstore
-    service-name: nfse-objectstore-service
+    service-name: capdemogru-objectstore-service
     service-plan: s3-standard
 
 # ---------------------- HTML5 Host -------------------------

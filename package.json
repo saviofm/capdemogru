@@ -36,7 +36,7 @@
     "scripts": {
         "start": "cds run",
         "undeploy": "cf undeploy capdemogru --delete-services --delete-service-keys",
-         "watch-airline": "cds watch --open airline/webapp/index.html#fe-lrop-v4",
+        "watch-airline": "cds watch --open airline/webapp/index.html#fe-lrop-v4",
         "watch-partnertype": "cds watch --open partnertype/webapp/index.html#fe-lrop-v4",
         "watch-declaracao": "cds watch --open declaracao/webapp/index.html#fe-lrop-v4",
         "watch-package": "cds watch --open package/webapp/index.html#fe-lrop-v4",
