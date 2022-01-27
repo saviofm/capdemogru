@@ -183,7 +183,7 @@ entity Package : cuid, managed {
 annotate Package with @(
     title              : '{i18n>Package}',
     description        : packageCode,
-    UI.TextArrangement : #TextLast,
+    UI.TextArrangement : #TextOnly,
     cds.odata.valuelist,
     Common.SemanticKey : [packageCode],
     UI.Identification  : [{
@@ -231,7 +231,7 @@ entity Airline : cuid, managed {
 annotate Airline with @(
     title              : '{i18n>Airline}',
     description        : airlineCode,
-    UI.TextArrangement : #TextLast,
+    UI.TextArrangement : #TextOnly,
     cds.odata.valuelist,
     Common.SemanticKey : [airlineCode],
     UI.Identification  : [{
@@ -270,32 +270,32 @@ annotate Airline with @(
 //------------------------------------------------------//
 //Entity
 entity Partner : cuid, managed {
-  CNPJ_CPF           : String(4) not null;
+  CNPJCPF           : String(4) not null;
   partnerDescription  : String not null;
 }
 //Annotation
 annotate Partner with @(
     title              : '{i18n>Partner}',
-    description        : '{i18n>Partner}',
+    description        : CNPJCPF,
     UI.TextArrangement : #TextOnly,
     cds.odata.valuelist,
-    Common.SemanticKey : [CNPJ_CPF],
+    Common.SemanticKey : [CNPJCPF],
     UI.Identification  : [{
         $Type : 'UI.DataField',
-        Value : CNPJ_CPF
+        Value : CNPJCPF
 
     }]
 ) {
     ID             @(
         Core.Computed,
         Common.Text : {
-            $value                 : CNPJ_CPF,
+            $value                 : CNPJCPF,
             ![@UI.TextArrangement] : #TextOnly
         }
     );
-    CNPJ_CPF           @(
-        title       : '{i18n>CNPJ_CPF}',
-        description : '{i18n>CNPJ_CPF}',
+    CNPJCPF           @(
+        title       : '{i18n>CNPJCPF}',
+        description : '{i18n>CNPJCPF}',
         Common      : {
             FieldControl             : #Mandatory,
             TextFor                  : ID
@@ -306,7 +306,7 @@ annotate Partner with @(
         description : '{i18n>partnerDescription}',
         Common      : {
             FieldControl             : #Mandatory
-        //    TextFor                  : CNPJ_CPF
+        //    TextFor                  : CNPJCPF
         }
     );
 };

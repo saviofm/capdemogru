@@ -451,7 +451,7 @@ annotate CatalogService.Partner with @(
         LineItem: [
 			{   
                 $Type: 'UI.DataField', 
-                Value: CNPJ_CPF,
+                Value: CNPJCPF,
                 ![@UI.Importance] : #High
             },
             {   
@@ -462,10 +462,10 @@ annotate CatalogService.Partner with @(
 		],
         PresentationVariant : {
             $Type     : 'UI.PresentationVariantType',
-            SortOrder : [{Property : CNPJ_CPF}]
+            SortOrder : [{Property : CNPJCPF}]
         },
         SelectionFields: [ 
-            CNPJ_CPF,
+            CNPJCPF,
             partnerDescription
         ],
 	},
@@ -493,7 +493,7 @@ annotate CatalogService.Partner with @(
 			Data: [
                 {
                     $Type : 'UI.DataField',
-                    Value: CNPJ_CPF
+                    Value: CNPJCPF
                 },
 				{
                     $Type : 'UI.DataField',
