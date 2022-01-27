@@ -103,9 +103,28 @@ modules:
       - capdemogruappairport.zip
       name: capdemogruappairport
       target-path: resources/
-  
+    - artifacts:
+      - capdemogruapppartnertype.zip
+      name: capdemogruapppartnertype
+      target-path: resources/
+    - artifacts:
+      - capdemogruappdeclaracao.zip
+      name: capdemogruappdeclaracao
+      target-path: resources/
+    - artifacts:
+      - capdemogruapppackage.zip
+      name: capdemogruapppackage
+      target-path: resources/
+    - artifacts:
+      - capdemogruappairline.zip
+      name: capdemogruappairline
+      target-path: resources/
+    - artifacts:
+      - capdemogruapppartner.zip
+      name: capdemogruapppartner
+      target-path: resources/  
 
-# --------------------- HTML5 MODULE --------------------------
+# --------------------- HTML5 MODULE -------------------------
 - name: capdemogruappairport
 # ------------------------------------------------------------
   type: html5
@@ -116,7 +135,65 @@ modules:
     commands:
     - npm run build:cf
     supported-platforms: []
+# --------------------- HTML5 MODULE -------------------------
+- name: capdemogruapppartnertype
+# ------------------------------------------------------------
+  type: html5
+  path: app/partnertype
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm run build:cf
+    supported-platforms: []
 
+# --------------------- HTML5 MODULE -------------------------    
+- name: capdemogruappdeclaracao
+# ------------------------------------------------------------
+  type: html5
+  path: app/declaracao
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm run build:cf
+    supported-platforms: []
+
+# --------------------- HTML5 MODULE -------------------------    
+- name: capdemogruapppackage
+# ------------------------------------------------------------
+  type: html5
+  path: app/package
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm run build:cf
+    supported-platforms: []
+
+# --------------------- HTML5 MODULE -------------------------    
+- name: capdemogruappairline
+# ------------------------------------------------------------
+  type: html5
+  path: app/airline
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm run build:cf
+    supported-platforms: []
+
+# --------------------- HTML5 MODULE -------------------------    
+- name: capdemogruapppartner
+# ------------------------------------------------------------
+  type: html5
+  path: app/partner
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm run build:cf
+    supported-platforms: []
 
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
