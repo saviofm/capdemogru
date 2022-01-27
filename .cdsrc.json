@@ -1,1 +1,29 @@
-{}
+{
+    "auth": {
+        "passport": {
+            "strategy": "mock",
+            "users": {
+                "admin": {
+                    "password": "admin",
+                    "ID": "admin",
+                    "roles": [
+                        "capdemogru_admin",
+                        "capdemogru_user",
+                        "nfse_display",
+                        "nfse_adminkeyuser",
+                        "nfse_adminview",
+                        "nfse_log",
+                        "nfse_monitor"                        
+                    ]                    
+                },
+                "user": {
+                    "password": "user",
+                    "ID": "user",
+                    "roles": [
+                        "capdemogru_user"
+                    ]                    
+                }
+            }
+        }
+    }    
+}

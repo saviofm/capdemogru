@@ -44,7 +44,7 @@
     ],
     "role-collections": [
         {
-            "name": "CAP_Admin",
+            "name": "CAP_GRU_Admin",
             "description": "CAP Admin Role Collection",
             "role-template-references": [
                 "$XSAPPNAME.capdemogru_admin",
@@ -52,7 +52,7 @@
             ]
         },
         {
-            "name": "CAP_User",
+            "name": "CAP_GRU_User",
             "description": "CAP User Role Collection",
             "role-template-references": [
                 "$XSAPPNAME.capdemogru_user"

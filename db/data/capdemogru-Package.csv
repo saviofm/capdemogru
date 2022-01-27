@@ -1,7 +1,6 @@
-packageCode;declaracaoDescription
-DDE;Declaração para despacho de exportação
-DSE;Declaração Simplificada
-DUE;Declaração Única de Exportação
-
-
-
+ID;packageCode;packageDescription
+f1630fcc-5910-4d5f-b5fb-ee17c86e4a68;01;Recipiente de Vidro
+dec8acb6-fcd4-417a-8318-a7c3cc8d0f7f;02;Barril
+6e90f700-201f-4313-a001-5763589e3a9d;03;Lata
+3c679ec2-956b-44aa-86dc-bad93dd85914;04;Embalagem Plástica
+1e9b36c3-9b7c-47bd-a469-0e3ee276103b;05;Caixa de Papelão

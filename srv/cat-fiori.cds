@@ -52,8 +52,8 @@ annotate CatalogService.Airport with @(
                 $Type : 'UI.DataField',
                 Value: ID
             },
-            TypeName: '{i18n>plant_singular}',
-            TypeNamePlural: '{i18n>plant_plural}', 
+            TypeName: '{i18n>Airport}',
+            TypeNamePlural: '{i18n>Airport_plural}', 
             Description: { 
                 $Type: 'UI.DataField', 
                 Value: airportDescription 
@@ -157,7 +157,7 @@ annotate CatalogService.PartnerType with @(
                 Value: '{i18n>PartnerType}'
             },
             TypeName: '{i18n>PartnerType}',
-            TypeNamePlural: '{i18n>PartnerType}', 
+            TypeNamePlural: '{i18n>PartnerType_plural}', 
             Description: { 
                 Value: partnerTypeCode 
             }, 
@@ -219,10 +219,10 @@ annotate CatalogService.Declaracao with @(
         HeaderInfo: {          
             Title : { 
                 $Type : 'UI.DataField',
-                Value: '{i18n>Declaracao_singular}'
+                Value: '{i18n>Declaracao}'
             },
-            TypeName: '{i18n>Declaracao_singular}',
-            TypeNamePlural: '{i18n>Declaracao_singular}', 
+            TypeName: '{i18n>Declaracao',
+            TypeNamePlural: '{i18n>Declaracao_plural}', 
         },
 		
         FieldGroup #GeneralData: {
@@ -286,8 +286,8 @@ annotate CatalogService.Airline with @(
                 $Type : 'UI.DataField',
                 Value: ID
             },
-            TypeName: '{i18n>Airline_singular}',
-            TypeNamePlural: '{i18n>Airline_singular}', 
+            TypeName: '{i18n>Airline}',
+            TypeNamePlural: '{i18n>Airline_plural}', 
             Description: { 
                 $Type: 'UI.DataField', 
                 Value: airlineDescription 
@@ -383,8 +383,8 @@ annotate CatalogService.Package with @(
                 $Type : 'UI.DataField',
                 Value: ID
             },
-            TypeName: '{i18n>material_singular}',
-            TypeNamePlural: '{i18n>material_plural}', 
+            TypeName: '{i18n>Package}',
+            TypeNamePlural: '{i18n>Package_plural}', 
             Description: { 
                 Value: packageDescription 
             }
@@ -531,8 +531,8 @@ annotate CatalogService.PreParcel with @(
                 $Type : 'UI.DataField',
                 Value : airline.ID
             },    
-            TypeName       : '{i18n>PreParcel_singular}',
-            TypeNamePlural : '{i18n>PreParcel_singular}',
+            TypeName       : '{i18n>PreParcel',
+            TypeNamePlural : '{i18n>PreParcel_plural}',
             Description    : {
                 Value : conteudo
             }
@@ -728,7 +728,7 @@ annotate CatalogService.PreParcel with @(
         Facets : [
             {
                 $Type  : 'UI.CollectionFacet',
-                ID     : 'MaterialStockDetails',
+                ID     : 'PreParcelDetails',
                 Label  : '{i18n>details}',
                 Facets : [
                     {

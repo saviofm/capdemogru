@@ -1351,29 +1351,6 @@ f331956f-c805-48ac-a7ef-81f9d7782357;IAD;KIAD;Washington Dulles Intl Airport;Cha
 1bd1cb66-a866-4613-9d93-16fbbd9e7cbc;IAH;KIAH;George Bush Intercontinental Airport;Houston, Texas;USA
 252b9350-74bc-4813-babb-357391c5e030;IAM;DAUZ;Zarzaitine - In Amenas Airport;Zarzaitine;Algeria
 d246b8fe-85ab-4e14-b9ab-48a4c29977c7;IAS;LRIA;Iasi Intl Airport;Iasi;Romania
-9702ed37-a53a-4dc8-a84c-0cb4ff1e2191;IATA;ICAO;Airport;Location;Country
-d205ea7f-89e3-461c-97c8-9d59bab2162b;IATA;ICAO;Airport;Location;Country
-6877a3e3-2746-4f90-b7cc-629ce2bbea91;IATA;ICAO;Airport;Location;Country
-b5d129d1-5c25-47e8-b92d-968aeb581c6e;IATA;ICAO;Airport;Location;Country
-8eb9203d-d471-4ce1-9e5c-d280f330aba5;IATA;ICAO;Airport;Location;Country
-26ea4d91-b253-4ab6-aa60-e8b616fa24cc;IATA;ICAO;Airport;Location;Country
-5d352d86-36f4-48ce-9610-2ca2d7b38d31;IATA;ICAO;Airport;Location;Country
-25756bb7-5016-4403-a6f5-5f8b76cf5749;IATA;ICAO;Airport;Location;Country
-e43e0ed2-d5a6-4546-9b6a-34a6c767cdec;IATA;ICAO;Airport;Location;Country
-e2dc41ac-41d0-4136-8d30-ed922159e079;IATA;ICAO;Airport;Location;Country
-6eab4400-fb40-4939-9d7c-4c5d0a9eb3b1;IATA;ICAO;Airport;Location;Country
-9a109eca-5465-4a45-8ee0-f5cc81a5ba9c;IATA;ICAO;Airport;Location;Country
-63310e66-39f3-40f8-8533-ea1005c04c45;IATA;ICAO;Airport;Location;Country
-0f7aa3dd-57c1-4d9e-941b-83c0b0555f34;IATA;ICAO;Airport;Location;Country
-28460891-f1c0-4106-b4f3-de3a8a2a0fbc;IATA;ICAO;Airport;Location;Country
-6bca4626-610f-4691-8f64-a502ebeb93de;IATA;ICAO;Airport;Location;Country
-ec4552ea-0fb0-4108-ae65-b57ac37e10eb;IATA;ICAO;Airport;Location;Country
-c8e31377-fd55-45fe-819c-2bc8a32e72af;IATA;ICAO;Airport;Location;Country
-f24ff2d2-ee43-41f9-9de9-6ac902b2ee7e;IATA;ICAO;Airport;Location;Country
-8234583a-98f0-40fa-b628-c71158a1cdd9;IATA;ICAO;Airport;Location;Country
-b463aecc-0cf0-4666-b32b-b6b3d58558b2;IATA;ICAO;Airport;Location;Country
-25adc11f-349c-43e9-a722-3e03c95e6214;IATA;ICAO;Airport;Location;Country
-3ac713d4-5827-4297-8ad9-1a6dd3a9469d;IATA;ICAO;Airport;Location;Country
 9f46aeee-6524-4241-9968-704f96894f1b;IBA;DNIB;New Ibadan;Ibadan;Nigeria
 b95f4214-7858-41b9-9c8d-f2272d80278d;IBE;SKIB;Perales;Ibague;Colombia
 e733f4fa-17cd-48dc-99eb-ed2cc8bafe31;IBP;SPBR;Iberia;Iberia;Peru
@@ -2857,7 +2834,6 @@ f5a4d55a-9dcb-49fb-9726-587e2a19258e;SAQ;MYAN;San Andros Airport;Andros;Bahamas
 7f30275c-f379-46d4-a287-ead2d9e98023;SAT;KSAT;San Antonio Intl Airport;San Antonio, Texas;USA
 7295a5c4-f506-445f-9dca-cdf06d7e121f;SAV;KSAV;Savannah/Hilton Head Intl Airport;Savannah, Georgia;USA
 66cbc13a-5f40-4b0f-a64c-296ba40034e7;SAW;LTFJ;Istanbul Sabiha Gokcen Intl Airport;Istanbul;Turkey
-4cbdd100-67fb-4b98-b5fa-bfaecd209d1a;SAW;KSAW;Sawyer Intl Airport (IATA code: MQT);Marquette, Michigan;USA
 c2d151a9-ccc0-4d1e-a409-80bdd0793a4a;SAY;LIQS;Siena Airport;Siena;Italy
 2c84df73-1b17-46b3-ba6f-6dfbb38d50cb;SBA;KSBA;Santa Barbara Municipal Airport;Santa Barbara, California;USA
 6e1922d5-5aec-4f04-8030-4238e6488700;SBH;TFFJ;Saint-Barthelemy Airport;Saint-Barthelemy;Guadeloupe - French Antilles

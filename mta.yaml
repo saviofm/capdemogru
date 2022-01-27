@@ -100,27 +100,16 @@ modules:
     build-result: resources
     requires:
     - artifacts:
-      - capdemogruplant.zip
-      name: capdemogruplant
+      - capdemogruappairline.zip
+      name: capdemogruappairline
       target-path: resources/
-    - artifacts:
-      - capdemogrutype.zip
-      name: capdemogrutype
-      target-path: resources/
-    - artifacts:
-      - capdemogrumaterial.zip
-      name: capdemogrumaterial
-      target-path: resources/
-    - artifacts:
-      - capdemogruuploadstock.zip
-      name: capdemogruuploadstock
-      target-path: resources/      
+  
 
 # --------------------- HTML5 MODULE --------------------------
-- name: capdemogruplant
+- name: capdemogruappairline
 # ------------------------------------------------------------
   type: html5
-  path: app/plant
+  path: app/airline
   build-parameters:
     build-result: dist
     builder: custom
@@ -128,40 +117,6 @@ modules:
     - npm run build:cf
     supported-platforms: []
 
-# --------------------- HTML5 MODULE -------------------------
-- name: capdemogrutype
-# ------------------------------------------------------------
-  type: html5
-  path: app/type
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm run build:cf
-    supported-platforms: []
-# --------------------- HTML5 MODULE -------------------------
-- name: capdemogrumaterial
-# ------------------------------------------------------------
-  type: html5
-  path: app/material
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm run build:cf
-    supported-platforms: []
-
-# --------------------- HTML5 MODULE -------------------------
-- name: capdemogruuploadstock
-# ------------------------------------------------------------
-  type: html5
-  path: app/uploadstock
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm run build:cf
-    supported-platforms: []
 
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------

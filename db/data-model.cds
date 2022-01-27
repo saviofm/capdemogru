@@ -57,12 +57,12 @@ annotate Airport with @(
     }
   );
   location            @(
-    title       : '{i18n>icao}',
-    description : '{i18n>icao}'
+    title       : '{i18n>location}',
+    description : '{i18n>location}'
   );
   country            @(
-    title       : '{i18n>icao}',
-    description : '{i18n>icao}'
+    title       : '{i18n>country}',
+    description : '{i18n>country}'
   );
 };
 
@@ -130,8 +130,8 @@ annotate Declaracao with @(
   }]
 ) {
   declaracao            @(
-    title       : '{i18n>declaracao}',
-    description : '{i18n>declaracao}',
+    title       : '{i18n>Declaracao}',
+    description : '{i18n>Declaracao}',
     Common      : {
       Text : {
         $value                 : declaracaoDescription,
@@ -163,7 +163,7 @@ entity Package : cuid, managed {
 
 //Annotation
 annotate Package with @(
-    title              : '{i18n>MaterialPlant}',
+    title              : '{i18n>Package}',
     description        : packageCode,
     UI.TextArrangement : #TextLast,
     cds.odata.valuelist,
@@ -211,7 +211,7 @@ entity Airline : cuid, managed {
 
 //Annotation
 annotate Airline with @(
-    title              : '{i18n>MaterialPlant}',
+    title              : '{i18n>Airline}',
     description        : airlineCode,
     UI.TextArrangement : #TextLast,
     cds.odata.valuelist,
@@ -361,6 +361,14 @@ annotate PreParcel with @(
             TextFor                  : ID
         }
     );
+    hawb           @(
+        title       : '{i18n>hawb}',
+        description : '{i18n>hawb}',
+        Common      : {
+            FieldControl             : #Mandatory,
+            TextFor                  : ID
+        }
+    );
     declaracao    @(
         title       : '{i18n>declaracao}',
         description : '{i18n>declaracao}',
@@ -384,8 +392,8 @@ annotate PreParcel with @(
         }
     );
     declaracaoNr @(
-        title       : '{i18n>declaracao}',
-        description : '{i18n>declaracao}',
+        title       : '{i18n>declaracaoNr}',
+        description : '{i18n>declaracaoNr}',
         Common      : {
             FieldControl             : #Mandatory
         }
@@ -501,6 +509,10 @@ annotate PreParcel with @(
     dtEmissaoDAT @(
         title       : '{i18n>dtEmissaoDAT}',
         description : '{i18n>dtEmissaoDAT}'
+    );
+    cpfDriver @(
+        title       : '{i18n>cpfDriver}',
+        description : '{i18n>cpfDriver}'
     );
     dseManual @(
         title       : '{i18n>dtEmissaoDAT}',
