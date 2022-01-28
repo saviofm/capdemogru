@@ -732,6 +732,11 @@ annotate CatalogService.PreParcel with @(
                 },
                 {
                     $Type : 'UI.DataField',
+                    Value : cpfDriver,
+                    ![@UI.Importance]       : #High
+                },           
+                {
+                    $Type : 'UI.DataField',
                     Value : dseManual,
                     ![@UI.Importance]       : #High
                 },
