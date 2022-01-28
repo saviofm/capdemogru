@@ -109,8 +109,16 @@ gen/
 
 mta_archives/
 
-app/plant/dist
+app/airline/dist
 
-app/type/dist
+app/airport/dist
 
-app/material/dist
+app/declaracao/dist
+
+app/package/dist
+
+app/partner/dist
+
+app/partnertype/dist
+
+app/preparcel/dist
