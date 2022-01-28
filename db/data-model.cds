@@ -332,7 +332,7 @@ entity PreParcel : cuid, managed {
   destinoHawb         : Association to one Airport;
   transDoc            : String;
   dtEmissaoDAT        : Date;
-  cpfDriver           : String;
+  cpfDriver           : String @assert.format : '[0-9]+';
   dseManual           : Boolean;
   airline             : Association to one Airline;
   express             : Boolean;
