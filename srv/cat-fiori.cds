@@ -555,18 +555,6 @@ annotate CatalogService.PreParcel with @(
             },            
             {   
                 $Type                   : 'UI.DataField',
-                Value                   : declaracao_declaracao,
-                ![@Common.FieldControl] : #ReadOnly,
-                ![@UI.Importance]       : #High
-            },          
- 			{   
-                $Type                   : 'UI.DataField',
-                Value                   : declaracaoNr,
-                //![@Common.FieldControl] : #ReadOnly,
-                ![@UI.Importance]       : #High,
-            },
-            {   
-                $Type                   : 'UI.DataField',
                 Value                   : ruc,
                 ![@Common.FieldControl] : #ReadOnly,
                 ![@UI.Importance]       : #High,
@@ -622,7 +610,7 @@ annotate CatalogService.PreParcel with @(
                 $Type : 'UI.DataField',
                 Value : airline.ID
             },    
-            TypeName       : '{i18n>PreParcel',
+            TypeName       : '{i18n>PreParcel}',
             TypeNamePlural : '{i18n>PreParcel_plural}',
             Description    : {
                 Value : conteudo
@@ -686,11 +674,6 @@ annotate CatalogService.PreParcel with @(
                     $Type                   : 'UI.DataField',
                     Value                   : transit,
                     ![@UI.Importance]       : #High
-                },
-                {
-                    $Type                   : 'UI.DataField',
-                    Value                   : airTransit,
-                    ![@UI.Importance]       : #High
                 }
             ]
         },
@@ -703,12 +686,12 @@ annotate CatalogService.PreParcel with @(
                 },
                 {
                     $Type : 'UI.DataField',
-                    Value : destinoHawb_ID,
+                    Value : destinoAwb_ID,
                     ![@UI.Importance]       : #High
                 },
                 {
                     $Type : 'UI.DataField',
-                    Value : origemAwb_ID,
+                    Value : origemHawb_ID,
                     ![@UI.Importance]       : #High
                 },
                 {
@@ -718,8 +701,25 @@ annotate CatalogService.PreParcel with @(
                 },
             ]
         },
-         FieldGroup #Details2 : {
+        FieldGroup #Details2 : {
             Data : [
+                 {   
+                    $Type                   : 'UI.DataField',
+                    Value                   : declaracao_declaracao,
+                    ![@Common.FieldControl] : #ReadOnly,
+                    ![@UI.Importance]       : #High
+                },          
+ 			    {   
+                    $Type                   : 'UI.DataField',
+                    Value                   : declaracaoNr,
+                    //![@Common.FieldControl] : #ReadOnly,
+                    ![@UI.Importance]       : #High,
+                },
+                {
+                    $Type                   : 'UI.DataField',
+                    Value                   : airTransit,
+                    ![@UI.Importance]       : #High
+                },
                 {
                     $Type : 'UI.DataField',
                     Value : transDoc,           
@@ -735,15 +735,16 @@ annotate CatalogService.PreParcel with @(
                     Value : dseManual,
                     ![@UI.Importance]       : #High
                 },
-                {
-                    $Type : 'UI.DataField',
-                    Value : airline_ID,
-                    ![@UI.Importance]       : #High
-                }
+
             ]
         },    
         FieldGroup #DetailsParcel : {
             Data : [
+                {
+                    $Type : 'UI.DataField',
+                    Value : airline_ID,
+                    ![@UI.Importance]       : #High
+                },
                 {
                     $Type : 'UI.DataField',
                     Value : express,           
@@ -807,7 +808,11 @@ annotate CatalogService.PreParcel with @(
                     Value : obs,
                     
                     ![@UI.Importance]       : #High
-                },
+                }
+            ]
+        }, 
+        FieldGroup #Confirm : {
+            Data : [
                 {
                     $Type : 'UI.DataField',
                     Value : confirm,
@@ -815,29 +820,28 @@ annotate CatalogService.PreParcel with @(
                 }
             ]
         }, 
+
     // Page Facets
         Facets : [
             {
-                $Type  : 'UI.CollectionFacet',
-                ID     : 'PreParcelDetails',
+                $Type  : 'UI.ReferenceFacet',
+                Label  : '{i18n>GeneralData}',
+                Target : '@UI.FieldGroup#GeneralData'
+            },
+            {
+                $Type  : 'UI.ReferenceFacet',
                 Label  : '{i18n>details}',
-                Facets : [
-                    {
-                        $Type  : 'UI.ReferenceFacet',
-                        //Label  : '{i18n>details}',
-                        Target : '@UI.FieldGroup#Details'
-                    },
-                    {
-                        $Type  : 'UI.ReferenceFacet',
-                        //Label  : '{i18n>details}',
-                        Target : '@UI.FieldGroup#Details2'
-                    },
-                    {
-                        $Type  : 'UI.ReferenceFacet',
-                        //Label  : '{i18n>details}',
-                        Target : '@UI.FieldGroup#DetailsParcel'
-                    }
-                ]
+                Target : '@UI.FieldGroup#Details'
+            },
+            {
+                $Type  : 'UI.ReferenceFacet',
+                Label  : '{i18n>details2}',
+                Target : '@UI.FieldGroup#Details2'
+            },     
+            {
+                $Type  : 'UI.ReferenceFacet',
+                Label  : '{i18n>detailsParcel}',
+                Target : '@UI.FieldGroup#DetailsParcel'
             },
             {
                 $Type  : 'UI.ReferenceFacet',
@@ -849,6 +853,11 @@ annotate CatalogService.PreParcel with @(
                 Label  : '{i18n>Obs}',
                 Target : '@UI.FieldGroup#Obs'
             },
+            {
+                $Type  : 'UI.ReferenceFacet',
+                Label  : '{i18n>Confirm}',
+                Target : '@UI.FieldGroup#Confirm'
+            }
         ]
     }  
 ); 

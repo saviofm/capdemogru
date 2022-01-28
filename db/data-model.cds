@@ -105,9 +105,9 @@ annotate PartnerType with @(
     Value : partnerTypeCode
   }]
 ) {
-  PartnerTypeCode            @(
-    title       : '{i18n>PartnerTypeCode}',
-    description : '{i18n>PartnerTypeCode}',
+  partnerTypeCode            @(
+    title       : '{i18n>partnerTypeCode}',
+    description : '{i18n>partnerTypeCode}',
     Common      : {
       Text : {
         $value                 : partnerTypeCodeDescription,
@@ -115,9 +115,9 @@ annotate PartnerType with @(
       }
     }
   );
-  PartnerTypeCodeDescription @(
-    title       : '{i18n>PartnerTypeCodeDescription}',
-    description : '{i18n>PartnerTypeCodeDescription}',
+  partnerTypeCodeDescription @(
+    title       : '{i18n>partnerTypeCodeDescription}',
+    description : '{i18n>partnerTypeCodeDescription}',
     Common      : {
       FieldControl : #Mandatory,
       TextFor      : partnerTypeCode
@@ -256,8 +256,8 @@ annotate Airline with @(
         }
     );
     airlineDescription    @(
-        title       : '{i18n>AirlineDescription}',
-        description : '{i18n>AirlineDescription}',
+        title       : '{i18n>airlineDescription}',
+        description : '{i18n>airlineDescription}',
         Common      : {
             FieldControl             : #Mandatory
         }
@@ -332,6 +332,7 @@ entity PreParcel : cuid, managed {
   destinoHawb         : Association to one Airport;
   transDoc            : String;
   dtEmissaoDAT        : Date;
+  cpfDriver           : String;
   dseManual           : Boolean;
   airline             : Association to one Airline;
   express             : Boolean;
@@ -534,8 +535,8 @@ annotate PreParcel with @(
         description : '{i18n>cpfDriver}'
     );
     dseManual @(
-        title       : '{i18n>dtEmissaoDAT}',
-        description : '{i18n>dtEmissaoDAT}'
+        title       : '{i18n>dseManual}',
+        description : '{i18n>dseManual}'
     );
     airline  @(
         title       : '{i18n>airline}',
@@ -696,7 +697,8 @@ annotate PreParcel with @(
     );         
     obs   @(
         title       : '{i18n>obs}',
-        description : '{i18n>obs}'
+        description : '{i18n>obs}',
+        UI.MultiLineText : true,
     );          
     confirm   @(
         title       : '{i18n>confirm}',
