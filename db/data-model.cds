@@ -14,6 +14,8 @@ namespace capdemogru;
 //------------------------------------------------------//
 //------------------------------------------------------//
 //Entity
+
+
 entity Airport : cuid , managed {
       iata              : String(3) not null;
       icao              : String(4) not null;
@@ -21,13 +23,12 @@ entity Airport : cuid , managed {
       location          : String not null;
       country           : String not null;
 }
-
+@cds.odata.valuelist
 //Annotation
 annotate Airport with @(
   title              : '{i18n>Airport}',
   description        : '{i18n>Airport}',
   UI.TextArrangement : #TextOnly,
-  cds.odata.valuelist,
   Common.SemanticKey : [iata],
   UI.Identification  : [{
     $Type : 'UI.DataField',
@@ -98,7 +99,6 @@ annotate PartnerType with @(
   title              : '{i18n>PartnerType}',
   description        : '{i18n>PartnerType}',
   UI.TextArrangement : #TextOnly,
-  cds.odata.valuelist,
   Common.SemanticKey : [partnerTypeCode],
   UI.Identification  : [{
     $Type : 'UI.DataField',
@@ -139,7 +139,6 @@ entity Declaracao {
 annotate Declaracao with @(
   title              : '{i18n>Declaracao}',
   description        : '{i18n>Declaracao}',
-  cds.odata.valuelist,
   Common.SemanticKey : [declaracao],
   UI.Identification  : [{
     $Type : 'UI.DataField',
@@ -184,7 +183,6 @@ annotate Package with @(
     title              : '{i18n>Package}',
     description        : packageCode,
     UI.TextArrangement : #TextOnly,
-    cds.odata.valuelist,
     Common.SemanticKey : [packageCode],
     UI.Identification  : [{
         $Type : 'UI.DataField',
@@ -237,7 +235,6 @@ annotate Airline with @(
     title              : '{i18n>Airline}',
     description        : airlineCode,
     UI.TextArrangement : #TextOnly,
-    cds.odata.valuelist,
     Common.SemanticKey : [airlineCode],
     UI.Identification  : [{
         $Type : 'UI.DataField',
@@ -276,6 +273,7 @@ annotate Airline with @(
 //------------------------------------------------------//
 //------------------------------------------------------//
 //Entity
+@cds.odata.valuelist
 entity Partner : cuid, managed {
   CNPJCPF           : String(14) not null;
   partnerDescription  : String not null;
@@ -285,7 +283,6 @@ annotate Partner with @(
     title              : '{i18n>Partner}',
     description        : CNPJCPF,
     UI.TextArrangement : #TextOnly,
-    cds.odata.valuelist,
     Common.SemanticKey : [CNPJCPF],
     UI.Identification  : [{
         $Type : 'UI.DataField',
@@ -363,7 +360,6 @@ annotate PreParcel with @(
     title              : '{i18n>PreParcel}',
     description        : awb,
     UI.TextArrangement : #TextLast,
-    cds.odata.valuelist,
     Common.SemanticKey : [awb],
     UI.Identification  : [{
         $Type : 'UI.DataField',
@@ -659,6 +655,10 @@ annotate PreParcel with @(
         description : '{i18n>exportador}',
         Common      : {
             FieldControl             : #Mandatory,
+            Text : {
+                $value                 :  exportador.partnerDescription,
+                ![@UI.TextArrangement] : #TextOnly
+            },
             ValueList : {
                 CollectionPath  : 'Partner',
                 Label : '{i18n>exportador}',  
@@ -682,6 +682,10 @@ annotate PreParcel with @(
         description : '{i18n>agente}',
         Common      : {
             FieldControl             : #Mandatory,
+            Text : {
+                $value                 :  transportador.partnerDescription,
+                ![@UI.TextArrangement] : #TextOnly
+            },
             ValueList : {
                 CollectionPath  : 'Partner',
                 Label : '{i18n>agente}',  
@@ -704,6 +708,10 @@ annotate PreParcel with @(
         description : '{i18n>transportador}',
         Common      : {
             FieldControl             : #Mandatory,
+            Text : {
+                $value                 :  transportador.partnerDescription,
+                ![@UI.TextArrangement] : #TextOnly
+            },
             ValueList : {
                 CollectionPath  : 'Partner',
                 Label : '{i18n>transportador}',  
@@ -720,7 +728,8 @@ annotate PreParcel with @(
                 ]
             }   
         }
-    ); 
+    );
+  
   cobranca @(
         title       : '{i18n>cobranca}',
         description : '{i18n>cobranca}',

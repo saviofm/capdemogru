@@ -35,7 +35,7 @@
                     "action": "manage",
                     "title": "{{flpTitle}}",
                     "subTitle": "{{flpSubtitle}}",
-                    "icon": ""
+                    "icon": "sap-icon://BusinessSuiteInAppSymbols/icon-container-loading"
                 }
             }
         }
