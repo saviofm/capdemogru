@@ -657,16 +657,6 @@ annotate CatalogService.PreParcel with @(
                 },
                 {
                     $Type                   : 'UI.DataField',
-                    Value                   : declaracao_declaracao,
-                    ![@UI.Importance]       : #High
-                },
-                {
-                    $Type                   : 'UI.DataField',
-                    Value                   : declaracaoNr,
-                    ![@UI.Importance]       : #High
-                },
-                {
-                    $Type                   : 'UI.DataField',
                     Value                   : ruc,
                     ![@UI.Importance]       : #High
                 },
@@ -706,7 +696,7 @@ annotate CatalogService.PreParcel with @(
                  {   
                     $Type                   : 'UI.DataField',
                     Value                   : declaracao_declaracao,
-                    ![@Common.FieldControl] : #ReadOnly,
+                    //![@Common.FieldControl] : #ReadOnly,
                     ![@UI.Importance]       : #High
                 },          
  			    {   

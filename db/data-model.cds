@@ -195,7 +195,7 @@ annotate Package with @(
     ID             @(
         Core.Computed,
         Common.Text : {
-            $value                 : packageCode,
+            $value                 : packageDescription,
             ![@UI.TextArrangement] : #TextOnly
         }
     );
@@ -204,14 +204,19 @@ annotate Package with @(
         description : '{i18n>packageCode}',
         Common      : {
             FieldControl             : #Mandatory,
-            TextFor : ID
+            //TextFor : ID,
+            Text : {
+                $value                 : packageDescription,
+                ![@UI.TextArrangement] : #TextLast
+            }    
         }
     );
     packageDescription    @(
         title       : '{i18n>packageDescription}',
         description : '{i18n>packageDescription}',
         Common      : {
-            FieldControl             : #Mandatory
+            FieldControl : #Mandatory,
+            TextFor : packageCode
         }
     );
 };
@@ -244,7 +249,8 @@ annotate Airline with @(
         Core.Computed,
         Common.Text : {
             $value                 : airlineCode,
-            ![@UI.TextArrangement] : #TextFirst
+            ![@UI.TextArrangement] : #TextOnly
+
         }
     );
     airlineCode           @(
@@ -259,7 +265,8 @@ annotate Airline with @(
         title       : '{i18n>airlineDescription}',
         description : '{i18n>airlineDescription}',
         Common      : {
-            FieldControl             : #Mandatory
+            FieldControl             : #Mandatory,
+            TextFor : airlineCode
         }
     );
 };
@@ -270,7 +277,7 @@ annotate Airline with @(
 //------------------------------------------------------//
 //Entity
 entity Partner : cuid, managed {
-  CNPJCPF           : String(4) not null;
+  CNPJCPF           : String(14) not null;
   partnerDescription  : String not null;
 }
 //Annotation
@@ -384,16 +391,17 @@ annotate PreParcel with @(
     hawb           @(
         title       : '{i18n>hawb}',
         description : '{i18n>hawb}',
-        Common      : {
-            FieldControl             : #Mandatory,
-            TextFor                  : ID
-        }
+        //Common      : {
+        //    FieldControl             : #Mandatory,
+        //   TextFor                  : ID
+        //}
     );
     declaracao    @(
         title       : '{i18n>declaracao}',
         description : '{i18n>declaracao}',
         Common      : {
             FieldControl             : #Mandatory,
+            Label : '{i18n>declaracao}',
             ValueList : {
                 CollectionPath  : 'Declaracao',
                 Parameters      : [
@@ -437,9 +445,13 @@ annotate PreParcel with @(
         title       : '{i18n>origemAwb}',
         description : '{i18n>origemAwb}',
         Common      : {
-            FieldControl             : #Mandatory,
+            Text : {
+                $value                 :  origemAwb.airportDescription,
+                ![@UI.TextArrangement] : #TextOnly
+            },
             ValueList : {
                 CollectionPath  : 'Airport',
+                Label : '{i18n>Airport}',
                 Parameters      : [
                     {
 
@@ -450,6 +462,10 @@ annotate PreParcel with @(
                     {
                         $Type             : 'Common.ValueListParameterDisplayOnly',
                         ValueListProperty : 'iata'
+                    },
+                    {
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
+                        ValueListProperty : 'airportDescription'
                     }
                 ]
             }   
@@ -459,9 +475,13 @@ annotate PreParcel with @(
         title       : '{i18n>destinoAwb}',
         description : '{i18n>destinoAwb}',
         Common      : {
-            FieldControl             : #Mandatory,
+            Text : {
+                $value                 :  destinoAwb.airportDescription,
+                ![@UI.TextArrangement] : #TextOnly
+            },
             ValueList : {
                 CollectionPath  : 'Airport',
+                Label : '{i18n>Airport}',
                 Parameters      : [
                     {
 
@@ -472,6 +492,10 @@ annotate PreParcel with @(
                     {
                         $Type             : 'Common.ValueListParameterDisplayOnly',
                         ValueListProperty : 'iata'
+                    },
+                    {
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
+                        ValueListProperty : 'airportDescription'
                     }
                 ]
             }   
@@ -481,9 +505,13 @@ annotate PreParcel with @(
         title       : '{i18n>origemHawb}',
         description : '{i18n>origemHawb}',
         Common      : {
-            FieldControl             : #Mandatory,
+            Text : {
+                $value                 :  origemHawb.airportDescription,
+                ![@UI.TextArrangement] : #TextOnly
+            },
             ValueList : {
                 CollectionPath  : 'Airport',
+                Label : '{i18n>Airport}',
                 Parameters      : [
                     {
 
@@ -494,6 +522,10 @@ annotate PreParcel with @(
                     {
                         $Type             : 'Common.ValueListParameterDisplayOnly',
                         ValueListProperty : 'iata'
+                    },
+                    {
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
+                        ValueListProperty : 'airportDescription'
                     }
                 ]
             }   
@@ -503,19 +535,27 @@ annotate PreParcel with @(
         title       : '{i18n>destinoHawb}',
         description : '{i18n>destinoHawb}',
         Common      : {
-            FieldControl             : #Mandatory,
+            Text : {
+                $value                 :  destinoHawb.airportDescription,
+                ![@UI.TextArrangement] : #TextOnly
+            },
             ValueList : {
                 CollectionPath  : 'Airport',
+                Label : '{i18n>Airport}',
                 Parameters      : [
                     {
 
                         $Type             : 'Common.ValueListParameterInOut',
                         LocalDataProperty : 'destinoHawb_ID',
-                        ValueListProperty : 'ID'
+                        ValueListProperty : 'ID'                   
                     },          
                     {
                         $Type             : 'Common.ValueListParameterDisplayOnly',
                         ValueListProperty : 'iata'
+                    },
+                    {
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
+                        ValueListProperty : 'airportDescription'
                     }
                 ]
             }   
@@ -543,8 +583,14 @@ annotate PreParcel with @(
         description : '{i18n>airline}',
         Common      : {
             FieldControl             : #Mandatory,
+            Label : '{i18n>Airline}',
+            Text : {
+                $value                 :  airline.airlineDescription,
+                ![@UI.TextArrangement] : #TextOnly
+            },
             ValueList : {
                 CollectionPath  : 'Airline',
+                Label : '{i18n>Airline}',
                 Parameters      : [
                     {
 
@@ -554,7 +600,7 @@ annotate PreParcel with @(
                     },          
                     {
                         $Type             : 'Common.ValueListParameterDisplayOnly',
-                        ValueListProperty : 'AirlineDescription'
+                        ValueListProperty : 'airlineDescription'
                     }
                 ]
             }   
@@ -577,8 +623,13 @@ annotate PreParcel with @(
         description : '{i18n>package}',
         Common      : {
             FieldControl             : #Mandatory,
+            Text : {
+                $value                 :  package.packageDescription,
+                ![@UI.TextArrangement] : #TextOnly
+            },
             ValueList : {
                 CollectionPath  : 'Package',
+                Label : '{i18n>package}',                
                 Parameters      : [
                     {
 
@@ -593,7 +644,8 @@ annotate PreParcel with @(
                 ]
             }   
         }
-    );     
+    );
+      
     conteudo   @(
         title       : '{i18n>conteudo}',
         description : '{i18n>conteudo}'
@@ -609,6 +661,7 @@ annotate PreParcel with @(
             FieldControl             : #Mandatory,
             ValueList : {
                 CollectionPath  : 'Partner',
+                Label : '{i18n>exportador}',  
                 Parameters      : [
                     {
 
@@ -618,7 +671,7 @@ annotate PreParcel with @(
                     },          
                     {
                         $Type             : 'Common.ValueListParameterDisplayOnly',
-                        ValueListProperty : 'PartnerDescription'
+                        ValueListProperty : 'partnerDescription'
                     }
                 ]
             }   
@@ -631,16 +684,16 @@ annotate PreParcel with @(
             FieldControl             : #Mandatory,
             ValueList : {
                 CollectionPath  : 'Partner',
+                Label : '{i18n>agente}',  
                 Parameters      : [
                     {
-
                         $Type             : 'Common.ValueListParameterInOut',
                         LocalDataProperty : 'agente_ID',
                         ValueListProperty : 'ID'
                     },          
                     {
                         $Type             : 'Common.ValueListParameterDisplayOnly',
-                        ValueListProperty : 'PartnerDescription'
+                        ValueListProperty : 'partnerDescription'
                     }
                 ]
             }   
@@ -653,16 +706,16 @@ annotate PreParcel with @(
             FieldControl             : #Mandatory,
             ValueList : {
                 CollectionPath  : 'Partner',
+                Label : '{i18n>transportador}',  
                 Parameters      : [
                     {
-
                         $Type             : 'Common.ValueListParameterInOut',
                         LocalDataProperty : 'transportador_ID',
                         ValueListProperty : 'ID'
                     },          
                     {
                         $Type             : 'Common.ValueListParameterDisplayOnly',
-                        ValueListProperty : 'PartnerDescription'
+                        ValueListProperty : 'partnerDescription'
                     }
                 ]
             }   
@@ -675,14 +728,17 @@ annotate PreParcel with @(
             FieldControl             : #Mandatory,
             ValueList : {
                 CollectionPath  : 'PartnerType',
+                Label : '{i18n>PartnerType}', 
                 Parameters      : [
                     {
-
                         $Type             : 'Common.ValueListParameterInOut',
                         LocalDataProperty : 'cobranca_partnerTypeCode',
-                        ValueListProperty : 'PartnerTypeCode'
+                        ValueListProperty : 'partnerTypeCode'
                     },          
-
+                    {
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
+                        ValueListProperty : 'partnerTypeCodeDescription'
+                    }
                 ]
             }   
         }
