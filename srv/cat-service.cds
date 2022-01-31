@@ -1,6 +1,6 @@
 using capdemogru as capdemogru from '../db/data-model';
 
-service CatalogService  @( requires:'authenticated-user') {
+service CatalogService {// @( requires:'authenticated-user') {
     // Serviços para criação de APP FIORI DE CADASTROS
     @odata.draft.enabled : true
     entity Airport   as projection on capdemogru.Airport;
