@@ -2,60 +2,34 @@ _schema-version: "3.1"
 ID: capdemogru
 description: A simple CAP project.
 version: 1.0.1
-parameters:
-  ###deploy_mode: html5-repo
-  enable-parallel-deployments: true
-build-parameters:
-  before-all:
-  - builder: custom
-    commands:
-    - npm install --production
-    - npx -p @sap/cds-dk cds build --production
-
-
-# ----------------------------------------------------------------
-# ----------------------------------------------------------------
-# ----------------------------MODULES-----------------------------
-# ----------------------------------------------------------------
-# ----------------------------------------------------------------
 modules:
-
-# --------------------- CAP SERVER MODULE ------------------------
 - name: capdemogru-srv
-# ----------------------------------------------------------------
   type: nodejs
   path: gen/srv
   properties:
     SAP_JWT_TRUST_ACL: '[{"clientid":"*","identityzone":"*"}]'
   requires:
-  # Resources extracted from CAP configuration
   - name: capdemogru-db
   - name: capdemogru-xsuaa-service
   - name: capdemogru-destination-service
     parameters:
       content-target: true
   provides:
-  - name: srv-api # required by consumers of CAP services (e.g. approuter)
+  - name: srv-api
     properties:
       srv-url: ${default-url}
   parameters:
     buildpack: nodejs_buildpack
     disk-quota: 1024M
     memory: 512M
-
-# -------------- SIDECAR MODULE - DB DEPLOYER----------------- 
 - name: capdemogru-db-deployer
-# ------------------------------------------------------------
   type: hdb
   path: gen/db
   requires:
   - name: capdemogru-db
   parameters:
     buildpack: nodejs_buildpack
-
-# -------------------- HTML5 Content ----------------------
 - name: capdemogru-destination-content
-# ---------------------------------------------------------
   type: com.sap.application.content
   requires:
   - name: capdemogru-xsuaa-service
@@ -68,7 +42,7 @@ modules:
         name: capdemogru_html5_host-key
   - name: capdemogru-destination-service
     parameters:
-      content-target: true        
+      content-target: true
   parameters:
     content:
       subaccount:
@@ -82,13 +56,10 @@ modules:
           ServiceInstanceName: capdemogru-xsuaa-service
           ServiceKeyName: capdemogru_xsuaa-key
           sap.cloud.service: capdemogru
-        existing_destinations_policy: update    
+        existing_destinations_policy: update
   build-parameters:
     no-source: true
-
-# -------------- UI DEPLOYER MODULE - APP CONTENT ------------
 - name: capdemogru-ui-deployer
-# ------------------------------------------------------------
   type: com.sap.application.content
   path: .
   requires:
@@ -126,11 +97,11 @@ modules:
       - capdemogruapppreparcel.zip
       name: capdemogruapppreparcel
       target-path: resources/
-    
-
-# --------------------- HTML5 MODULE -------------------------
+    - artifacts:
+      - capdemogruappuld.zip
+      name: capdemogruappuld
+      target-path: resources/
 - name: capdemogruappairport
-# ------------------------------------------------------------
   type: html5
   path: app/airport
   build-parameters:
@@ -139,9 +110,7 @@ modules:
     commands:
     - npm run build:cf
     supported-platforms: []
-# --------------------- HTML5 MODULE -------------------------
 - name: capdemogruapppartnertype
-# ------------------------------------------------------------
   type: html5
   path: app/partnertype
   build-parameters:
@@ -150,10 +119,7 @@ modules:
     commands:
     - npm run build:cf
     supported-platforms: []
-
-# --------------------- HTML5 MODULE -------------------------    
 - name: capdemogruappdeclaracao
-# ------------------------------------------------------------
   type: html5
   path: app/declaracao
   build-parameters:
@@ -162,10 +128,7 @@ modules:
     commands:
     - npm run build:cf
     supported-platforms: []
-
-# --------------------- HTML5 MODULE -------------------------    
 - name: capdemogruapppackage
-# ------------------------------------------------------------
   type: html5
   path: app/package
   build-parameters:
@@ -174,10 +137,7 @@ modules:
     commands:
     - npm run build:cf
     supported-platforms: []
-
-# --------------------- HTML5 MODULE -------------------------    
 - name: capdemogruappairline
-# ------------------------------------------------------------
   type: html5
   path: app/airline
   build-parameters:
@@ -186,10 +146,7 @@ modules:
     commands:
     - npm run build:cf
     supported-platforms: []
-
-# --------------------- HTML5 MODULE -------------------------    
 - name: capdemogruapppartner
-# ------------------------------------------------------------
   type: html5
   path: app/partner
   build-parameters:
@@ -198,10 +155,7 @@ modules:
     commands:
     - npm run build:cf
     supported-platforms: []
-
-# --------------------- HTML5 MODULE -------------------------    
 - name: capdemogruapppreparcel
-# ------------------------------------------------------------
   type: html5
   path: app/preparcel
   build-parameters:
@@ -211,54 +165,44 @@ modules:
     - npm install
     - npm run build:cf
     supported-platforms: []
-
-
-# ----------------------------------------------------------------
-# ----------------------------------------------------------------
-# ---------------------------RESOURCES----------------------------
-# ----------------------------------------------------------------
-# ----------------------------------------------------------------
+- name: capdemogruappuld
+  type: html5
+  path: uld
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
 resources:
-
-# --------------------- DB - HDI CONTAINER------------------------
 - name: capdemogru-db
-# ----------------------------------------------------------------
   type: com.sap.xs.hdi-container
   parameters:
     service: hana
     service-plan: hdi-shared
   properties:
     hdi-service-name: ${service-name}
-
-# ------------------------ XSUAA Service -------------------------  
 - name: capdemogru-xsuaa-service
-# ----------------------------------------------------------------
   type: org.cloudfoundry.managed-service
   parameters:
     path: ./xs-security.json
     service: xsuaa
     service-name: capdemogru-xsuaa-service
     service-plan: application
-
-# ----------------- Destination Service -------------------   
 - name: capdemogru-destination-service
-# ---------------------------------------------------------
   type: org.cloudfoundry.managed-service
   parameters:
     config:
-      ##HTML5Runtime_enabled: true
+      HTML5Runtime_enabled: true
       init_data:
-        subaccount:
+        instance:
           destinations:
           - Authentication: NoAuthentication
-            Description: CAP Objectstore Destination Service
-            HTML5.DynamicDestination: true
-            HTML5.ForwardAuthToken: true
-            HTML5.Timeout: 300000
-            Name: capdemogru
+            Name: ui5
             ProxyType: Internet
             Type: HTTP
-            URL: ~{srv-api/srv-url}  
+            URL: https://ui5.sap.com
           existing_destinations_policy: update
       version: 1.0.0
     service: destination
@@ -266,13 +210,18 @@ resources:
     service-plan: lite
   requires:
   - name: srv-api
-
-# ---------------------- HTML5 Host -------------------------
 - name: capdemogru-html5-host
-# -----------------------------------------------------------
   type: org.cloudfoundry.managed-service
   parameters:
     service: html5-apps-repo
     service-name: capdemogru-html5-host-service
     service-plan: app-host
-
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install --production
+    - npx -p @sap/cds-dk cds build --production
