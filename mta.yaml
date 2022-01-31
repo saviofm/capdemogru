@@ -34,7 +34,6 @@ modules:
   - name: capdemogru-destination-service
     parameters:
       content-target: true
-  - name: capdemogru-objectstore-service
   provides:
   - name: srv-api # required by consumers of CAP services (e.g. approuter)
     properties:
@@ -267,15 +266,6 @@ resources:
     service-plan: lite
   requires:
   - name: srv-api
-
- # -------------- AWS S3 Objectore Service ------------------
-- name: capdemogru-objectstore-service
-# -----------------------------------------------------------
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: objectstore
-    service-name: capdemogru-objectstore-service
-    service-plan: s3-standard
 
 # ---------------------- HTML5 Host -------------------------
 - name: capdemogru-html5-host

@@ -768,6 +768,217 @@ annotate PreParcel with @(
     confirm   @(
         title       : '{i18n>confirm}',
         description : '{i18n>confirm}'
-    );          
+    );   
+    danfe     @(
+        title       : '{i18n>danfe}',
+        description : '{i18n>danfe}'
+    );       
 };
 
+
+
+//----------------------- Danfe ------------------------//
+//------------------------------------------------------//
+//------------------------------------------------------//
+//Entity
+entity Danfe : cuid, managed {
+  preParcel           : Association to one PreParcel;
+  filename            : String(11) not null;
+  file                : LargeBinary @Core.MediaType: 'application/pdf';
+};
+
+
+//--------------------- PRIORITY -----------------------//
+//------------------------------------------------------//
+//------------------------------------------------------//
+//Entity
+@cds.odata.valuelist
+entity Priority: cuid, managed {
+  key priority        : String(15) not null;
+};
+
+//Annotation
+annotate Priority with @(
+  title              : '{i18n>Priority}',
+  description        : '{i18n>Priority}',
+  Common.SemanticKey : [priority],
+  UI.Identification  : [{
+    $Type : 'UI.DataField',
+    Value : priority
+  }]
+) {
+      ID             @(
+        title       : 'ID',
+        description : 'ID',
+        Core.Computed,
+        Common.Text : {
+            $value                 : priority,
+            ![@UI.TextArrangement] : #TextOnly
+        }
+    );
+    priority            @(
+        title       : '{i18n>Priority}',
+        description : '{i18n>Priotity}',
+        Common      : {     
+        FieldControl : #Mandatory,
+        TextFor      : ID
+        }
+  );
+};
+
+
+//------------------- TypeStockage ---------------------//
+//------------------------------------------------------//
+//------------------------------------------------------//
+//Entity
+@cds.odata.valuelist
+entity TypeStockage: cuid, managed {
+  key typeStockage : String(15) not null;
+};
+
+//Annotation
+annotate TypeStockage with @(
+  title              : '{i18n>TypeStockage}',
+  description        : '{i18n>TypeStockage}',
+  Common.SemanticKey : [typeStockage],
+  UI.Identification  : [{
+    $Type : 'UI.DataField',
+    Value : typeStockage
+  }]
+) {
+      ID             @(
+        title       : 'ID',
+        description : 'ID',
+        Core.Computed,
+        Common.Text : {
+            $value                 : typeStockage,
+            ![@UI.TextArrangement] : #TextOnly
+        }
+    );
+    typeStockage            @(
+        title       : '{i18n>TypeStockage}',
+        description : '{i18n>TypeStockage}',
+        Common      : {     
+        FieldControl : #Mandatory,
+        TextFor      : ID
+        }
+  );
+};
+
+
+
+//------------------ PackageDimension -------------------//
+//------------------------------------------------------//
+//------------------------------------------------------//
+//Entity
+@cds.odata.valuelist
+entity PackageDimension: cuid, managed {
+  package      : Association to one Package not null;
+  typeDimension : String(15) not null;
+  typeDimensionDescription: localized String;
+};
+
+//Annotation
+annotate PackageDimension with @(
+  title              : '{i18n>PackageDimension}',
+  description        : '{i18n>PackageDimension}',
+  Common.SemanticKey : [package.packageCode, typeDimension],
+  UI.Identification  : [
+    {
+        $Type : 'UI.DataField',
+        Value : package.packageCode
+    },
+    {
+        $Type : 'UI.DataField',
+        Value : typeDimension
+    }
+  ]
+) {
+      ID             @(
+        title       : 'ID',
+        description : 'ID',
+        Core.Computed,
+        Common.Text : {
+            $value                 : typeDimension,
+            ![@UI.TextArrangement] : #TextOnly
+        }
+    );
+    typeDimension            @(
+        title       : '{i18n>typeDimension}',
+        description : '{i18n>typeDimension}',
+        Common      : {     
+        FieldControl : #Mandatory,
+        TextFor      : ID
+        }
+   );
+    typeDimensionDescription            @(
+        title       : '{i18n>typeDimensionDescription}',
+        description : '{i18n>typeDimensionDescription}',
+        Common      : {     
+        FieldControl : #Mandatory,
+        TextFor      : typeDimension
+        }
+   );   
+};
+//------------------------ ULD -------------------------//
+//------------------------------------------------------//
+//------------------------------------------------------//
+//Entity
+entity ULD : cuid, managed {
+  uld            : String(11) not null;
+  position       : String(20) not null;
+  preParcel      : Association to one PreParcel;
+  flight         : String(7) not null;
+  flightDate     : Date not null;
+  image          : LargeBinary @Core.MediaType: 'image/png';
+  avaria         : Boolean;
+  nbk            : Boolean;
+  priority       : Association to one Priority;
+  obs            : LargeString;
+  peso           : Decimal(15,3);
+  volume         : Integer;
+  package        : Association to one Package;    
+  conteudo       : String;   
+  dg             : Boolean;
+  linhaSaude     : Boolean;
+  viz            : Boolean;
+  wooden         : Boolean;
+  cargaManual    : Boolean;
+  natureza       : String;
+  dimensao       : Association to one PackageDimension;  
+  typeStockage   : Association to one TypeStockage;
+  destino        : Association to one Airport;
+  barcode        : String;        
+}
+
+//Annotation
+annotate ULD with @(
+    title              : '{i18n>ULD}',
+    description        : uld,
+    UI.TextArrangement : #TextLast,
+    Common.SemanticKey : [uld],
+    UI.Identification  : [{
+        $Type : 'UI.DataField',
+        Value : uld
+
+    }]
+) {
+    ID             @(
+        title       : 'ID',
+        description : 'ID',
+        Core.Computed,
+        Common.Text : {
+            $value                 : uld,
+            ![@UI.TextArrangement] : #TextFirst
+        }
+    );
+    flight @(
+        title       : '{i18n>flight}',
+        description : '{i18n>flight}'
+    );  
+    flightDate @(
+        title       : '{i18n>flightDate}',
+        description : '{i18n>flightDate}'
+    );  
+};
+       

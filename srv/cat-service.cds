@@ -37,9 +37,32 @@ service CatalogService  @( requires:'authenticated-user') {
         
     };
    
-   //Serviços para objectstore
-    action setBlob(blobPDF :  LargeBinary, ID: UUID);
-    
-    function getBlob(ID: UUID) returns LargeString;
+
+
+@cds.redirection.target
+    entity Parcel  as projection on capdemogru.PreParcel {
+        *,
+        airline : redirected to Airline,
+        declaracao: redirected to Declaracao,
+        package: redirected to Package,
+        origemAwb: redirected to Airport,       
+        destinoAwb: redirected to Airport,
+        origemHawb: redirected to Airport,
+        destinoHawb: redirected to Airport,
+        cobranca: redirected to PartnerType,
+        transportador: redirected to Partner,
+        exportador: redirected to Partner,
+        agente: redirected to Partner,
+        
+    };
+   entity Danfe as projection on capdemogru.Danfe;
+
+   entity PackageDimension as projection on capdemogru.PackageDimension;
+
+   entity TypeStockage as projection ON capdemogru.TypeStockage;
+
+   entity Priority as projection on capdemogru.Priority;
+
+   entity ULD as projection on capdemogru.ULD;
 
 }
