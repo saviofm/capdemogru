@@ -39,7 +39,11 @@
                 }
             }
         }
-    },  
+    }, 
+    "sap.cloud": {
+        "service": "capdemogru",
+        "public": true
+    }, 
     "sap.ui": {
         "technology": "UI5",
         "icons": {
