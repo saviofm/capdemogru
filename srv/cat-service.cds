@@ -57,12 +57,6 @@ service CatalogService {// @( requires:'authenticated-user') {
     };
    entity Danfe as projection on capdemogru.Danfe;
 
-   entity PackageDimension as projection on capdemogru.PackageDimension;
-
-   entity TypeStockage as projection ON capdemogru.TypeStockage;
-
-   entity Priority as projection on capdemogru.Priority;
-
-   entity ULD as projection on capdemogru.ULD;
+   entity CargoReceipt as projection on capdemogru.CargoReceipt;
 
 }

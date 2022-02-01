@@ -126,10 +126,7 @@ modules:
       - capdemogruapppreparcel.zip
       name: capdemogruapppreparcel
       target-path: resources/
-    - artifacts:
-      - capdemogruappuld.zip
-      name: capdemogruappuld
-      target-path: resources/
+
 
 
 # --------------------- HTML5 MODULE -------------------------
@@ -215,17 +212,6 @@ modules:
     - npm run build:cf
     supported-platforms: []
 
-# --------------------- HTML5 MODULE -------------------------  
-- name: capdemogruappuld
-# ------------------------------------------------------------
-  type: html5
-  path: uld
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm run build:cf
-    supported-platforms: []
 
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------

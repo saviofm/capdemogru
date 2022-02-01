@@ -920,6 +920,334 @@ annotate PackageDimension with @(
         }
    );   
 };
+
+//----------------- CargoReceipt -----------------------//
+//------------------------------------------------------//
+//------------------------------------------------------//
+entity CargoReceipt : cuid, managed {
+  awb                 : String(11) not null;
+  hawb                : String(20);
+  preParcel           : Association to one PreParcel;
+  ruc                 : String not null;
+  transit             : Boolean;
+  express             : Boolean;
+  manualCargo         : Boolean; 
+  dseManual           : Boolean;
+  airSide             : Boolean;
+  declaracao          : Association to one Declaracao;
+  declaracaoNr        : String(15);
+  bagDesacomp         : Boolean;
+  airline             : Association to one Airline;
+  origemAwb           : Association to one Airport;
+  destinoAwb          : Association to one Airport;
+  origemHawb          : Association to one Airport;
+  destinoHawb         : Association to one Airport;
+  natureza            : String;
+  volume              : Integer;  
+  position            : String(20) not null;
+  uld                 : String(11) not null;
+  pesoBruto           : Decimal(15,3);
+  pesoLiquido         : Decimal(15,3);
+  tara                : Decimal(15,3);
+  image               : LargeBinary @Core.MediaType: 'image/png';
+  barcode             : String;
+}
+
+
+//Annotation
+annotate CargoReceipt with @(
+    title              : '{i18n>CargoReceipt}',
+    description        : awb,
+    UI.TextArrangement : #TextLast,
+    Common.SemanticKey : [awb, uld],
+    UI.Identification  : [{
+        $Type : 'UI.DataField',
+        Value : awb
+
+    },
+    {
+        $Type : 'UI.DataField',
+        Value : uld
+
+    },]
+) {
+    ID             @(
+        title       : 'ID',
+        description : 'ID',
+        Core.Computed,
+        Common.Text : {
+            $value                 : awb,
+            ![@UI.TextArrangement] : #TextFirst
+        }
+    );
+    awb           @(
+        title       : '{i18n>awb}',
+        description : '{i18n>awb}',
+        Common      : {
+            FieldControl             : #Mandatory,
+            TextFor                  : ID
+        }
+    );
+    hawb           @(
+        title       : '{i18n>hawb}',
+        description : '{i18n>hawb}',
+        //Common      : {
+        //    FieldControl             : #Mandatory,
+        //   TextFor                  : ID
+        //}
+    );
+    preParcel           @(
+        title       : '{i18n>hawb}',
+        description : '{i18n>hawb}'
+    );
+    ruc @(
+        title       : '{i18n>ruc}',
+        description : '{i18n>ruc}',
+        Common      : {
+            FieldControl             : #Mandatory
+        }
+    );
+    transit       @(
+        title       : '{i18n>transit}',
+        description : '{i18n>transit}',
+    );
+    express @(
+        title       : '{i18n>express}',
+        description : '{i18n>express}'
+    );
+    manualCargo @(
+        title       : '{i18n>manualCargo}',
+        description : '{i18n>manualCargo}'
+    );
+    dseManual @(
+        title       : '{i18n>dseManual}',
+        description : '{i18n>dseManual}'
+    );
+    airSide @(
+        title       : '{i18n>airSide}',
+        description : '{i18n>airSide}'
+    );
+    declaracao    @(
+        title       : '{i18n>declaracao}',
+        description : '{i18n>declaracao}',
+        Common      : {
+            FieldControl             : #Mandatory,
+            Label : '{i18n>declaracao}',
+            ValueList : {
+                CollectionPath  : 'Declaracao',
+                Parameters      : [
+                    {
+
+                        $Type             : 'Common.ValueListParameterInOut',
+                        LocalDataProperty : 'declaracao_declaracao',
+                        ValueListProperty : 'declaracao'
+                    },          
+                    {
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
+                        ValueListProperty : 'declaracaoDescription'
+                    }
+                ]
+            }   
+        }
+    );
+    declaracaoNr @(
+        title       : '{i18n>declaracaoNr}',
+        description : '{i18n>declaracaoNr}',
+        Common      : {
+            FieldControl             : #Mandatory
+        }
+    );
+    bagDesacomp    @(
+        title       : '{i18n>bagDesacomp}',
+        description : '{i18n>bagDesacomp}'
+    );
+    airline  @(
+        title       : '{i18n>airline}',
+        description : '{i18n>airline}',
+        Common      : {
+            FieldControl             : #Mandatory,
+            Label : '{i18n>Airline}',
+            Text : {
+                $value                 :  airline.airlineDescription,
+                ![@UI.TextArrangement] : #TextOnly
+            },
+            ValueList : {
+                CollectionPath  : 'Airline',
+                Label : '{i18n>Airline}',
+                Parameters      : [
+                    {
+
+                        $Type             : 'Common.ValueListParameterInOut',
+                        LocalDataProperty : 'airline_ID',
+                        ValueListProperty : 'ID'
+                    },          
+                    {
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
+                        ValueListProperty : 'airlineDescription'
+                    }
+                ]
+            }   
+        }
+    );
+    origemAwb @(
+        title       : '{i18n>origemAwb}',
+        description : '{i18n>origemAwb}',
+        Common      : {
+            Text : {
+                $value                 :  origemAwb.airportDescription,
+                ![@UI.TextArrangement] : #TextOnly
+            },
+            ValueList : {
+                CollectionPath  : 'Airport',
+                Label : '{i18n>Airport}',
+                Parameters      : [
+                    {
+
+                        $Type             : 'Common.ValueListParameterInOut',
+                        LocalDataProperty : 'origemAwb_ID',
+                        ValueListProperty : 'ID'
+                    },          
+                    {
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
+                        ValueListProperty : 'iata'
+                    },
+                    {
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
+                        ValueListProperty : 'airportDescription'
+                    }
+                ]
+            }   
+        }
+    );
+    destinoAwb @(
+        title       : '{i18n>destinoAwb}',
+        description : '{i18n>destinoAwb}',
+        Common      : {
+            Text : {
+                $value                 :  destinoAwb.airportDescription,
+                ![@UI.TextArrangement] : #TextOnly
+            },
+            ValueList : {
+                CollectionPath  : 'Airport',
+                Label : '{i18n>Airport}',
+                Parameters      : [
+                    {
+
+                        $Type             : 'Common.ValueListParameterInOut',
+                        LocalDataProperty : 'destinoAwb_ID',
+                        ValueListProperty : 'ID'
+                    },          
+                    {
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
+                        ValueListProperty : 'iata'
+                    },
+                    {
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
+                        ValueListProperty : 'airportDescription'
+                    }
+                ]
+            }   
+        }
+    );
+    origemHawb @(
+        title       : '{i18n>origemHawb}',
+        description : '{i18n>origemHawb}',
+        Common      : {
+            Text : {
+                $value                 :  origemHawb.airportDescription,
+                ![@UI.TextArrangement] : #TextOnly
+            },
+            ValueList : {
+                CollectionPath  : 'Airport',
+                Label : '{i18n>Airport}',
+                Parameters      : [
+                    {
+
+                        $Type             : 'Common.ValueListParameterInOut',
+                        LocalDataProperty : 'origemHawb_ID',
+                        ValueListProperty : 'ID'
+                    },          
+                    {
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
+                        ValueListProperty : 'iata'
+                    },
+                    {
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
+                        ValueListProperty : 'airportDescription'
+                    }
+                ]
+            }   
+        }
+    );
+    destinoHawb @(
+        title       : '{i18n>destinoHawb}',
+        description : '{i18n>destinoHawb}',
+        Common      : {
+            Text : {
+                $value                 :  destinoHawb.airportDescription,
+                ![@UI.TextArrangement] : #TextOnly
+            },
+            ValueList : {
+                CollectionPath  : 'Airport',
+                Label : '{i18n>Airport}',
+                Parameters      : [
+                    {
+
+                        $Type             : 'Common.ValueListParameterInOut',
+                        LocalDataProperty : 'destinoHawb_ID',
+                        ValueListProperty : 'ID'                   
+                    },          
+                    {
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
+                        ValueListProperty : 'iata'
+                    },
+                    {
+                        $Type             : 'Common.ValueListParameterDisplayOnly',
+                        ValueListProperty : 'airportDescription'
+                    }
+                ]
+            }   
+        }
+    );
+    natureza   @(
+        title       : '{i18n>natureza}',
+        description : '{i18n>natureza}'
+    );
+    volume @(
+        title       : '{i18n>volume}',
+        description : '{i18n>volume}'
+    );
+    position @(
+        title       : '{i18n>position}',
+        description : '{i18n>position}'
+    ); 
+    uld @(
+        title       : '{i18n>position}',
+        description : '{i18n>position}'
+    ); 
+    pesoBruto @(
+        title       : '{i18n>pesoBruto}',
+        description : '{i18n>pesoBruto}'
+    );
+    pesoLiquido @(
+        title       : '{i18n>pesoLiquido}',
+        description : '{i18n>pesoLiquido}'
+    );
+    tara @(
+        title       : '{i18n>tara}',
+        description : '{i18n>tara}'
+    );
+    image @(
+        title       : '{i18n>image}',
+        description : '{i18n>image}'
+    );
+    barcode @(
+        title       : '{i18n>barcode}',
+        description : '{i18n>barcode}'
+    );
+};
+
+
 //------------------------ ULD -------------------------//
 //------------------------------------------------------//
 //------------------------------------------------------//
