@@ -2,7 +2,7 @@
   "_version": "1.32.0",
   "sap.app": {
     "id": "parcel",
-    "type": "application",
+    "type": "capdemogru.app.application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
       "version": "0.0.1"
@@ -11,7 +11,7 @@
     "description": "{{appDescription}}",
     "dataSources": {
       "mainService": {
-        "uri": "/v2/catalog/",
+        "uri": "v2/catalog/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -19,8 +19,27 @@
           "odataVersion": "2.0"
         }
       }
+    },
+    "crossNavigation": {
+      "inbounds": {
+          "capdemogru-app-parcel-inbound": {
+              "signature": {
+                  "parameters": {},
+                  "additionalParameters": "allowed"
+              },
+              "semanticObject": "parcel",
+              "action": "create",
+              "title": "{{flpTitle}}",
+              "subTitle": "{{flpSubtitle}}",
+              "icon": "sap-icon://create-entry-time"
+          }
+      }
     }
   },
+  "sap.cloud": {
+    "service": "capdemogru",
+    "public": true
+  }, 
   "sap.ui": {
     "technology": "UI5",
     "icons": {
@@ -71,7 +90,7 @@
       "config": {
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
-        "viewPath": "parcel.view",
+        "viewPath": "capdemogru.app.parcel.view",
         "controlId": "app",
         "controlAggregation": "pages",
         "bypassed": {
@@ -121,7 +140,7 @@
       }
     },
     "rootView": {
-      "viewName": "parcel.view.App",
+      "viewName": "capdemogru.app.parcel.view.App",
       "type": "XML",
       "async": true,
       "id": "app"

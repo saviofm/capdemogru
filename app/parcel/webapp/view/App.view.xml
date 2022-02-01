@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="parcel.controller.App"
+    controllerName="capdemogru.app.parcel.controller.App"
     displayBlock="true"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc">

@@ -8,7 +8,7 @@ sap.ui.define([
 
 	Opa5.extendConfig({
 		arrangements: new Startup(),
-		viewNamespace: "parcel.view.",
+		viewNamespace: "capdemogru.app.parcel.view",
 		autoWait: true
 	});
 

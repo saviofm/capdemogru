@@ -1,6 +1,6 @@
 specVersion: '2.4'
 metadata:
-  name: 'parcel'
+  name: 'cargoreceipt'
 type: application
 server:
   customMiddleware:

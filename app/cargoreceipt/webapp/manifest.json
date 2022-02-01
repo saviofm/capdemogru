@@ -11,7 +11,7 @@
         "description": "{{appDescription}}",
         "dataSources": {
             "mainService": {
-                "uri": "/v2/catalog/",
+                "uri": "v2/catalog/",
                 "type": "OData",
                 "settings": {
                     "annotations": [],
@@ -36,6 +36,10 @@
             }
         }
     },
+    "sap.cloud": {
+        "service": "capdemogru",
+        "public": true
+    }, 
     "sap.ui": {
         "technology": "UI5",
         "icons": {
