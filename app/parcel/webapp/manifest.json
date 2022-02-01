@@ -1,8 +1,8 @@
 {
   "_version": "1.32.0",
   "sap.app": {
-    "id": "parcel",
-    "type": "capdemogru.app.application",
+    "id": "capdemogru.app.parcel",
+    "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
       "version": "0.0.1"
@@ -74,7 +74,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "parcel.i18n.i18n"
+          "bundleName": "capdemogru.app.parcel.i18n.i18n"
         }
       },
       "": {
