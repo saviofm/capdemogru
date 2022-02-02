@@ -50,9 +50,12 @@ service CatalogService {// @( requires:'authenticated-user') {
         exportador: redirected to Partner,
         agente: redirected to Partner,
         
+        
     };
    entity Danfe as projection on capdemogru.Danfe;
 
+   entity Natureza as projection on capdemogru.Natureza;
+  
    entity CargoReceipt as projection on capdemogru.CargoReceipt;
 
 }

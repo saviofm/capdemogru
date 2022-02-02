@@ -316,7 +316,10 @@ annotate Partner with @(
 };
 
 
-
+entity Natureza : cuid, managed {
+    naturezaCode: String(3);
+    naturezaDescription: String;
+};
 
 //----------------------- PreParcel -----------------------//
 //------------------------------------------------------//
@@ -327,7 +330,7 @@ entity PreParcel : cuid, managed {
   hawb                : String(20);
   declaracao          : Association to one Declaracao;
   declaracaoNr        : String(15);
-  ruc                 : String not null;
+  ruc                 : String(11) not null;
   transit             : Boolean;
   airTransit          : Boolean;
   origemAwb           : Association to one Airport;
@@ -349,8 +352,10 @@ entity PreParcel : cuid, managed {
   agente              : Association to one Partner;
   transportador       : Association to one Partner;
   cobranca            : Association to one PartnerType;
-  natureza            : String;
-  ncm                 : String;
+  natureza            : Composition of many {
+      natureza: Association to one Natureza;
+  };
+  ncm                 : String(8);
   obs                 : LargeString;
   confirm             : Boolean;
 }
@@ -788,138 +793,6 @@ entity Danfe : cuid, managed {
 };
 
 
-//--------------------- PRIORITY -----------------------//
-//------------------------------------------------------//
-//------------------------------------------------------//
-//Entity
-@cds.odata.valuelist
-entity Priority: cuid, managed {
-  key priority        : String(15) not null;
-};
-
-//Annotation
-annotate Priority with @(
-  title              : '{i18n>Priority}',
-  description        : '{i18n>Priority}',
-  Common.SemanticKey : [priority],
-  UI.Identification  : [{
-    $Type : 'UI.DataField',
-    Value : priority
-  }]
-) {
-      ID             @(
-        title       : 'ID',
-        description : 'ID',
-        Core.Computed,
-        Common.Text : {
-            $value                 : priority,
-            ![@UI.TextArrangement] : #TextOnly
-        }
-    );
-    priority            @(
-        title       : '{i18n>Priority}',
-        description : '{i18n>Priotity}',
-        Common      : {     
-        FieldControl : #Mandatory,
-        TextFor      : ID
-        }
-  );
-};
-
-
-//------------------- TypeStockage ---------------------//
-//------------------------------------------------------//
-//------------------------------------------------------//
-//Entity
-@cds.odata.valuelist
-entity TypeStockage: cuid, managed {
-  key typeStockage : String(15) not null;
-};
-
-//Annotation
-annotate TypeStockage with @(
-  title              : '{i18n>TypeStockage}',
-  description        : '{i18n>TypeStockage}',
-  Common.SemanticKey : [typeStockage],
-  UI.Identification  : [{
-    $Type : 'UI.DataField',
-    Value : typeStockage
-  }]
-) {
-      ID             @(
-        title       : 'ID',
-        description : 'ID',
-        Core.Computed,
-        Common.Text : {
-            $value                 : typeStockage,
-            ![@UI.TextArrangement] : #TextOnly
-        }
-    );
-    typeStockage            @(
-        title       : '{i18n>TypeStockage}',
-        description : '{i18n>TypeStockage}',
-        Common      : {     
-        FieldControl : #Mandatory,
-        TextFor      : ID
-        }
-  );
-};
-
-
-
-//------------------ PackageDimension -------------------//
-//------------------------------------------------------//
-//------------------------------------------------------//
-//Entity
-@cds.odata.valuelist
-entity PackageDimension: cuid, managed {
-  package      : Association to one Package not null;
-  typeDimension : String(15) not null;
-  typeDimensionDescription: localized String;
-};
-
-//Annotation
-annotate PackageDimension with @(
-  title              : '{i18n>PackageDimension}',
-  description        : '{i18n>PackageDimension}',
-  Common.SemanticKey : [package.packageCode, typeDimension],
-  UI.Identification  : [
-    {
-        $Type : 'UI.DataField',
-        Value : package.packageCode
-    },
-    {
-        $Type : 'UI.DataField',
-        Value : typeDimension
-    }
-  ]
-) {
-      ID             @(
-        title       : 'ID',
-        description : 'ID',
-        Core.Computed,
-        Common.Text : {
-            $value                 : typeDimension,
-            ![@UI.TextArrangement] : #TextOnly
-        }
-    );
-    typeDimension            @(
-        title       : '{i18n>typeDimension}',
-        description : '{i18n>typeDimension}',
-        Common      : {     
-        FieldControl : #Mandatory,
-        TextFor      : ID
-        }
-   );
-    typeDimensionDescription            @(
-        title       : '{i18n>typeDimensionDescription}',
-        description : '{i18n>typeDimensionDescription}',
-        Common      : {     
-        FieldControl : #Mandatory,
-        TextFor      : typeDimension
-        }
-   );   
-};
 
 //----------------- CargoReceipt -----------------------//
 //------------------------------------------------------//
@@ -1310,3 +1183,137 @@ annotate ULD with @(
     );  
 };
        
+
+
+//--------------------- PRIORITY -----------------------//
+//------------------------------------------------------//
+//------------------------------------------------------//
+//Entity
+@cds.odata.valuelist
+entity Priority: cuid, managed {
+  key priority        : String(15) not null;
+};
+
+//Annotation
+annotate Priority with @(
+  title              : '{i18n>Priority}',
+  description        : '{i18n>Priority}',
+  Common.SemanticKey : [priority],
+  UI.Identification  : [{
+    $Type : 'UI.DataField',
+    Value : priority
+  }]
+) {
+      ID             @(
+        title       : 'ID',
+        description : 'ID',
+        Core.Computed,
+        Common.Text : {
+            $value                 : priority,
+            ![@UI.TextArrangement] : #TextOnly
+        }
+    );
+    priority            @(
+        title       : '{i18n>Priority}',
+        description : '{i18n>Priotity}',
+        Common      : {     
+        FieldControl : #Mandatory,
+        TextFor      : ID
+        }
+  );
+};
+
+
+//------------------- TypeStockage ---------------------//
+//------------------------------------------------------//
+//------------------------------------------------------//
+//Entity
+@cds.odata.valuelist
+entity TypeStockage: cuid, managed {
+  key typeStockage : String(15) not null;
+};
+
+//Annotation
+annotate TypeStockage with @(
+  title              : '{i18n>TypeStockage}',
+  description        : '{i18n>TypeStockage}',
+  Common.SemanticKey : [typeStockage],
+  UI.Identification  : [{
+    $Type : 'UI.DataField',
+    Value : typeStockage
+  }]
+) {
+      ID             @(
+        title       : 'ID',
+        description : 'ID',
+        Core.Computed,
+        Common.Text : {
+            $value                 : typeStockage,
+            ![@UI.TextArrangement] : #TextOnly
+        }
+    );
+    typeStockage            @(
+        title       : '{i18n>TypeStockage}',
+        description : '{i18n>TypeStockage}',
+        Common      : {     
+        FieldControl : #Mandatory,
+        TextFor      : ID
+        }
+  );
+};
+
+
+
+//------------------ PackageDimension -------------------//
+//------------------------------------------------------//
+//------------------------------------------------------//
+//Entity
+@cds.odata.valuelist
+entity PackageDimension: cuid, managed {
+  package      : Association to one Package not null;
+  typeDimension : String(15) not null;
+  typeDimensionDescription: localized String;
+};
+
+//Annotation
+annotate PackageDimension with @(
+  title              : '{i18n>PackageDimension}',
+  description        : '{i18n>PackageDimension}',
+  Common.SemanticKey : [package.packageCode, typeDimension],
+  UI.Identification  : [
+    {
+        $Type : 'UI.DataField',
+        Value : package.packageCode
+    },
+    {
+        $Type : 'UI.DataField',
+        Value : typeDimension
+    }
+  ]
+) {
+      ID             @(
+        title       : 'ID',
+        description : 'ID',
+        Core.Computed,
+        Common.Text : {
+            $value                 : typeDimension,
+            ![@UI.TextArrangement] : #TextOnly
+        }
+    );
+    typeDimension            @(
+        title       : '{i18n>typeDimension}',
+        description : '{i18n>typeDimension}',
+        Common      : {     
+        FieldControl : #Mandatory,
+        TextFor      : ID
+        }
+   );
+    typeDimensionDescription            @(
+        title       : '{i18n>typeDimensionDescription}',
+        description : '{i18n>typeDimensionDescription}',
+        Common      : {     
+        FieldControl : #Mandatory,
+        TextFor      : typeDimension
+        }
+   );   
+};

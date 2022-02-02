@@ -126,7 +126,14 @@ modules:
       - capdemogruapppreparcel.zip
       name: capdemogruapppreparcel
       target-path: resources/
-
+    - artifacts:
+      - capdemogruappparcel.zip
+      name: capdemogruappparcel
+      target-path: resources/
+    - artifacts:
+      - capdemogruappcargoreceipt.zip
+      name: capdemogruappcargoreceipt
+      target-path: resources/
 
 
 # --------------------- HTML5 MODULE -------------------------
@@ -212,6 +219,29 @@ modules:
     - npm run build:cf
     supported-platforms: []
 
+# --------------------- HTML5 MODULE -------------------------    
+- name: capdemogruappparcel
+# ------------------------------------------------------------
+  type: html5
+  path: app/parcel
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm run build:cf
+    supported-platforms: []
+
+# --------------------- HTML5 MODULE -------------------------    
+- name: capdemogruappcargoreceipt
+# ------------------------------------------------------------
+  type: html5
+  path: app/cargoreceipt
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm run build:cf
+    supported-platforms: []
 
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------

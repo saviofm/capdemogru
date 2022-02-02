@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="capdemogru.app.parcel.controller.Object"
+    controllerName="capdemogru.app.parcel.controller.NewObject"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:l="sap.ui.layout"
@@ -38,85 +38,11 @@
                     <Button 
                         icon="sap-icon://pdf-reader"
                         press="onPressDanfe" 
-                        text="{i18n>Danfe}"
+                        text="{i18n>anexarDanfe}"
                         visible="true"/>
 				</Panel>
             </FlexBox>
-            <FlexBox
-				alignItems="Start"
-                justifyContent="SpaceBetween"
-                class="sapUiNoContentPadding"> 
-                    <f:SimpleForm id="peso"
-                        editable="true"
-                        layout="ResponsiveGridLayout"
-                        labelSpanXL="4"
-                        labelSpanL="3"
-                        labelSpanM="4"
-                        labelSpanS="12"
-                        adjustLabelSpan="false"
-                        emptySpanXL="0"
-                        emptySpanL="2"
-                        emptySpanM="0"
-                        emptySpanS="0"
-                        columnsXL="1"
-                        columnsL="2"
-                        columnsM="2"
-                        singleContainerFullSize="false"
-                        class="sapUiNoContentPadding">
-                        <f:content>
-                            <Label text="{i18n>createdAtTitle}" />
-                            <Text text="{
-                                path:'createdAt', 
-                                type: 'sap.ui.model.type.DateTime',
-                                formatOptions: {
-                                    style: 'short',
-                                    UTC: true
-                                }
-                            }"/>
-                            <Label text="{i18n>tablevolumeTitle}"
-                            visible="{= ${volume} ? true : false }"/>
-                            <Text text="{volume}"
-                            visible="{= ${volume} ? true : false }"/>
-                            <Label text="{i18n>tableUnitNumberColumnTitle}"
-                            visible="{= ${pesoBruto} ? true : false }"/>
-                            <ObjectNumber
-                                number="{
-                                    path: 'pesoBruto',
-                                    formatter: '.formatter.numberUnit'
-                                }"
-                                visible="{= ${pesoBruto} ? true : false }"/>  
-                        </f:content>      
-                    </f:SimpleForm>                                     
-            </FlexBox>
-
-            <Panel backgroundDesign="Transparent"
-                expandable="{device>/system/phone}"
-		        expanded="{= !${device>/system/phone} }"
-                class="sapUiNoContentPadding"
-                >                     
-                <f:SimpleForm id="SimpleFormID"
-                        editable="true"
-                        layout="ResponsiveGridLayout"
-                        labelSpanXL="4"
-                        labelSpanL="3"
-                        labelSpanM="4"
-                        labelSpanS="12"
-                        adjustLabelSpan="false"
-                        emptySpanXL="0"
-                        emptySpanL="2"
-                        emptySpanM="0"
-                        emptySpanS="0"
-                        columnsXL="2"
-                        columnsL="2"
-                        columnsM="2"
-                        singleContainerFullSize="false" >
-                    <f:content>
-                    <core:Title text=""/>
-                        <Label text="{i18n>ObjectID}"/>
-                        <Text text="{ID}"/>
-                    </f:content>      
-                </f:SimpleForm>
-            </Panel>
+  
         </semantic:headerContent>
         <semantic:content>
             <VBox>
@@ -143,21 +69,16 @@
 			        <f:content>
 			            <core:Title text="{i18n>details}"/>
                         <Label text="{i18n>awb}"/>
-                        <Text  text="{
-                            path: 'awb',
-                            formatter: '.formatter.awb'
-                            }"
-                        />
+                        <MaskInput mask="999-99999999" placeholderSymbol="_" required="true" value="{awb}"/>
                         <Label text="{i18n>hawb}"/>
-                        <Text  text="{hawb}"/>
+                        <MaskInput mask="999-99999999" placeholderSymbol="_" required="true" value="{hawb}"/>
                         <Label text="{i18n>ruc}"/>
-                        <Text  text="{ruc}"/>
+                        <MaskInput mask="99999999999" placeholderSymbol="_" required="true" value="{ruc}"/>
                         <Label text="{i18n>declaracao}"/>
                         <HBox >
                             <items>
-                                <Text  text="{declaracao/declaracao}"/> 
-                                <Text  text=" - "/> 
-                                <Text  text="{declaracaoNr}"/> 
+                                <Input  value="{declaracao/declaracao}" showValueHelp="true"/>      
+                                <Input  value="{declaracaoNr}"/> 
                             </items>      
                         </HBox> 
                         <Label text="{i18n>transDoc}"/>

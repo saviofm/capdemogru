@@ -1,0 +1,57 @@
+ID;naturezaCode;naturezaDescription
+44c397fe-83be-41f6-b226-aed63da990a8;AOG;Aeronave no Chão
+fb3b7f30-71d5-43b6-82f9-93ac13349403;ATT;Cargas Relacionadas no AWB
+dfb8acd0-0839-419c-8162-45851af9df24;AVI;Animais Vivos
+14907645-95c3-4125-8e50-998f48d568ab;BIG;Fora dos Padrões
+8bad2f55-b968-466f-a2be-6dc9a240902b;BUP;Programe Padrão de Unitização de Volume
+a326ea40-50f7-4a53-8f85-e46bbab96fd6;CAO;Carga Exclusivamente Aérea (singular)
+918557cd-69b0-4af4-b4ff-5ff307791c2b;DIP;Mala Diplomática
+c6d38518-d6d9-4200-bb38-f943c42cb4c7;EAT;Comestíveis
+edd50862-fe0d-4f83-81a3-302d299b9062;FIL;Filme por revelar ou não revelado
+a576fec8-4f21-4874-8888-c1160cc2dbba;HEA;Carga Pesada (150Kg ou mais por volume)
+9febc545-f2b3-47fc-83d6-b846024b2a7b;HEG;Ovos Fecundados (Galadura)
+aa4613b6-d551-4c86-86e0-5a0d2f4a7027;HUM;Restos Mortais em Esquife
+3d4213d1-47fd-48e1-9048-723500b39f48;ICE;Gelo Seco
+e31907bc-9140-42b7-aebc-cfe546c625ba;LHO;Órgãos vivos ou sangue humano
+82b7f3cd-d732-4f46-970b-c8156b88668b;MAG;Material Magnetizado
+b7d3897a-d253-4cd8-afe2-2fe50301042e;MUW;Munições de Guerra
+1f750083-3f0d-4ba5-ac88-95d8f0ff012b;NGJ;Carga Perigosa em pequenas quantidades
+a2f3b1d3-0b62-443c-a586-23ad435749fc;NOR;Normal
+a38f3c1a-f351-4aee-8ef2-83465d5cc2cd;NWP;Jornais ou Revistas
+b364d9d8-a173-45fd-abf3-257946d8b2b6;PEA;Perecível entre 18° e 0°
+a61801d0-e046-4804-9715-2b3585efa226;PEB;Perecível entre 2° e 8°
+7e1a21e8-40ca-4e28-961a-88c2f7e22ec3;PEC;Perecível entre 9° e 15°
+2783b84a-37db-4142-acd3-bd97f0848842;PED;Perecível entre 16° e 22°
+afbb223d-6348-48cb-8561-923adb7a5623;PEE;Perecível em condições especiais
+09a36666-8bd8-4187-93c6-b825ddcf8ef4;PER;Carga Perecível
+f78eb4ad-a4c5-4e2c-9e9c-309703686a11;PLS;Plantas e Sementes
+bdf16b5b-702e-4108-9318-cbd38c762f00;RAC;Carga Aérea Reservada (Especial)
+b93dc87c-3c36-4285-985c-02aca6714d0a;RCL;Líquidos Criogênicos
+6fb3be38-c248-431a-9073-6be857c7a4c1;RCM;Corrosivo
+cf8fe7d0-d190-4c2c-8398-1a36d58e6b0e;REX;Explosivos (Classes 1.2/1.2/1.3/1.4F)
+80ec9ae7-90fb-4201-aa67-cc906752b028;RFG;Gás Comprimido Inflamável
+70271f70-666d-4b0c-853d-92c5e52309cc;RFL;Líquido Inflamável
+4fab16f0-198e-4c51-bc33-068169e4cc50;RFW;Perigoso (se molhar)
+dc2397b2-08af-4b17-84b9-e44599e8b15c;RHF;Nocivo (Armazenar Longe de Comestíveis)
+c13b1be0-2a4c-4b23-a7bd-dde7b6497a59;RIS;Substâncias Infecciosas
+d066b4d8-ead9-403a-bd43-1bfdce6fb0a8;RMD;Diversas Mercadorias Perigosas
+e055baaf-8b4f-49ba-b0a8-6a43899e3c7f;RNG;Gás Comprimido não Inflamável
+dc198540-0f9c-4ba4-844b-41c901c935e8;ROP;Peróxido Orgânico
+56d340d5-d9df-4503-a3f1-819719dd8a46;ROX;Oxidante
+1dd551ea-457b-4172-99a5-ab91da101b36;RPB;Veneno
+f92a1def-2879-4470-8333-9413d1d54847;RPG;Gás Venenoso
+af428c3f-b3d1-40da-a799-e5c2e09e9f09;RPW;Material Radioativo – Categoria I
+50282b76-f146-4b90-90ee-481cd515a088;RRW;Material Radioativo – Categoria II
+c415f128-f321-4626-9c86-7594ec4fabaa;RRY;Material Radioativo – Categorias II e III
+a60e0900-95c8-4b3a-9a68-37557cd7126d;RSB;Contas de Poliestireno
+4b4e2dee-957d-4b6b-a70f-6b1d0f06e7a6;RSC;Combustão Espontânea
+b888333e-e7c9-47b0-91f3-8ebad87328d2;RSF;Sólido Inflamável
+89ae72a0-ed7a-4dc4-9b8b-fcdad4c5ad91;RXB;Explosivos (1.4B)
+5378000a-7f9e-42cf-84ca-795d998729f6;RXC;Explosivos (1.4C)
+9991b6f4-2553-4a06-ae9c-6cba090f41bb;RXD;Explosivos (1.4D)
+57924dc0-11b6-424e-a86c-a3b126181938;RXE;Explosivos (1.4E)
+0e0f77ff-0723-456a-a654-808961428ea5;RXG;Explosivos (1.4G)
+b750c0bb-0432-4618-a473-ef57c11276d9;RXS;Explosivos (1.4S)
+7ba9b0d9-1bbf-4fde-9aab-b7b26783999a;SAL;Correio Terrestre
+24c44bf4-fac9-4750-b923-61b69b2c6d2d;VAL;Carga Valiosa
+5da08b54-5971-4ac1-ac96-12bef3d749a7;VOL;Carga Volumétrica ou de VolumeCargas Relacionadas no AWB
