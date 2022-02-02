@@ -150,10 +150,24 @@ annotate Declaracao with @(
     description : '{i18n>Declaracao}',
     Common      : {
         FieldControl : #Mandatory,
-        //Text : {
-        //    $value                 : declaracaoDescription,
-        //    ![@UI.TextArrangement] : #TextLast
-        //}
+        Text : {
+            $value                 : declaracaoDescription,
+            ![@UI.TextArrangement] : #TextLast
+        },
+        ValueList                : {
+            CollectionPath : 'Declaracao',
+            Parameters     : [
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'declaracao',
+                    ValueListProperty : 'declaracao'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'declaracaoDescription'
+                }
+            ]
+        }
     }
   );
   declaracaoDescription @(
@@ -319,6 +333,52 @@ annotate Partner with @(
 entity Natureza : cuid, managed {
     naturezaCode: String(3);
     naturezaDescription: String;
+};
+
+//Annotation
+annotate Natureza with @(
+  title              : '{i18n>NaturezaCode}',
+  description        : '{i18n>NaturezaCode}',
+  Common.SemanticKey : [naturezaCode],
+  UI.Identification  : [{
+    $Type : 'UI.DataField',
+    Value : naturezaCode
+  }]
+) {
+  naturezaCode            @(
+    title       : '{i18n>NaturezaCode}',
+    description : '{i18n>NaturezaCode}',
+    Common      : {
+        FieldControl : #Mandatory,
+        Text : {
+            $value                 : naturezaDescription,
+            ![@UI.TextArrangement] : #TextOnly
+        },
+        ValueListWithFixedValues : false,
+        ValueList                : {
+            CollectionPath : 'Natureza',
+            Parameters     : [
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'naturezaCode',
+                    ValueListProperty : 'naturezaCode'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'naturezaDescription'
+                }
+            ]
+        }
+    }
+  );
+  naturezaDescription @(
+    title       : '{i18n>NaturezaDescription}',
+    description : '{i18n>NaturezaDescription}',
+    Common      : {
+      FieldControl : #Mandatory,
+      TextFor      : naturezaCode
+    }
+  );
 };
 
 //----------------------- PreParcel -----------------------//

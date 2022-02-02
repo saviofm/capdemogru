@@ -2,8 +2,13 @@ sap.ui.define([
     "./BaseController",
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/routing/History",
-    "../model/formatter"
-], function (BaseController, JSONModel, History, formatter) {
+    "../model/formatter",
+    "../model/newObject",
+    "sap/m/ColumnListItem",
+	"sap/m/Label",
+	"sap/m/Token",
+	"sap/ui/core/Fragment"
+], function (BaseController, JSONModel, History, formatter, NewObject, ColumnListItem, Label, Token, Fragment) {
     "use strict";
 
     return BaseController.extend("capdemogru.app.parcel.controller.NewObject", {
@@ -26,8 +31,8 @@ sap.ui.define([
                     busy : true,
                     delay : 0
                 });
-            this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
-            this.setModel(oViewModel, "objectView");
+            this.getRouter().getRoute("newObject").attachPatternMatched(this._onObjectMatched, this);
+            this.setModel(oViewModel, "newObjectView");
         },
         /* =========================================================== */
         /* event handlers                                              */
@@ -50,6 +55,10 @@ sap.ui.define([
             }
         },
 
+        onPressSave: function(oEvent){
+
+        },
+
         /* =========================================================== */
         /* internal methods                                            */
         /* =========================================================== */
@@ -61,8 +70,10 @@ sap.ui.define([
          * @private
          */
         _onObjectMatched : function (oEvent) {
-            var sObjectId =  oEvent.getParameter("arguments").objectId;
-            this._bindView("/Parcel" + sObjectId);
+            //this._bindView("/Parcel");
+
+            this.getModel("newObjectView").setData(NewObject.initModel());
+            this.getModel("newObjectView").refresh(true);
         },
 
         /**
@@ -72,7 +83,7 @@ sap.ui.define([
          * @private
          */
         _bindView : function (sObjectPath) {
-            var oViewModel = this.getModel("objectView");
+            var oViewModel = this.getModel("newObjectView");
 
             this.getView().bindElement({
                 path: sObjectPath,
@@ -93,7 +104,7 @@ sap.ui.define([
 
         _onBindingChange : function () {
             var oView = this.getView(),
-                oViewModel = this.getModel("objectView"),
+                oViewModel = this.getModel("newObjectView"),
                 oElementBinding = oView.getElementBinding();
 
             // No data for the binding
