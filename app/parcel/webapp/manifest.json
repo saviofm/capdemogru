@@ -80,7 +80,14 @@
       "": {
         "dataSource": "mainService",
         "preload": true,
-        "settings": {}
+        "settings": {
+          "operationMode": "Server",
+					"groupId": "$direct",
+					"synchronizationMode": "None",
+                    "autoExpandSelect":true,
+                    "defaultBindingMode": "TwoWay",
+                    "refreshAfterChange": true
+        }
       }
     },
     "resources": {

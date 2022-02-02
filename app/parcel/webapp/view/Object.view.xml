@@ -2,7 +2,10 @@
     controllerName="capdemogru.app.parcel.controller.Object"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:semantic="sap.f.semantic">
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:core="sap.ui.core">
 
     <semantic:SemanticPage
         id="page"
@@ -18,13 +21,300 @@
         </semantic:titleHeading>
 
         <semantic:headerContent>
-            <ObjectNumber
-                number="{
-                    path: 'pesoBruto',
-                    formatter: '.formatter.numberUnit'
-                }" />
-        </semantic:headerContent>
+        	<FlexBox
+				alignItems="Start"
+                justifyContent="SpaceBetween"
+                class="sapUiNoContentPadding">
+                <Panel 
+                    backgroundDesign="Transparent"
+                    class="sapUiNoContentPadding">                             
+                </Panel>
+                <Panel 
+                    backgroundDesign="Transparent"
+                    class="sapUiNoContentPadding">
+                    <Button 
+                        icon="sap-icon://pdf-reader"
+                        press="onPressDanfe" 
+                        text="{i18n>Danfe}"
+                        visible="true"/>
+				</Panel>
+            </FlexBox>
+            <FlexBox
+				alignItems="Start"
+                justifyContent="SpaceBetween"
+                class="sapUiNoContentPadding"> 
+                    <f:SimpleForm id="peso"
+                        editable="true"
+                        layout="ResponsiveGridLayout"
+                        labelSpanXL="4"
+                        labelSpanL="3"
+                        labelSpanM="4"
+                        labelSpanS="12"
+                        adjustLabelSpan="false"
+                        emptySpanXL="0"
+                        emptySpanL="2"
+                        emptySpanM="0"
+                        emptySpanS="0"
+                        columnsXL="1"
+                        columnsL="2"
+                        columnsM="2"
+                        singleContainerFullSize="false"
+                        class="sapUiNoContentPadding">
+                        <f:content>
+                            <Label text="{i18n>createdAtTitle}" />
+                            <Text text="{
+                                path:'createdAt', 
+                                type: 'sap.ui.model.type.DateTime',
+                                formatOptions: {
+                                    style: 'short',
+                                    UTC: true
+                                }
+                            }"/>
+                            <Label text="{i18n>tablevolumeTitle}"
+                            visible="{= ${volume} ? true : false }"/>
+                            <Text text="{volume}"
+                            visible="{= ${volume} ? true : false }"/>
+                            <Label text="{i18n>tableUnitNumberColumnTitle}"
+                            visible="{= ${pesoBruto} ? true : false }"/>
+                            <ObjectNumber
+                                number="{
+                                    path: 'pesoBruto',
+                                    formatter: '.formatter.numberUnit'
+                                }"
+                                visible="{= ${pesoBruto} ? true : false }"/>  
+                        </f:content>      
+                    </f:SimpleForm>                                     
+            </FlexBox>
 
+            <Panel backgroundDesign="Transparent"
+                expandable="{device>/system/phone}"
+		        expanded="{= !${device>/system/phone} }"
+                class="sapUiNoContentPadding"
+                >                     
+                <f:SimpleForm id="SimpleFormID"
+                        editable="true"
+                        layout="ResponsiveGridLayout"
+                        labelSpanXL="4"
+                        labelSpanL="3"
+                        labelSpanM="4"
+                        labelSpanS="12"
+                        adjustLabelSpan="false"
+                        emptySpanXL="0"
+                        emptySpanL="2"
+                        emptySpanM="0"
+                        emptySpanS="0"
+                        columnsXL="2"
+                        columnsL="2"
+                        columnsM="2"
+                        singleContainerFullSize="false" >
+                    <f:content>
+                    <core:Title text=""/>
+                        <Label text="{i18n>ObjectID}"/>
+                        <Text text="{ID}"/>
+                    </f:content>      
+                </f:SimpleForm>
+            </Panel>
+        </semantic:headerContent>
+        <semantic:content>
+            <VBox>
+                <Panel backgroundDesign="Transparent"
+                    expandable="{device>/system/phone}"
+                    expanded="true"
+                    headerText="{i18n>GeneralData}">
+                <f:SimpleForm id="SimpleFormFornecedor"
+			        editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="4"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="0"
+                    emptySpanL="2"
+                    emptySpanM="0"
+                    emptySpanS="0"
+                    columnsXL="2"
+                    columnsL="2"
+                    columnsM="2"
+                    singleContainerFullSize="false">
+			        <f:content>
+			            <core:Title text="{i18n>details}"/>
+                        <Label text="{i18n>awb}"/>
+                        <Text  text="{awb}"/>
+                        <Label text="{i18n>hawb}"/>
+                        <Text  text="{hawb}"/>
+                        <Label text="{i18n>ruc}"/>
+                        <Text  text="{ruc}"/>
+                        <Label  text="{i18n>transit}"/>
+                        <CheckBox selected="{transit}" displayOnly="true"/>
+                                                     
+                       
+                        <core:Title text="{i18n>details2}"/>
+                        <Label text="{i18n>declaracao}"/>
+                        <HBox >
+                            <items>
+                                <Text  text="{declaracao/declaracao}"/> 
+                                <Text  text=" - "/> 
+                                <Text  text="{declaracaoNr}"/> 
+                            </items>
+                            
+                        </HBox>    
+                        <Label text="{i18n>airTransit}"/>
+                        <CheckBox selected="{airTransit}" displayOnly="true"/>
+                        <Label text="{i18n>transDoc}"/>
+                        <Text  text="{transDoc}"/>        
+                        <Label text="{i18n>dtEmissaoDAT}"/>
+                        <Text text="{
+                                path:'dtEmissaoDAT', 
+                                type: 'sap.ui.model.type.Date',
+                                formatOptions: {
+                                    style: 'short',
+                                    UTC: true
+                                }
+                            }"/>
+                        <Label text="{i18n>cpfDriver}"/>
+                        <Text  text="{cpfDriver}"/>        
+                        <Label  text="{i18n>dseManual}"/>
+                        <CheckBox selected="{dseManual}" displayOnly="true"/>              
+                    </f:content>      
+                </f:SimpleForm>
+            </Panel>   
+
+            <Panel backgroundDesign="Transparent"
+                    expandable="{device>/system/phone}"
+                    expanded="true"
+                    headerText="{i18n>ObjectdataSRV}"> 
+                <f:SimpleForm id="SimpleForm"
+			        editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="4"
+                    labelSpanL="3"
+                    labelSpanM="4"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="0"
+                    emptySpanL="2"
+                    emptySpanM="0"
+                    emptySpanS="0"
+                    columnsXL="2"
+                    columnsL="2"
+                    columnsM="2"
+                    singleContainerFullSize="false">
+                     
+			        <f:content>
+				        <core:Title text="{i18n>DetailsParcel}"/>
+                        <Label text="{i18n>origemAwb}"/>
+                        <HBox >
+                            <items>
+                                <Text  text="{origemAwb/iata}"/>
+                                <Text  text=" - "/> 
+                                <Text  text="{origemAwb/airportDescription}"/>
+                            </items>                      
+                        </HBox>
+                        <Label text="{i18n>destinoAwb}"/>    
+                        <HBox >
+                            <items>
+                                <Text  text="{destinoAwb/iata}"/>
+                                <Text  text=" - "/> 
+                                <Text  text="{destinoAwb/airportDescription}"/>
+                            </items>                      
+                        </HBox> 
+                        <Label text="{i18n>origemHawb}"/>
+                        <HBox >
+                            <items>
+                                <Text  text="{origemHawb/iata}"/>
+                                <Text  text=" - "/> 
+                                <Text  text="{origemHawb/airportDescription}"/>
+                            </items>                      
+                        </HBox>
+                        <Label text="{i18n>destinoHawb}"/>        
+                        <HBox >
+                            <items>
+                                <Text  text="{destinoHawb/iata}"/>
+                                <Text  text=" - "/> 
+                                <Text  text="{destinoHawb/airportDescription}"/>
+                            </items>                      
+                        </HBox>                         
+                           
+                        <core:Title text="{i18n>DetailsParcel2}"/>
+                        <Label text="{i18n>airline}"/>                              
+                        <HBox >
+                            <items>
+                                <Text  text="{airline/airlineCode}"/>
+                                <Text  text=" - "/> 
+                                <Text  text="{airline/airlineDescription}"/>
+                            </items>                      
+                        </HBox>                                
+                        <Label text="{i18n>express}"/>
+                        <CheckBox selected="{express}" displayOnly="true"/>
+                        <Label text="{i18n>express}"/>
+                        <HBox >
+                            <items>
+                                <Text  text="{package/packageCode}"/>
+                                <Text  text=" - "/> 
+                                <Text  text="{package/packageDescription}"/>
+                            </items>                      
+                        </HBox>
+                        <Label text="{i18n>conteudo}"/>
+                        <Text  text="{conteudo}"/>
+                        <Label text="{i18n>bagDesacomp}"/> 
+                        <CheckBox selected="{bagDesacomp}" displayOnly="true"/>
+                    </f:content>      
+                </f:SimpleForm> 
+            </Panel>
+            <Panel backgroundDesign="Transparent"
+                    expandable="{device>/system/phone}"
+                    expanded="true"
+                    headerText="{i18n>Partner}"> 
+                <f:SimpleForm id="PartnerForm"
+			        editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="4"
+                    labelSpanL="3"
+                    labelSpanM="4"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="0"
+                    emptySpanL="2"
+                    emptySpanM="0"
+                    emptySpanS="0"
+                    columnsXL="1"
+                    columnsL="1"
+                    columnsM="1"
+                    singleContainerFullSize="false">
+                    <f:content> 
+                        <core:Title text=""/>
+                        <Label text="{i18n>exportador}"/>
+                        <HBox >
+                            <items>
+                                <Text  text="{exportador/CNPJCPF}"/>
+                                <Text  text=" - "/> 
+                                <Text  text="{exportador/partnerDescription}"/>
+                            </items>                      
+                        </HBox>      
+                        <Label text="{i18n>agente}"/>
+                        <HBox >
+                            <items>
+                                <Text  text="{agente/CNPJCPF}"/>
+                                <Text  text=" - "/> 
+                                <Text  text="{agente/partnerDescription}"/>
+                            </items>                      
+                        </HBox> 
+                        <Label text="{i18n>transportador}"/>
+                        <HBox >
+                            <items>
+                                <Text  text="{transportador/CNPJCPF}"/>
+                                <Text  text=" - "/> 
+                                <Text  text="{transportador/partnerDescription}"/>
+                            </items>                      
+                        </HBox>     
+                        <Label text="{i18n>cobranca}"/>                        
+                        <Text text="{cobranca/partnerTypeDescription}"/> 
+                    </f:content>      
+                </f:SimpleForm> 
+            </Panel>
+            </VBox>             
+        </semantic:content>
         <semantic:sendEmailAction>
             <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
         </semantic:sendEmailAction>

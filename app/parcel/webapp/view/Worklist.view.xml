@@ -15,12 +15,35 @@
                 level="H2"/>
         </semantic:titleHeading>
 
+        <semantic:headerContent>
+            <FlexBox
+				alignItems="End"
+                justifyContent="SpaceBetween"
+                alignContent="End">
+                <Panel backgroundDesign="Transparent">    
+                </Panel>
+
+                <Panel 
+                    backgroundDesign="Transparent">
+                    <Button 
+                        icon="sap-icon://add-document"
+                        type="Emphasized"
+                        press="onCreate" 
+                        text="{i18n>buttonCreate}"
+                        visible="true"/>
+                </Panel>  
+            </FlexBox>    
+		</semantic:headerContent>
+
         <semantic:content>
             <Table
                 id="table"
                 width="auto"
                 items="{
                     path: '/Parcel',
+                    parameters: {
+                                expand: 'declaracao,origemAwb,destinoAwb,origemHawb,destinoHawb,airline,package,exportador,agente,transportador,cobranca'
+                            },
                     sorter: {
                         path: 'awb',
                         descending: false
@@ -56,9 +79,57 @@
                     <Column id="nameColumn">
                         <Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
                     </Column>
+                    <Column 
+                        id="transDocColumn"
+                        demandPopin="true"
+                        minScreenWidth="Desktop"
+                        popinDisplay="Inline">
+                        <Text text="{i18n>transDocTitle}" id="transDocTitle"/>
+                    </Column>   
+                    <Column 
+                        id="dtEmissaoDATColumn"
+                        demandPopin="true"
+                        minScreenWidth="Desktop"
+                        popinDisplay="Inline">
+                        <Text text="{i18n>dtEmissaoDATTitle}" id="dtEmissaoDATTitle"/>
+                    </Column>
+                    <Column 
+                        id="airlineColumn"
+                        demandPopin="true"
+                        minScreenWidth="Desktop"
+                        popinDisplay="Inline">
+                        <Text text="{i18n>airlineTitle}" id="airlineTitle"/>
+                    </Column>
+                    <Column 
+                        id="createdAtColumn"
+                        demandPopin="true"
+                        minScreenWidth="Desktop"
+                        popinDisplay="Inline">
+                        <Text text="{i18n>createdAtTitle}" id="createdAtTitle"/>
+                    </Column>   
+                    <Column 
+                        id="origemAwbColumn"
+                        demandPopin="true"
+                        minScreenWidth="Large"
+                        popinDisplay="Inline">
+                        <Text text="{i18n>origemAwbTitle}" id="origemAwbTitle"/>
+                    </Column> 
+                    <Column 
+                        id="destinoAwbColumn"
+                        demandPopin="true"
+                        minScreenWidth="Large"
+                        popinDisplay="Inline">
+                        <Text text="{i18n>destinoAwbTitle}" id="destinoAwbTitle"/>
+                    </Column>     
+                    <Column 
+                        id="volumeColumn"
+                        hAlign="End">
+                        <Text text="{i18n>tablevolumeTitle}" id="volumeTitle"/>
+                    </Column>                   
                     <Column id="unitNumberColumn" hAlign="End">
                         <Text text="{i18n>tableUnitNumberColumnTitle}" id="unitNumberColumnTitle"/>
                     </Column>
+
                 </columns>
 
                 <items>
@@ -68,6 +139,20 @@
                         <cells>
                             <ObjectIdentifier
                                 title="{awb}"/>
+                            <Text text="{transDoc}"/>
+                            <Text text="{dtEmissaoDAT}"/>
+                            <Text text="{airline/airlineCode}"/>
+                            <Text text="{
+                                path:'createdAt', 
+                                type: 'sap.ui.model.type.DateTime',
+                                formatOptions: {
+                                    style: 'short',
+                                    UTC: true
+                                }
+                            }"/>
+                            <Text text="{origemAwb/iata}"/>
+                            <Text text="{destinoAwb/iata}"/>
+                            <Text text="{volume}"/>
                             <ObjectNumber
                                 number="{
                                     path: 'pesoBruto',
