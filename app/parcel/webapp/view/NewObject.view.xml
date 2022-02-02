@@ -5,22 +5,27 @@
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
     xmlns:semantic="sap.f.semantic"
-    xmlns:core="sap.ui.core">
+    xmlns:core="sap.ui.core"
+    xmlns:smartField="sap.ui.comp.smartfield" 
+>
 
     <semantic:SemanticPage
         id="page"
         headerPinnable="false"
         toggleHeaderOnTitleClick="false"
         busy="{objectView>/busy}"
-        busyIndicatorDelay="{objectView>/delay}">
+        busyIndicatorDelay="{objectView>/delay}"
+        showFooter="true"
+    >
 
         <semantic:titleHeading>
             <Title
                 text="{
-                    path: 'awb',
+                    path: 'newObject>/awb',
                     formatter: '.formatter.awb'
                 }"
-                level="H2"/>
+                level="H2"
+            />
         </semantic:titleHeading>
 
         <semantic:headerContent>
@@ -46,7 +51,8 @@
         </semantic:headerContent>
         <semantic:content>
             <VBox>
-                <Panel backgroundDesign="Transparent"
+                <Panel 
+                    backgroundDesign="Transparent"
                     expandable="{device>/system/phone}"
                     expanded="true"
                     headerText="{i18n>GeneralData}">
@@ -69,31 +75,65 @@
 			        <f:content>
 			            <core:Title text="{i18n>details}"/>
                         <Label text="{i18n>awb}"/>
-                        <MaskInput mask="999-99999999" placeholderSymbol="_" required="true" value="{awb}"/>
+                        <MaskInput 
+                            mask="999-99999999" 
+                            placeholderSymbol="_" 
+                            required="true" 
+                            value="{newObject>/awb}"
+                            visible="{newObject>State/awb/Visible}"
+                            enabled="{newObject>State/awb/Enabled}"
+                        />
                         <Label text="{i18n>hawb}"/>
-                        <MaskInput mask="999-99999999" placeholderSymbol="_" required="true" value="{hawb}"/>
+                        <MaskInput 
+                            mask="999-99999999" 
+                            placeholderSymbol="_" 
+                            required="true"
+                            value="{newObject>/hawb}"
+                            visible="{newObject>State/hawb/Visible}"
+                            enabled="{newObject>State/hawb/Enabled}"
+                        />
                         <Label text="{i18n>ruc}"/>
-                        <MaskInput mask="99999999999" placeholderSymbol="_" required="true" value="{ruc}"/>
+                        <MaskInput
+                            mask="99999999999" 
+                            placeholderSymbol="_" 
+                            required="true" 
+                            value="{newObject>/ruc}"
+                            visible="{newObject>State/ruc/Visible}"
+                            enabled="{newObject>State/ruc/Enabled}"
+                        />
                         <Label text="{i18n>declaracao}"/>
                         <HBox >
                             <items>
-                                <Input  value="{declaracao/declaracao}" showValueHelp="true"/>      
-                                <Input  value="{declaracaoNr}"/> 
+                                <ComboBox
+                                    selectedKey="{newObject>/declaracao}"
+                                    visible="{newObject>State/declaracao/Visible}"
+                                    enabled="{newObject>State/declaracao/Enabled}"
+                                    items="{ 
+                                        path: '/Declaracao'
+                                    }"
+                                >
+                                    <core:ListItem key="{declaracao}" text="{declaracao} - {declaracaoDescription}"/>
+                                </ComboBox>
+
+                                <Input  
+                                    value="{newObject>/declaracaoNr}" 
+                                    visible="{newObject>State/declaracao/Visible}"
+                                    enabled="{newObject>State/declaracao/Enabled}"
+                                />
                             </items>      
                         </HBox> 
                         <Label text="{i18n>transDoc}"/>
-                        <Text  text="{transDoc}"/> 
-                                                     
-                       
+                        <Text  text="{newObject>/transDoc}"/> 
+                                                    
                         <core:Title text="{i18n>details2}"/>          
                         <Label  text="{i18n>transit}"/>
-                        <CheckBox selected="{transit}" displayOnly="true"/>  
+                        <CheckBox selected="{newObject>/transit}" displayOnly="true"/>  
                         <Label text="{i18n>airTransit}"/>
-                        <CheckBox selected="{airTransit}" displayOnly="true"/>
+                        <CheckBox selected="{newObject>/airTransit}" displayOnly="true"/>
                                
                             
                         <Label  text="{i18n>dseManual}"/>
-                        <CheckBox selected="{dseManual}" displayOnly="true"/>              
+                        <CheckBox selected="{newObject>/dseManual}" displayOnly="true"/>              
                     </f:content>      
                 </f:SimpleForm>
             </Panel>   
@@ -124,33 +164,33 @@
                         <Label text="{i18n>origemAwb}"/>
                         <HBox >
                             <items>
-                                <Text  text="{origemAwb/iata}"/>
+                                <Text  text="{newObject>/origemAwb/iata}"/>
                                 <Text  text=" - "/> 
-                                <Text  text="{origemAwb/airportDescription}"/>
+                                <Text  text="{newObject>/origemAwb/airportDescription}"/>
                             </items>                      
                         </HBox>
                         <Label text="{i18n>destinoAwb}"/>    
                         <HBox >
                             <items>
-                                <Text  text="{destinoAwb/iata}"/>
+                                <Text  text="{newObject>/destinoAwb/iata}"/>
                                 <Text  text=" - "/> 
-                                <Text  text="{destinoAwb/airportDescription}"/>
+                                <Text  text="{newObject>/destinoAwb/airportDescription}"/>
                             </items>                      
                         </HBox> 
                         <Label text="{i18n>origemHawb}"/>
                         <HBox >
                             <items>
-                                <Text  text="{origemHawb/iata}"/>
+                                <Text  text="{newObject>/origemHawb/iata}"/>
                                 <Text  text=" - "/> 
-                                <Text  text="{origemHawb/airportDescription}"/>
+                                <Text  text="{newObject>/origemHawb/airportDescription}"/>
                             </items>                      
                         </HBox>
                         <Label text="{i18n>destinoHawb}"/>        
                         <HBox >
                             <items>
-                                <Text  text="{destinoHawb/iata}"/>
+                                <Text  text="{newObject>/destinoHawb/iata}"/>
                                 <Text  text=" - "/> 
-                                <Text  text="{destinoHawb/airportDescription}"/>
+                                <Text  text="{newObject>/destinoHawb/airportDescription}"/>
                             </items>                      
                         </HBox>                         
                            
@@ -158,9 +198,9 @@
                         <Label text="{i18n>airline}"/>                              
                         <HBox >
                             <items>
-                                <Text  text="{airline/airlineCode}"/>
+                                <Text  text="{newObject>/airline/airlineCode}"/>
                                 <Text  text=" - "/> 
-                                <Text  text="{airline/airlineDescription}"/>
+                                <Text  text="{newObject>/airline/airlineDescription}"/>
                             </items>                      
                         </HBox>                                
                         <Label text="{i18n>express}"/>
@@ -168,15 +208,15 @@
                         <Label text="{i18n>express}"/>
                         <HBox >
                             <items>
-                                <Text  text="{package/packageCode}"/>
+                                <Text  text="{newObject>/package/packageCode}"/>
                                 <Text  text=" - "/> 
-                                <Text  text="{package/packageDescription}"/>
+                                <Text  text="{newObject>/package/packageDescription}"/>
                             </items>                      
                         </HBox>
                         <Label text="{i18n>conteudo}"/>
                         <Text  text="{conteudo}"/>
                         <Label text="{i18n>bagDesacomp}"/> 
-                        <CheckBox selected="{bagDesacomp}" displayOnly="true"/>
+                        <CheckBox selected="{newObject>/bagDesacomp}" displayOnly="true"/>
                     </f:content>      
                 </f:SimpleForm> 
             </Panel>
@@ -205,7 +245,7 @@
                         <Label text="{i18n>exportador}"/>
 
                         <Text  text="{
-                                    path: 'exportador/CNPJCPF',
+                                    path: 'newObject>/exportador/CNPJCPF',
                                     formatter: '.formatter.cnpj'
                                 }">
                             <layoutData>
@@ -213,11 +253,11 @@
      
                             </layoutData>
                         </Text>
-                        <Text  text="{exportador/partnerDescription}"/>
+                        <Text  text="{newObject>/exportador/partnerDescription}"/>
                         <Label text="{i18n>agente}"/>
  
                         <Text  text="{
-                                    path: 'agente/CNPJCPF',
+                                    path: 'newObject>/agente/CNPJCPF',
                                     formatter: '.formatter.cnpj'
                                 }">
                             <layoutData>
@@ -237,12 +277,12 @@
                         </Text>
                         <Text  text="{transportador/partnerDescription}"/>   
                         <Label text="{i18n>cobranca}"/>                        
-                        <Text text="{cobranca/partnerTypeDescription}"/> 
+                        <Text text="{newObject>cobranca/partnerTypeDescription}"/> 
 
                         <core:Title text="{i18n>Material}"/>
                         <Label text="{i18n>ncm}"/>                        
                         <Text text="{
-                                    path: 'ncm',
+                                    path: 'newObject>ncm',
                                     formatter: '.formatter.ncm'
                                 }"/>
                                 
@@ -254,12 +294,12 @@
                                 path: '/Natureza',
                                 sorter: { path: 'naturezaCode' }
                             }"
-                            selectedItems="{natureza}"
-                            enabled="false">
+                            selectedItems="{newObject>/natureza}"
+                        >
                             <core:ListItem key="{ID}" text="{naturezaCode}" additionalText="{naturezaDescription}"/>
                         </MultiComboBox>                            
                         <Label text="{i18n>obs}"/> 
-                        <TextArea enabled="false" value="{obs}"/>
+                        <TextArea enabled="false" value="{newObject>/obs}"/>
                     </f:content>      
                 </f:SimpleForm> 
             </Panel>
@@ -267,13 +307,21 @@
                     expandable="{device>/system/phone}"
                     expanded="true"
                     headerText="{i18n>confirmation}"> 
-                <CheckBox selected="{confirm}" displayOnly="true" text="{i18n>confirm}"/>   
+                <CheckBox selected="{newObject>/confirm}" displayOnly="true" text="{i18n>confirm}"/>   
             </Panel>
             </VBox>             
         </semantic:content>
+
         <semantic:sendEmailAction>
             <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
         </semantic:sendEmailAction>
+
+        <semantic:footerMainAction>
+            <semantic:FooterMainAction 
+                text="{i18n>ObjectButtonSave}" 
+                press="onPressSave"
+            />
+        </semantic:footerMainAction>
 
     </semantic:SemanticPage>
 

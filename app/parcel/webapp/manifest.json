@@ -77,6 +77,9 @@
           "bundleName": "capdemogru.app.parcel.i18n.i18n"
         }
       },
+      "newObject": {
+        "type": "sap.ui.model.json.JSONModel"
+      },
       "": {
         "dataSource": "mainService",
         "preload": true,
@@ -84,9 +87,9 @@
           "operationMode": "Server",
 					"groupId": "$direct",
 					"synchronizationMode": "None",
-                    "autoExpandSelect":true,
-                    "defaultBindingMode": "TwoWay",
-                    "refreshAfterChange": true
+          "autoExpandSelect":true,
+          "defaultBindingMode": "TwoWay",
+          "refreshAfterChange": true
         }
       }
     },
@@ -121,6 +124,13 @@
           "target": [
             "object"
           ]
+        },
+        {
+          "pattern": "NewObject",
+          "name": "newObject",
+          "target": [
+            "newObject"
+          ]
         }
       ],
       "targets": {
@@ -133,6 +143,12 @@
         "object": {
           "viewName": "Object",
           "viewId": "object",
+          "viewLevel": 2,
+          "title": "{i18n>objectViewTitle}"
+        },
+        "newObject": {
+          "viewName": "NewObject",
+          "viewId": "newObject",
           "viewLevel": 2,
           "title": "{i18n>objectViewTitle}"
         },
