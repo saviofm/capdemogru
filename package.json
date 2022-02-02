@@ -6,12 +6,12 @@
     "license": "UNLICENSED",
     "private": true,
     "dependencies": {
-        "@sap/cds": "5.7.3",
-        "@sap/cds-dk": "4.7.2",
-        "@sap/cds-odata-v2-adapter-proxy": "^1.8.4",
-        "@sap/textbundle": "4.0.0",
+        "@sap/cds": "5.8.0",
+        "@sap/cds-dk": "^4.8.0",
+        "@sap/cds-odata-v2-adapter-proxy": "1.8.6",
+        "@sap/textbundle": "4.1.0",
         "@sap/xsenv": "3.1.1",
-        "@sap/xssec": "3.2.11",
+        "@sap/xssec": "3.2.12",
         "aws-sdk": "^2.1051.0",
         "cds-swagger-ui-express": "^0.3.0",
         "convert-excel-to-json": "^1.7.0",
@@ -21,7 +21,7 @@
         "xlsx": "^0.17.4"
     },
     "devDependencies": {
-        "@sap/cds-compiler": "2.11.4",
+        "@sap/cds-compiler": "2.12.0",
         "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
         "@sap/hdi-deploy": "^4.2.3",
         "@sap/ux-specification": "^1.96.2",
@@ -30,8 +30,8 @@
         "sqlite3": "^5.0.2"
     },
     "engines": {
-        "node": "14.18.1",
-        "npm": "6.14.15"
+        "node": "16.13.1",
+        "npm": "8.4.0"
     },
     "scripts": {
         "start": "cds run",
