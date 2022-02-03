@@ -24,7 +24,7 @@ sap.ui.define([], function () {
                 dia = sValue.substring(0, 2);
 
             return `${ano}-${mes}-${dia}T00:00:00`;  
-        }
+        },
 
         ncm : function (sValue) {
             if (!sValue) {

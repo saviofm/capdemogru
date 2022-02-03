@@ -2,7 +2,6 @@ sap.ui.define([
     "./BaseController",
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/routing/History",
-    "../model/formatter",
     "../model/newObject",
     "sap/m/ColumnListItem",
 	"sap/m/Label",
@@ -10,14 +9,13 @@ sap.ui.define([
 	"sap/ui/core/Fragment",
     "sap/ui/core/Core",
 	"sap/ui/core/library",
-	"capdemogru/app/cargoreceipt/model/formatter",
+	"../model/formatter",
     "sap/m/MessageToast",
     "sap/m/MessageBox",
 ], function (BaseController,
 	JSONModel,
 	History,
-	formatter,
-	newObject,
+	NewObject,
 	ColumnListItem,
 	Label,
 	Token,
@@ -28,7 +26,7 @@ sap.ui.define([
     MessageToast,
     MessageBox) {
     "use strict";
-    var ValueState = CoreLibrary.ValueState;
+    var ValueState = library.ValueState;
     return BaseController.extend("capdemogru.app.parcel.controller.NewObject", {
 
         formatter: Formatter,
