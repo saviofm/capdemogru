@@ -57,7 +57,7 @@ sap.ui.define([], function () {
             sValue =  sValue.padStart(11, "0")
             return `${sValue.substring(0,3)}-${sValue.substring(3,11)}`;
         
-        },
+        }
     };
 
 });

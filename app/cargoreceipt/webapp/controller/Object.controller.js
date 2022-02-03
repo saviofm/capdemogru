@@ -76,6 +76,9 @@ sap.ui.define([
 
             this.getView().bindElement({
                 path: sObjectPath,
+                parameters:{
+                    expand: 'declaracao,origemAwb,destinoAwb,origemHawb,destinoHawb,airline'
+                },           
                 events: {
                     change: this._onBindingChange.bind(this),
                     dataRequested: function () {

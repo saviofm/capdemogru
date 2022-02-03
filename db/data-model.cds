@@ -858,18 +858,18 @@ entity Danfe : cuid, managed {
 //------------------------------------------------------//
 //------------------------------------------------------//
 entity CargoReceipt : cuid, managed {
-  awb                 : String(11) not null;
-  hawb                : String(20);
+  awb                 : String(11) not null; //
+  hawb                : String(20); //
   preParcel           : Association to one PreParcel;
-  ruc                 : String not null;
-  transit             : Boolean;
-  express             : Boolean;
+  ruc                 : String not null; //
+  transit             : Boolean; //
+  express             : Boolean; //
   manualCargo         : Boolean; 
-  dseManual           : Boolean;
+  dseManual           : Boolean; //
   airSide             : Boolean;
   declaracao          : Association to one Declaracao;
   declaracaoNr        : String(15);
-  bagDesacomp         : Boolean;
+  bagDesacomp         : Boolean; //
   airline             : Association to one Airline;
   origemAwb           : Association to one Airport;
   destinoAwb          : Association to one Airport;

@@ -1,0 +1,397 @@
+<mvc:View
+    controllerName="capdemogru.app.cargoreceipt.controller.NewObject"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:core="sap.ui.core"
+    xmlns:smartField="sap.ui.comp.smartfield" 
+    xmlns:ndc="sap.ndc"
+    xmlns:uni="sap.ui.unified"
+>
+
+    <semantic:SemanticPage
+        id="page"
+        headerPinnable="false"
+        toggleHeaderOnTitleClick="false"
+        busy="{objectView>/busy}"
+        busyIndicatorDelay="{objectView>/delay}"
+        showFooter="true"
+    >
+
+        <semantic:titleHeading>
+            <Title
+                text="{
+                    path: 'newObject>/awb',
+                    formatter: '.formatter.awb'
+                }"
+                level="H2"
+            />
+        </semantic:titleHeading>
+
+        <semantic:headerContent>
+        </semantic:headerContent>
+        <semantic:content>
+            <VBox>
+                <Panel 
+                    backgroundDesign="Transparent"
+                    expandable="{device>/system/phone}"
+                    expanded="true"
+                    headerText="{i18n>GeneralData}">
+                <f:SimpleForm id="SimpleFormFornecedor"
+			        editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="4"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="0"
+                    emptySpanL="2"
+                    emptySpanM="0"
+                    emptySpanS="0"
+                    columnsXL="2"
+                    columnsL="2"
+                    columnsM="2"
+                    singleContainerFullSize="false">
+			        <f:content>
+			            <core:Title text="{i18n>details}"/>
+                        <Label text="{i18n>awb}"/>
+                        <MaskInput 
+                            mask="999-99999999" 
+                            placeholderSymbol="_" 
+                            required="true" 
+                            value="{newObject>/awb}"
+                            visible="{newObject>State/awb/Visible}"
+                            enabled="{newObject>State/awb/Enabled}"
+                        />
+                        <Label text="{i18n>hawb}"/>
+                        <MaskInput 
+                            mask="999-99999999" 
+                            placeholderSymbol="_" 
+                            required="true"
+                            value="{newObject>/hawb}"
+                            visible="{newObject>State/hawb/Visible}"
+                            enabled="{newObject>State/hawb/Enabled}"
+                        />
+                        <Label text="{i18n>ruc}"/>
+                        <MaskInput
+                            mask="99999999999" 
+                            placeholderSymbol="_" 
+                            required="true" 
+                            value="{newObject>/ruc}"
+                            visible="{newObject>State/ruc/Visible}"
+                            enabled="{newObject>State/ruc/Enabled}"
+                        />
+                        <Label text="{i18n>uld}"/>
+                        <Input
+                            required="true" 
+                            value="{newObject>/uld}"
+                            visible="{newObject>State/uld/Visible}"
+                            enabled="{newObject>State/uld/Enabled}"
+                        />
+                        <Label text="{i18n>declaracao}"/>
+                        <HBox >
+                            <items>
+                                <ComboBox
+                                    selectedKey="{newObject>/declaracao}"
+                                    visible="{newObject>State/declaracao/Visible}"
+                                    enabled="{newObject>State/declaracao/Enabled}"
+                                    width="60%"
+                                    items="{ 
+                                        path: '/Declaracao'
+                                    }">
+                                    <core:ListItem key="{declaracao}" text="{declaracao}"/>
+                                </ComboBox>
+                 
+                                <Input  
+                                    value="{newObject>/declaracaoNr}" 
+                                    visible="{newObject>State/declaracaoNr/Visible}"
+                                    enabled="{newObject>State/declaracaoNr/Enabled}"
+                                
+                                >
+                                 
+                                 </Input>
+                            </items>      
+                        </HBox> 
+                        
+                        <core:Title text="{i18n>details2}"/>
+                        <Label  text="{i18n>transit}"/>
+                        <CheckBox selected="{newObject>/transit}"/>  
+                        <Label text="{i18n>airTransit}"/>
+                        <CheckBox selected="{newObject>/airTransit}"/>
+                        <Label text="{i18n>express}"/>
+                        <CheckBox selected="{newObject>/express}"/>    
+                        <Label text="{i18n>manualCargo}"/>
+                        <CheckBox selected="{newObject>/manualCargo}"/>         
+                        <Label  text="{i18n>dseManual}"/>
+                        <CheckBox selected="{newObject>/dseManual}"/>   
+                        <Label  text="{i18n>airSide}"/>
+                        <CheckBox selected="{newObject>/airSide}"/>              
+                    </f:content>      
+                </f:SimpleForm>
+            </Panel>   
+
+            <Panel backgroundDesign="Transparent"
+                    expandable="{device>/system/phone}"
+                    expanded="true"
+                    headerText="{i18n>ParcelData}"> 
+                <f:SimpleForm id="SimpleForm"
+			        editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="4"
+                    labelSpanL="3"
+                    labelSpanM="4"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="0"
+                    emptySpanL="2"
+                    emptySpanM="0"
+                    emptySpanS="0"
+                    columnsXL="2"
+                    columnsL="2"
+                    columnsM="2"
+                    singleContainerFullSize="false">
+                     
+			        <f:content>
+				        <core:Title text="{i18n>detailsParcel}"/>
+                        <Label text="{i18n>origemAwb}"/>
+                        <ComboBox
+                            selectedKey="{newObject>/origemAwb}"
+                            visible="{newObject>State/origemAawb/Visible}"
+                            enabled="{newObject>State/origemAawb/Enabled}"
+                            showSecondaryValues= "true"
+                            items="{ 
+                                path: '/Airport',
+                                length: '5000'
+                            }">
+                            <core:ListItem key="{ID}" text="{iata}" additionalText="{airportDescription}"/>
+            
+                        </ComboBox>
+                        <Label text="{i18n>destinoAwb}"/>    
+                        <ComboBox
+                            selectedKey="{newObject>/destinoAwb}"
+                            visible="{newObject>State/destinoAwb/Visible}"
+                            enabled="{newObject>State/destinoAwb/Enabled}"
+                            showSecondaryValues= "true"
+                            items="{ 
+                                path: '/Airport',
+                                length: '5000'
+                            }">
+                            <core:ListItem key="{ID}" text="{iata}" additionalText="{airportDescription}"/>
+                        </ComboBox>
+                        <Label text="{i18n>origemHawb}"/>
+                        <ComboBox
+                            selectedKey="{newObject>/origemHawb}"
+                            visible="{newObject>State/origemHawb/Visible}"
+                            enabled="{newObject>State/origemHawb/Enabled}"
+                            showSecondaryValues= "true"
+                            items="{ 
+                                path: '/Airport',
+                                length: '5000'
+                            }">
+                            <core:ListItem key="{ID}" text="{iata}" additionalText="{airportDescription}"/>
+            
+                        </ComboBox>
+
+                        <Label text="{i18n>destinoHawb}"/>        
+                        <ComboBox
+                            selectedKey="{newObject>/destinoHawb}"
+                            visible="{newObject>State/destinoHawb/Visible}"
+                            enabled="{newObject>State/destinoHawb/Enabled}"
+                            showSecondaryValues= "true"
+                            items="{ 
+                                path: '/Airport',
+                                length: '5000'
+                            }">
+                            <core:ListItem key="{ID}" text="{iata}" additionalText="{airportDescription}"/>
+                        </ComboBox>
+                           
+                        <Label text="{i18n>bagDesacomp}"/> 
+                        <CheckBox selected="{newObject>/bagDesacomp}"/>       
+                           
+                        <core:Title text="{i18n>detailsParcel2}"/>
+                        <Label text="{i18n>airline}"/> 
+                        <ComboBox
+                            selectedKey="{newObject>/airline}"
+                            visible="{newObject>State/airline/Visible}"
+                            enabled="{newObject>State/airline/Enabled}"
+                            showSecondaryValues= "true"
+                            items="{ 
+                                path: '/Airline',
+                                length: '200'
+                            }">
+                            <core:ListItem key="{ID}" text="{airlineCode}" additionalText="{airlineDescription}"/>
+                        </ComboBox>   
+                        <Label text="{i18n>volume}"/>  
+                        <MaskInput mask="99999" 
+                            placeholderSymbol="_" 
+                            required="false" 
+                            value="{newObject>/volume}"
+                            visible="{newObject>State/volume/Visible}"
+                            enabled="{newObject>State/volume/Enabled}"/>                             
+                        <Label text="{i18n>pesoBruto}"/> 
+                        <MaskInput mask="999999,999" 
+                            placeholderSymbol="_" 
+                            required="false" 
+                            value="{newObject>/pesoBruto}"
+                            visible="{newObject>State/pesoBruto/Visible}"
+                            enabled="{newObject>State/pesoBruto/Enabled}"/> 
+                        <Label text="{i18n>pesoBruto}"/> 
+                        <MaskInput mask="999999,999" 
+                            placeholderSymbol="_" 
+                            required="false" 
+                            value="{newObject>/pesoLiquido}"
+                            visible="{newObject>State/pesoLiquido/Visible}"
+                            enabled="{newObject>State/pesoLiquido/Enabled}"/>                                             
+                        <Label text="{i18n>tara}"/> 
+                        <MaskInput mask="999999,999" 
+                            placeholderSymbol="_" 
+                            required="false" 
+                            value="{newObject>/tara}"
+                            visible="{newObject>State/tara/Visible}"
+                            enabled="{newObject>State/tara/Enabled}"/>                                             
+                          
+                        <Label text=""/>
+                        <Button 
+                            icon="sap-icon://pdf-reader"
+                            press="getWeight" 
+                            text="{i18n>getWeight}"
+                            type="Emphasized"
+                            visible="true"/>
+                        
+                    </f:content>      
+                </f:SimpleForm> 
+            </Panel>
+            <Panel backgroundDesign="Transparent"
+                    expandable="{device>/system/phone}"
+                    expanded="true"
+                    headerText="{i18n>Material}"> 
+                <f:SimpleForm id="PartnerForm"
+			        editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="4"
+                    labelSpanL="3"
+                    labelSpanM="4"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="0"
+                    emptySpanL="2"
+                    emptySpanM="0"
+                    emptySpanS="0"
+                    columnsXL="2"
+                    columnsL="2"
+                    columnsM="2"
+                    singleContainerFullSize="false">
+                    <f:content> 
+
+                        <Label text="{i18n>ncm}"/>   
+                        <MaskInput 
+                            mask="9999.99.99" 
+                            placeholderSymbol="_" 
+                            required="false" 
+                            value="{newObject>/ncm}"
+                            visible="{newObject>State/ncm/Visible}"
+                            enabled="{newObject>State/ncm/Enabled}"
+                        />                     
+                        
+                        <Label text="{i18n>natureza}"/>
+                        <MultiComboBox
+                            showSecondaryValues= "true"
+                            width="500px"
+                            items="{
+                                path: '/Natureza',
+                                sorter: { path: 'naturezaCode' }
+                            }"
+                            selectedItems="{newObject>/natureza}"
+                        >
+                            <core:ListItem key="{ID}" text="{naturezaCode}" additionalText="{naturezaDescription}"/>
+                        </MultiComboBox>                            
+                    </f:content>      
+                </f:SimpleForm> 
+            </Panel>
+            <Panel backgroundDesign="Transparent"
+                    expandable="{device>/system/phone}"
+                    expanded="true"
+                    headerText="{i18n>image}"> 
+                <Image  
+                        src="{image}"
+					    decorative="false"/>
+
+		        <uni:FileUploader 
+                    iconOnly="false" 
+                    multiple="false" 
+                    buttonOnly="true" 
+                    icon="sap-icon://add-photo" 
+                    uploadOnChange="false" 
+                    sendXHR="true"
+                    useMultipart="false" 
+                    fileType="JPG,JPEG,jpeg,jpg,PNG,png"
+					sameFilenameAllowed="true" 
+                    typeMissmatch="onTypeMissmatch" 
+                    change="onChangeCamera" 
+                    buttonText="{i18n>getPhoto}"
+                    uploadComplete="onUploadCompleted"/>
+
+                </Panel>
+               <Panel backgroundDesign="Transparent"
+                    expandable="{device>/system/phone}"
+                    expanded="true"
+                    headerText="{i18n>barcode}"> 
+                    <f:SimpleForm id="BarcodeForm"
+                        editable="true"
+                        layout="ResponsiveGridLayout"
+                        labelSpanXL="3"
+                        labelSpanL="3"
+                        labelSpanM="4"
+                        labelSpanS="12"
+                        adjustLabelSpan="false"
+                        emptySpanXL="0"
+                        emptySpanL="2"
+                        emptySpanM="0"
+                        emptySpanS="0"
+                        columnsXL="2"
+                        columnsL="2"
+                        columnsM="2"
+                        singleContainerFullSize="false">
+                        <f:content>
+                            
+                            <HBox justifyContent="Center" fitContainer="true">
+                                <items>    
+                                    <ndc:BarcodeScannerButton
+                                        id="BarcodeScannerButton"
+                                        scanSuccess="onScanSuccess"
+                                        scanFail="onScanError"
+                                        inputLiveUpdate="onScanLiveupdate"
+                                        dialogTitle="{i18n>insertBarcode}"
+                                    />
+                                    <Input 
+                                        id="barcodeInput"
+                                        value="{newObject>/barcode}"
+                                        visible="true"
+                                        enabled="false"/> 
+                                    </items>
+                            </HBox>
+                        </f:content>
+                    </f:SimpleForm>
+                </Panel>    
+            </VBox>             
+        </semantic:content>
+
+        <semantic:sendEmailAction>
+            <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
+        </semantic:sendEmailAction>
+
+        <semantic:footerMainAction>
+            <semantic:FooterMainAction 
+                text="{i18n>ObjectButtonSave}" 
+                press="onPressSave"
+                enabled="{newObject>/confirm}"
+                id="saveButton"
+            />
+        </semantic:footerMainAction>
+
+    </semantic:SemanticPage>
+
+</mvc:View>

@@ -15,12 +15,35 @@
                 level="H2"/>
         </semantic:titleHeading>
 
+        <semantic:headerContent>
+            <FlexBox
+				alignItems="End"
+                justifyContent="SpaceBetween"
+                alignContent="End">
+                <Panel backgroundDesign="Transparent">    
+                </Panel>
+
+                <Panel 
+                    backgroundDesign="Transparent">
+                    <Button 
+                        icon="sap-icon://add-document"
+                        type="Emphasized"
+                        press="onCreate" 
+                        text="{i18n>buttonCreate}"
+                        visible="true"/>
+                </Panel>  
+            </FlexBox>    
+		</semantic:headerContent>
+
         <semantic:content>
             <Table
                 id="table"
                 width="auto"
                 items="{
                     path: '/CargoReceipt',
+                    parameters: {
+                                expand: 'declaracao,origemAwb,destinoAwb,origemHawb,destinoHawb,airline'
+                            },
                     sorter: {
                         path: 'awb',
                         descending: false
@@ -56,11 +79,67 @@
                     <Column id="nameColumn">
                         <Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
                     </Column>
+                    <Column 
+                        id="airlineColumn"
+                        demandPopin="true"
+                        minScreenWidth="Desktop"
+                        popinDisplay="Inline">
+                        <Text text="{i18n>airlineTitle}" id="airlineTitle"/>
+                    </Column>
+                    <Column 
+                        id="uldColumn"
+                        demandPopin="true"
+                        minScreenWidth="Desktop"
+                        popinDisplay="Inline">
+                        <Text text="{i18n>ulditle}" id="uldTitle"/>
+                    </Column>
+                    <Column 
+                        id="createdAtColumn"
+                        demandPopin="true"
+                        minScreenWidth="Desktop"
+                        popinDisplay="Inline">
+                        <Text text="{i18n>createdAtTitle}" id="createdAtTitle"/>
+                    </Column>   
+                    <Column 
+                        id="origemAwbColumn"
+                        demandPopin="true"
+                        minScreenWidth="Large"
+                        popinDisplay="Inline">
+                        <Text text="{i18n>origemAwbTitle}" id="origemAwbTitle"/>
+                    </Column> 
+                    <Column 
+                        id="destinoAwbColumn"
+                        demandPopin="true"
+                        minScreenWidth="Large"
+                        popinDisplay="Inline">
+                        <Text text="{i18n>destinoAwbTitle}" id="destinoAwbTitle"/>
+                    </Column>     
+                    <Column 
+                        id="ncmAwbColumn"
+                        demandPopin="true"
+                        minScreenWidth="Large"
+                        popinDisplay="Inline">
+                        <Text text="{i18n>ncmTitle}" id="ncmAwbTitle"/>
+                    </Column>              
+                    <Column 
+                        id="volumeColumn"
+                        hAlign="End">
+                        <Text text="{i18n>tablevolumeTitle}" id="volumeTitle"/>
+                    </Column> 
+                    <Column 
+                        id="positionColumn"
+                        hAlign="End">
+                        <Text text="{i18n>tablepositionTitle}" id="positionTitle"/>
+                    </Column> 
+                   <Column 
+                        id="pesoLiquido"
+                        hAlign="End">
+                        <Text text="{i18n>tablepesoLiquidoTitle}" id="pesoliquidoTitle"/>
+                    </Column>                   
                     <Column id="unitNumberColumn" hAlign="End">
                         <Text text="{i18n>tableUnitNumberColumnTitle}" id="unitNumberColumnTitle"/>
                     </Column>
                 </columns>
-
                 <items>
                     <ColumnListItem
                         type="Navigation"
@@ -68,6 +147,30 @@
                         <cells>
                             <ObjectIdentifier
                                 title="{awb}"/>
+                            <Text text="{airline/airlineCode}"/>
+                            <Text text="{uld}"/>
+                            <Text text="{
+                                path:'createdAt', 
+                                type: 'sap.ui.model.type.DateTime',
+                                formatOptions: {
+                                    style: 'short',
+                                    UTC: true
+                                }
+                            }"/>
+                            <Text text="{origemAwb/iata}"/>
+                            <Text text="{destinoAwb/iata}"/>
+                            <Text text="{
+                                    path: 'ncm',
+                                    formatter: '.formatter.ncm'
+                                }"/>
+                            
+                            <Text text="{volume}"/>
+                            <Text text="{position}"/>
+                            <ObjectNumber
+                                number="{
+                                    path: 'pesoLiquido',
+                                    formatter: '.formatter.numberUnit'
+                                }" />
                             <ObjectNumber
                                 number="{
                                     path: 'pesoBruto',
