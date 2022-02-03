@@ -6,7 +6,6 @@
     xmlns:f="sap.ui.layout.form"
     xmlns:semantic="sap.f.semantic"
     xmlns:core="sap.ui.core"
-    xmlns:smartField="sap.ui.comp.smartfield" 
 >
 
     <semantic:SemanticPage
@@ -21,7 +20,7 @@
         <semantic:titleHeading>
             <Title
                 text="{
-                    path: 'newObject>/awb',
+                    path: 'newObjectView>/awb',
                     formatter: '.formatter.awb'
                 }"
                 level="H2"
@@ -53,8 +52,6 @@
             <VBox>
                 <Panel 
                     backgroundDesign="Transparent"
-                    expandable="{device>/system/phone}"
-                    expanded="true"
                     headerText="{i18n>GeneralData}">
                 <f:SimpleForm id="SimpleFormFornecedor"
 			        editable="true"
@@ -75,39 +72,52 @@
 			        <f:content>
 			            <core:Title text="{i18n>details}"/>
                         <Label text="{i18n>awb}"/>
-                        <MaskInput 
+                        <MaskInput
+                            id="awb"
                             mask="999-99999999" 
                             placeholderSymbol="_" 
                             required="true" 
-                            value="{newObject>/awb}"
-                            visible="{newObject>State/awb/Visible}"
-                            enabled="{newObject>State/awb/Enabled}"
+                            value="{newObjectView>/awb}"
+                            visible="{newObjectView>/State/awb/Visible}"
+                            enabled="{newObjectView>/State/awb/Enabled}"
+                            valueState="{newObjectView>/State/awb/ValueState}"
+                            valueStateText="{newObjectView>/State/awb/ValueStateText}"
+                            change="onValidationFields"
                         />
                         <Label text="{i18n>hawb}"/>
-                        <MaskInput 
+                        <MaskInput
+                            id="hawb"
                             mask="999-99999999" 
                             placeholderSymbol="_" 
                             required="true"
-                            value="{newObject>/hawb}"
-                            visible="{newObject>State/hawb/Visible}"
-                            enabled="{newObject>State/hawb/Enabled}"
+                            value="{newObjectView>/hawb}"
+                            visible="{newObjectView>/State/hawb/Visible}"
+                            enabled="{newObjectView>/State/hawb/Enabled}"
+                            valueState="{newObjectView>/State/hawb/ValueState}"
+                            valueStateText="{newObjectView>/State/hawb/ValueStateText}"
+                            change="onValidationFields"
                         />
                         <Label text="{i18n>ruc}"/>
                         <MaskInput
+                            id="ruc"
                             mask="99999999999" 
                             placeholderSymbol="_" 
                             required="true" 
-                            value="{newObject>/ruc}"
-                            visible="{newObject>State/ruc/Visible}"
-                            enabled="{newObject>State/ruc/Enabled}"
+                            value="{newObjectView>/ruc}"
+                            visible="{newObjectView>/State/ruc/Visible}"
+                            enabled="{newObjectView>/State/ruc/Enabled}"
+                            valueState="{newObjectView>/State/ruc/ValueState}"
+                            valueStateText="{newObjectView>/State/ruc/ValueStateText}"
+                            change="onValidationFields"
                         />
                         <Label text="{i18n>declaracao}"/>
                         <HBox >
                             <items>
                                 <ComboBox
-                                    selectedKey="{newObject>/declaracao}"
-                                    visible="{newObject>State/declaracao/Visible}"
-                                    enabled="{newObject>State/declaracao/Enabled}"
+                                    id="declaracao"
+                                    selectedKey="{newObjectView>/declaracao}"
+                                    visible="{newObjectView>/State/declaracao/Visible}"
+                                    enabled="{newObjectView>/State/declaracao/Enabled}"
                                     width="60%"
                                     items="{ 
                                         path: '/Declaracao'
@@ -115,51 +125,58 @@
                                     <core:ListItem key="{declaracao}" text="{declaracao}"/>
                                 </ComboBox>
                  
-                                <Input  
-                                    value="{newObject>/declaracaoNr}" 
-                                    visible="{newObject>State/declaracaoNr/Visible}"
-                                    enabled="{newObject>State/declaracaoNr/Enabled}"
-                                
-                                >
-                                 
-                                 </Input>
+                                <Input
+                                    id="declaracaoNr"
+                                    value="{newObjectView>/declaracaoNr}" 
+                                    visible="{newObjectView>/State/declaracaoNr/Visible}"
+                                    enabled="{newObjectView>/State/declaracaoNr/Enabled}"
+                                > 
+                                </Input>
                             </items>      
                         </HBox> 
                         <Label text="{i18n>transDoc}"/>
-                        <Input  value="{newObject>/transDoc}"
-                                visible="{newObject>State/transDoc/Visible}"
-                                enabled="{newObject>State/transDoc/Enabled}"/> 
+                        <Input
+                            id="transDoc"
+                            value="{newObjectView>/transDoc}"
+                            visible="{newObjectView>/State/transDoc/Visible}"
+                            enabled="{newObjectView>/State/transDoc/Enabled}"
+                        /> 
                                                     
                         <core:Title text="{i18n>details2}"/> 
                         <Label  text="{i18n>dtEmissaoDAT}"/>  
                         <DatePicker
-			                value="{newObject>/dtEmissaoDat}" 
+                            id="dtEmissaoDAT"
+			                value="{newObjectView>/dtEmissaoDat}" 
                             valueFormat="dd-MM-yyyy" 
                             displayFormat="short"
 			                change="handleDateChange"
-                            visible="{newObject>State/dtEmissaoDat/Visible}"
-                            enabled="{newObject>State/dtEmissaoDat/Enabled}"/>
+                            visible="{newObjectView>/State/dtEmissaoDat/Visible}"
+                            enabled="{newObjectView>/State/dtEmissaoDat/Enabled}"
+                        />
                         <Label  text="{i18n>cpfDriver}"/> 
-                        <MaskInput 
+                        <MaskInput
+                            id="cpfDriver"
                             mask="999.999.999-99" 
                             placeholderSymbol="_" 
                             required="true" 
-                            value="{newObject>/cpfDriver}"
-                            visible="{newObject>State/cpfDriver/Visible}"
-                            enabled="{newObject>State/cpfDriver/Enabled}"/>
+                            value="{newObjectView>/cpfDriver}"
+                            visible="{newObjectView>/State/cpfDriver/Visible}"
+                            enabled="{newObjectView>/State/cpfDriver/Enabled}"
+                            valueState="{newObjectView>/State/cpfDriver/ValueState}"
+                            valueStateText="{newObjectView>/State/cpfDriver/ValueStateText}"
+                            change="onValidationFields"
+                        />
                         <Label  text="{i18n>transit}"/>
-                        <CheckBox selected="{newObject>/transit}"/>  
+                        <CheckBox id="transit" selected="{newObjectView>/transit}"/>  
                         <Label text="{i18n>airTransit}"/>
-                        <CheckBox selected="{newObject>/airTransit}"/>         
+                        <CheckBox id="airTransit" selected="{newObjectView>/airTransit}"/>         
                         <Label  text="{i18n>dseManual}"/>
-                        <CheckBox selected="{newObject>/dseManual}"/>              
+                        <CheckBox id="dseManual" selected="{newObjectView>/dseManual}"/>              
                     </f:content>      
                 </f:SimpleForm>
             </Panel>   
 
             <Panel backgroundDesign="Transparent"
-                    expandable="{device>/system/phone}"
-                    expanded="true"
                     headerText="{i18n>ParcelData}"> 
                 <f:SimpleForm id="SimpleForm"
 			        editable="true"
@@ -182,111 +199,126 @@
 				        <core:Title text="{i18n>detailsParcel}"/>
                         <Label text="{i18n>origemAwb}"/>
                         <ComboBox
-                            selectedKey="{newObject>/origemAwb}"
-                            visible="{newObject>State/origemAawb/Visible}"
-                            enabled="{newObject>State/origemAawb/Enabled}"
+                            id="origemAwb"
+                            selectedKey="{newObjectView>/origemAwb}"
+                            visible="{newObjectView>/State/origemAawb/Visible}"
+                            enabled="{newObjectView>/State/origemAawb/Enabled}"
                             showSecondaryValues= "true"
                             items="{ 
                                 path: '/Airport',
                                 length: '5000'
-                            }">
+                            }"
+                        >
                             <core:ListItem key="{ID}" text="{iata}" additionalText="{airportDescription}"/>
-            
                         </ComboBox>
                         <Label text="{i18n>destinoAwb}"/>    
                         <ComboBox
-                            selectedKey="{newObject>/destinoAwb}"
-                            visible="{newObject>State/destinoAwb/Visible}"
-                            enabled="{newObject>State/destinoAwb/Enabled}"
+                            id="destinoAwb"
+                            selectedKey="{newObjectView>/destinoAwb}"
+                            visible="{newObjectView>/State/destinoAwb/Visible}"
+                            enabled="{newObjectView>/State/destinoAwb/Enabled}"
                             showSecondaryValues= "true"
                             items="{ 
                                 path: '/Airport',
                                 length: '5000'
-                            }">
+                            }"
+                        >
                             <core:ListItem key="{ID}" text="{iata}" additionalText="{airportDescription}"/>
                         </ComboBox>
                         <Label text="{i18n>origemHawb}"/>
                         <ComboBox
-                            selectedKey="{newObject>/origemHawb}"
-                            visible="{newObject>State/origemHawb/Visible}"
-                            enabled="{newObject>State/origemHawb/Enabled}"
+                            id="origemHawb"
+                            selectedKey="{newObjectView>/origemHawb}"
+                            visible="{newObjectView>/State/origemHawb/Visible}"
+                            enabled="{newObjectView>/State/origemHawb/Enabled}"
                             showSecondaryValues= "true"
                             items="{ 
                                 path: '/Airport',
                                 length: '5000'
-                            }">
+                            }"
+                        >
                             <core:ListItem key="{ID}" text="{iata}" additionalText="{airportDescription}"/>
             
                         </ComboBox>
 
                         <Label text="{i18n>destinoHawb}"/>        
                         <ComboBox
-                            selectedKey="{newObject>/destinoHawb}"
-                            visible="{newObject>State/destinoHawb/Visible}"
-                            enabled="{newObject>State/destinoHawb/Enabled}"
+                            id="destinoHawb"
+                            selectedKey="{newObjectView>/destinoHawb}"
+                            visible="{newObjectView>/State/destinoHawb/Visible}"
+                            enabled="{newObjectView>/State/destinoHawb/Enabled}"
                             showSecondaryValues= "true"
                             items="{ 
                                 path: '/Airport',
                                 length: '5000'
-                            }">
+                            }"
+                        >
                             <core:ListItem key="{ID}" text="{iata}" additionalText="{airportDescription}"/>
                         </ComboBox>
                         <Label text="{i18n>express}"/>
                         <CheckBox selected="{express}"/>    
                         <Label text="{i18n>bagDesacomp}"/> 
-                        <CheckBox selected="{newObject>/bagDesacomp}"/>       
+                        <CheckBox selected="{newObjectView>/bagDesacomp}"/>       
                            
                         <core:Title text="{i18n>detailsParcel2}"/>
                         <Label text="{i18n>airline}"/> 
                         <ComboBox
-                            selectedKey="{newObject>/airline}"
-                            visible="{newObject>State/airline/Visible}"
-                            enabled="{newObject>State/airline/Enabled}"
+                            id="airline"
+                            selectedKey="{newObjectView>/airline}"
+                            visible="{newObjectView>/State/airline/Visible}"
+                            enabled="{newObjectView>/State/airline/Enabled}"
                             showSecondaryValues= "true"
                             items="{ 
                                 path: '/Airline',
                                 length: '200'
-                            }">
+                            }"
+                        >
                             <core:ListItem key="{ID}" text="{airlineCode}" additionalText="{airlineDescription}"/>
                         </ComboBox>                             
                         <Label text="{i18n>pesoBruto}"/> 
-                        <MaskInput mask="999999,999" 
+                        <MaskInput
+                            id="pesoBruto"
+                            mask="999999,999" 
                             placeholderSymbol="_" 
                             required="false" 
-                            value="{newObject>/pesoBruto}"
-                            visible="{newObject>State/pesoBruto/Visible}"
-                            enabled="{newObject>State/pesoBruto/Enabled}"/>                                            
+                            value="{newObjectView>/pesoBruto}"
+                            visible="{newObjectView>/State/pesoBruto/Visible}"
+                            enabled="{newObjectView>/State/pesoBruto/Enabled}"
+                        />                                            
                         <Label text="{i18n>volume}"/> 
-                        <MaskInput mask="99999" 
-                            placeholderSymbol="_" 
-                            required="false" 
-                            value="{newObject>/volume}"
-                            visible="{newObject>State/volume/Visible}"
-                            enabled="{newObject>State/volume/Enabled}"/>       
+                        <Input
+                            id="volume"
+                            type="Number"
+                            value="{newObjectView>/volume}"
+                            visible="{newObjectView>/State/volume/Visible}"
+                            enabled="{newObjectView>/State/volume/Enabled}"
+                        />       
                         
                         <Label text="{i18n>package}"/>
                         <ComboBox
-                            selectedKey="{newObject>/package}"
-                            visible="{newObject>State/package/Visible}"
-                            enabled="{newObject>State/package/Enabled}"
+                            id="package"
+                            selectedKey="{newObjectView>/package}"
+                            visible="{newObjectView>/State/package/Visible}"
+                            enabled="{newObjectView>/State/package/Enabled}"
                             items="{ 
                                 path: '/Package'
-                            }">
+                            }"
+                        >
                             <core:ListItem key="{ID}" text="{packageDescription}" />
                         </ComboBox>     
                         
                         <Label text="{i18n>conteudo}"/>
-                        <Input  
-                            value="{conteudo}"
-                            visible="{newObject>State/conteudo/Visible}"
-                            enabled="{newObject>State/conteudo/Enabled}"/>
+                        <Input
+                            id="conteudo"
+                            value="{newObjectView>/conteudo}"
+                            visible="{newObjectView>/State/conteudo/Visible}"
+                            enabled="{newObjectView>/State/conteudo/Enabled}"
+                        />
                         
                     </f:content>      
                 </f:SimpleForm> 
             </Panel>
             <Panel backgroundDesign="Transparent"
-                    expandable="{device>/system/phone}"
-                    expanded="true"
                     headerText="{i18n>additionalData}"> 
                 <f:SimpleForm id="PartnerForm"
 			        editable="true"
@@ -308,9 +340,10 @@
                         <core:Title text="{i18n>Partner}"/>
                         <Label text="{i18n>exportador}"/>
                         <ComboBox
-                            selectedKey="{newObject>/exportador}"
-                            visible="{newObject>State/exportador/Visible}"
-                            enabled="{newObject>State/exportador/Enabled}"
+                            id="exportador"
+                            selectedKey="{newObjectView>/exportador}"
+                            visible="{newObjectView>/State/exportador/Visible}"
+                            enabled="{newObjectView>/State/exportador/Enabled}"
                             items="{ 
                                 path: '/Partner'
                             }">
@@ -319,9 +352,10 @@
                            
                         <Label text="{i18n>agente}"/>
                         <ComboBox
-                            selectedKey="{newObject>/agente}"
-                            visible="{newObject>State/agente/Visible}"
-                            enabled="{newObject>State/agente/Enabled}"
+                            id="agente"
+                            selectedKey="{newObjectView>/agente}"
+                            visible="{newObjectView>/State/agente/Visible}"
+                            enabled="{newObjectView>/State/agente/Enabled}"
                             items="{ 
                                 path: '/Partner'
                             }">
@@ -330,9 +364,10 @@
                         
                         <Label text="{i18n>transportador}"/>
                         <ComboBox
-                            selectedKey="{newObject>/transportador}"
-                            visible="{newObject>State/transportador/Visible}"
-                            enabled="{newObject>State/transportador/Enabled}"
+                            id="transportador"
+                            selectedKey="{newObjectView>/transportador}"
+                            visible="{newObjectView>/State/transportador/Visible}"
+                            enabled="{newObjectView>/State/transportador/Enabled}"
                             items="{ 
                                 path: '/Partner'
                             }">
@@ -341,9 +376,10 @@
 
                         <Label text="{i18n>cobranca}"/>  
                         <ComboBox
-                            selectedKey="{newObject>/cobranca}"
-                            visible="{newObject>State/cobranca/Visible}"
-                            enabled="{newObject>State/cobranca/Enabled}"
+                            id="cobranca"
+                            selectedKey="{newObjectView>/cobranca}"
+                            visible="{newObjectView>/State/cobranca/Visible}"
+                            enabled="{newObjectView>/State/cobranca/Enabled}"
                             items="{ 
                                 path: '/PartnerType'
                             }">
@@ -353,46 +389,49 @@
 
                         <core:Title text="{i18n>Material}"/>
                         <Label text="{i18n>ncm}"/>   
-                        <MaskInput 
+                        <MaskInput
+                            id="ncm"
                             mask="9999.99.99" 
                             placeholderSymbol="_" 
                             required="false" 
-                            value="{newObject>/ncm}"
-                            visible="{newObject>State/ncm/Visible}"
-                            enabled="{newObject>State/ncm/Enabled}"
+                            value="{newObjectView>/ncm}"
+                            visible="{newObjectView>/State/ncm/Visible}"
+                            enabled="{newObjectView>/State/ncm/Enabled}"
                         />                     
                         
                         <Label text="{i18n>natureza}"/>
                         <MultiComboBox
+                            id="natureza"
                             showSecondaryValues= "true"
                             width="500px"
                             items="{
                                 path: '/Natureza',
                                 sorter: { path: 'naturezaCode' }
                             }"
-                            selectedItems="{newObject>/natureza}"
+                            selectedItems="{newObjectView>/natureza}"
                         >
                             <core:ListItem key="{ID}" text="{naturezaCode}" additionalText="{naturezaDescription}"/>
                         </MultiComboBox>                            
                         <Label text="{i18n>obs}"/> 
-                        <TextArea 
-                            visible="{newObject>State/obs/Visible}"
-                            enabled="{newObject>State/obs/Enabled}"
-                            value="{newObject>/obs}"/>
+                        <TextArea
+                            id="obs"
+                            visible="{newObjectView>/State/obs/Visible}"
+                            enabled="{newObjectView>/State/obs/Enabled}"
+                            value="{newObjectView>/obs}"
+                        />
                     </f:content>      
                 </f:SimpleForm> 
             </Panel>
             <Panel backgroundDesign="Transparent"
-                    expandable="{device>/system/phone}"
-                    expanded="true"
                     headerText="{i18n>confirmation}"> 
                 <Text text="{i18n>confirm}" textAlign="Center"/>
             
                 <FlexBox
+                    id="confirm"
                     alignItems="Center"
                     justifyContent="Center">
                     <items>
-                        <Switch state="{newObject>/confirm}" customTextOn="Sim" customTextOff="Não" />
+                        <Switch state="{newObjectView>/confirm}" customTextOn="Sim" customTextOff="Não" />
                     </items>
                 </FlexBox>
             </Panel>
@@ -406,8 +445,8 @@
         <semantic:footerMainAction>
             <semantic:FooterMainAction 
                 text="{i18n>ObjectButtonSave}" 
-                press="onPressSave"
-                enabled="{newObject>/confirm}"
+                press="onPresSave"
+                enabled="{newObjectView>/State/buttonConfirm/Enabled}"
                 id="saveButton"
             />
         </semantic:footerMainAction>

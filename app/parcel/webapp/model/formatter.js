@@ -13,8 +13,19 @@ sap.ui.define([], function () {
             if (!sValue) {
                 return "";
             }
-            return parseFloat(sValue).toFixed(2);
+            return parseFloat(sValue).toFixed(3);
         },
+
+        dateFormat: function(sValue, method){
+            if(sValue === null) return null;
+            
+            let ano = sValue.substring(6, 10),
+                mes = sValue.substring(3, 5),
+                dia = sValue.substring(0, 2);
+
+            return `${ano}-${mes}-${dia}T00:00:00`;  
+        }
+
         ncm : function (sValue) {
             if (!sValue) {
                 return "";
