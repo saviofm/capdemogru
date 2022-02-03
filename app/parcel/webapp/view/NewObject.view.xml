@@ -231,7 +231,10 @@
                             }">
                             <core:ListItem key="{ID}" text="{iata}" additionalText="{airportDescription}"/>
                         </ComboBox>
-                                                
+                        <Label text="{i18n>express}"/>
+                        <CheckBox selected="{express}"/>    
+                        <Label text="{i18n>bagDesacomp}"/> 
+                        <CheckBox selected="{newObject>/bagDesacomp}"/>       
                            
                         <core:Title text="{i18n>detailsParcel2}"/>
                         <Label text="{i18n>airline}"/> 
@@ -246,9 +249,21 @@
                             }">
                             <core:ListItem key="{ID}" text="{airlineCode}" additionalText="{airlineDescription}"/>
                         </ComboBox>                             
-                               
-                        <Label text="{i18n>express}"/>
-                        <CheckBox selected="{express}"/>
+                        <Label text="{i18n>pesoBruto}"/> 
+                        <MaskInput mask="999999,999" 
+                            placeholderSymbol="_" 
+                            required="false" 
+                            value="{newObject>/pesoBruto}"
+                            visible="{newObject>State/pesoBruto/Visible}"
+                            enabled="{newObject>State/pesoBruto/Enabled}"/>                                            
+                        <Label text="{i18n>volume}"/> 
+                        <MaskInput mask="99999" 
+                            placeholderSymbol="_" 
+                            required="false" 
+                            value="{newObject>/volume}"
+                            visible="{newObject>State/volume/Visible}"
+                            enabled="{newObject>State/volume/Enabled}"/>       
+                        
                         <Label text="{i18n>package}"/>
                         <ComboBox
                             selectedKey="{newObject>/package}"
@@ -265,8 +280,7 @@
                             value="{conteudo}"
                             visible="{newObject>State/conteudo/Visible}"
                             enabled="{newObject>State/conteudo/Enabled}"/>
-                        <Label text="{i18n>bagDesacomp}"/> 
-                        <CheckBox selected="{newObject>/bagDesacomp}"/>
+                        
                     </f:content>      
                 </f:SimpleForm> 
             </Panel>

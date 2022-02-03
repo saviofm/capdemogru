@@ -246,7 +246,11 @@
                                 <Text  text="{destinoHawb/airportDescription}"/>
                             </items>                      
                         </HBox>                         
-                           
+                        <Label text="{i18n>express}"/>
+                        <CheckBox selected="{express}" displayOnly="true"/>
+                        <Label text="{i18n>bagDesacomp}"/> 
+                        <CheckBox selected="{bagDesacomp}" displayOnly="true"/>
+                                                   
                         <core:Title text="{i18n>detailsParcel2}"/>
                         <Label text="{i18n>airline}"/>                              
                         <HBox >
@@ -255,9 +259,14 @@
                                 <Text  text=" - "/> 
                                 <Text  text="{airline/airlineDescription}"/>
                             </items>                      
-                        </HBox>                                
-                        <Label text="{i18n>express}"/>
-                        <CheckBox selected="{express}" displayOnly="true"/>
+                        </HBox>    
+                        <Label text="{i18n>pesoBruto}"/> 
+                        <Text text="{
+                                    path: 'pesoBruto',
+                                    formatter: '.formatter.numberUnit'
+                                }" />                                            
+                        <Label text="{i18n>volume}"/> 
+                        <Text text="{volume}"/>
                         <Label text="{i18n>package}"/>
                         <HBox >
                             <items>
@@ -268,8 +277,6 @@
                         </HBox>
                         <Label text="{i18n>conteudo}"/>
                         <Text  text="{conteudo}"/>
-                        <Label text="{i18n>bagDesacomp}"/> 
-                        <CheckBox selected="{bagDesacomp}" displayOnly="true"/>
                     </f:content>      
                 </f:SimpleForm> 
             </Panel>
