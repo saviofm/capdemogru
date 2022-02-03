@@ -77,6 +77,9 @@
           "bundleName": "capdemogru.app.parcel.i18n.i18n"
         }
       },
+      "appView": {
+        "type": "sap.ui.model.json.JSONModel"
+      },
       "newObject": {
         "type": "sap.ui.model.json.JSONModel"
       },

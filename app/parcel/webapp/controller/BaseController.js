@@ -19,6 +19,15 @@ sap.ui.define([
         },
 
         /**
+		 * Convenience method to define the busy State
+		 * @public
+		 * @param {Boolean} bBusy Busy State 
+		 */
+        setAppBusy: function(bBusy) {
+			this.getModel("appView").setProperty("/busy", bBusy);
+		},
+
+        /**
          * Convenience method for getting the view model by name.
          * @public
          * @param {string} [sName] the model name

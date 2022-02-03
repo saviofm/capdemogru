@@ -9,13 +9,29 @@ sap.ui.define([
 	"sap/m/Token",
 	"sap/ui/core/Fragment",
     "sap/ui/core/Core",
-	"sap/ui/core/library"
-], function (BaseController, JSONModel, History, formatter, NewObject, ColumnListItem, Label, Token, Fragment, Core, CoreLibrary) {
+	"sap/ui/core/library",
+	"capdemogru/app/cargoreceipt/model/formatter",
+    "sap/m/MessageToast",
+    "sap/m/MessageBox",
+], function (BaseController,
+	JSONModel,
+	History,
+	formatter,
+	newObject,
+	ColumnListItem,
+	Label,
+	Token,
+	Fragment,
+	Core,
+	library,
+	Formatter,
+    MessageToast,
+    MessageBox) {
     "use strict";
     var ValueState = CoreLibrary.ValueState;
     return BaseController.extend("capdemogru.app.parcel.controller.NewObject", {
 
-        formatter: formatter,
+        formatter: Formatter,
 
         /* =========================================================== */
         /* lifecycle methods                                           */
@@ -57,8 +73,62 @@ sap.ui.define([
             }
         },
 
-        onPressSave: function(oEvent){
+        handleDateChange: function (oEvent) {
+			let oDP    = oEvent.getSource(),	
+				bValid = oEvent.getParameter("valid");
+	
+			if (bValid) {
+				oDP.setValueState(ValueState.None);
+			} else {
+				oDP.setValueState(ValueState.Error);
+			}
+		},
 
+        onValidationFields: function(oEvent){
+            let aFieldClass = ["awb", "hawb", "ruc", "cpfDriver"],
+                oModel      = this.getModel("newObjectView").getData(),
+                bValid      = true;
+
+            aFieldClass.forEach(sField =>{
+                if(oModel[sField] === ""){
+                    oModel.State[sField].ValueState     = sap.ui.core.ValueState.Error;
+                    oModel.State[sField].ValueStateText = this.getResourceBundle().getText("validationRequiredField");
+                    bValid = false;
+                }else {
+                    oModel.State[sField].ValueState     = sap.ui.core.ValueState.None;
+                    oModel.State[sField].ValueStateText = "";
+                }
+            });
+
+            if(!bValid){
+                oModel.State.confirm.Enabled = false;
+            }else{
+                oModel.State.confirm.Enabled = true;
+            }
+
+            this.getModel("newObjectView").refresh(true);
+        },
+
+        onPresSave: function(oEvent){
+            this.setAppBusy(true);
+
+            let oModel           = this.getModel("newObjectView").getData(),
+                oObjectPreParcel = this._createObjectPreParcel(oModel);
+            
+            this.getModel().create("/PreParcel", oObjectPreParcel, {
+                success: function(oData){
+                    this.getRouter().navTo("worklist");
+                    
+                    MessageToast.show(this.getResourceBundle().getText("messageSuccessCreatePreParcel"));
+
+                    this.setAppBusy(false);
+                }.bind(this),
+                error: function(oError){
+                    MessageBox.error(this.getResourceBundle().getText("messageErrorCreatePreParcel"));
+
+                    this.setAppBusy(false);
+                }.bind(this)
+            });
         },
 
         /* =========================================================== */
@@ -72,72 +142,52 @@ sap.ui.define([
          * @private
          */
         _onObjectMatched : function (oEvent) {
-            //this._bindView("/Parcel");
-
             this.getModel("newObjectView").setData(NewObject.initModel());
             this.getModel("newObjectView").refresh(true);
-            this.getView().byId("saveButton").setEnabled(false);
-            
+            //this.getView().byId("saveButton").setEnabled(false);  
         },
 
-        /**
-         * Binds the view to the object path.
-         * @function
-         * @param {string} sObjectPath path to the object to be bound
-         * @private
-         */
-        _bindView : function (sObjectPath) {
-            var oViewModel = this.getModel("newObjectView");
-
-            this.getView().bindElement({
-                path: sObjectPath,
-                parameters:{
-                    expand: 'declaracao,origemAwb,destinoAwb,origemHawb,destinoHawb,airline,package,exportador,agente,transportador'
+        _createObjectPreParcel: function(sModel){
+            return {
+                awb: this._clearFormatting(sModel.awb),
+                hawb: this._clearFormatting(sModel.hawb),
+                declaracao: "Association to one Declaracao",
+                declaracaoNr: sModel.declaracaoNr,
+                ruc: this._clearFormatting(sModel.ruc),
+                transit: sModel.transit,
+                airTransit: sModel.airTransit,
+                origemAwb: "Association to one Airport",
+                destinoAwb: "Association to one Airport",
+                origemHawb: "Association to one Airport",
+                destinoHawb: "Association to one Airport",
+                transDoc: sModel.transDoc,
+                dtEmissaoDAT: Formatter.dateFormat(sModel.dtEmissaoDAT),
+                cpfDriver: this._clearFormatting(sModel.cpfDriver),
+                dseManual: sModel.dseManual,
+                airline: "Association to one Airline",
+                express: sModel.express,
+                pesoBruto: this._clearFormatting(Formatter.numberUnit(sModel.pesoBruto)),
+                volume: sModel.volume,
+                package: "Association to one Package",    
+                conteudo: sModel.conteudo,   
+                bagDesacomp: sModel.bagDesacomp,
+                exportador: "Association to one Partner", 
+                agente: "Association to one Partner",
+                transportador: "Association to one Partner",
+                cobranca: "Association to one PartnerType",
+                natureza: {
+                    natureza: "Association to one Natureza",
                 },
-                events: {
-                    change: this._onBindingChange.bind(this),
-                    dataRequested: function () {
-                        oViewModel.setProperty("/busy", true);
-                    },
-                    dataReceived: function () {
-                        oViewModel.setProperty("/busy", false);
-                    }
-                }
-            });
-        },
-        handleDateChange: function (oEvent) {
-			var 
-				oDP = oEvent.getSource(),	
-				bValid = oEvent.getParameter("valid");
-
-			
-			if (bValid) {
-				oDP.setValueState(ValueState.None);
-			} else {
-				oDP.setValueState(ValueState.Error);
-			}
-		},
-        _onBindingChange : function () {
-            var oView = this.getView(),
-                oViewModel = this.getModel("newObjectView"),
-                oElementBinding = oView.getElementBinding();
-
-            // No data for the binding
-            if (!oElementBinding.getBoundContext()) {
-                this.getRouter().getTargets().display("objectNotFound");
-                return;
+                ncm: this._clearFormatting(sModel.ncm),
+                obs: sModel.obs,
+                confirm: sModel.confirm
             }
+        },
 
-            var oResourceBundle = this.getResourceBundle(),
-                oObject = oView.getBindingContext().getObject(),
-                sObjectId = oObject.awb,
-                sObjectName = oObject.Parcel;
-
-                oViewModel.setProperty("/busy", false);
-                oViewModel.setProperty("/shareSendEmailSubject",
-                    oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId]));
-                oViewModel.setProperty("/shareSendEmailMessage",
-                    oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
+        _clearFormatting: function(sValue){
+            return sValue.replaceAll(".", "")
+                         .replace(",", "")
+                         .replace("-", "");
         }
     });
 
