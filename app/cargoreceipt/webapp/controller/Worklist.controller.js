@@ -74,6 +74,9 @@ sap.ui.define([
             this._showObject(oEvent.getSource());
         },
 
+        onCreate: function(oEvent){
+            this.getRouter().navTo("newObject");
+        },
         /**
          * Event handler for navigating back.
          * Navigate back in the browser history
