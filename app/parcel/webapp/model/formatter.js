@@ -16,7 +16,7 @@ sap.ui.define([], function () {
             return parseFloat(sValue).toFixed(3);
         },
 
-        dateFormat: function(sValue, method){
+        dateFormat: function(sValue){
             if(sValue === null) return null;
             
             let ano = sValue.substring(6, 10),

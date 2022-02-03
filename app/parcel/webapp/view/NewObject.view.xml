@@ -20,8 +20,7 @@
         <semantic:titleHeading>
             <Title
                 text="{
-                    path: 'newObjectView>/awb',
-                    formatter: '.formatter.awb'
+                    path: 'newObjectView>/awb'
                 }"
                 level="H2"
             />
@@ -89,7 +88,6 @@
                             id="hawb"
                             mask="999-99999999" 
                             placeholderSymbol="_" 
-                            required="true"
                             value="{newObjectView>/hawb}"
                             visible="{newObjectView>/State/hawb/Visible}"
                             enabled="{newObjectView>/State/hawb/Enabled}"
@@ -146,12 +144,12 @@
                         <Label  text="{i18n>dtEmissaoDAT}"/>  
                         <DatePicker
                             id="dtEmissaoDAT"
-			                value="{newObjectView>/dtEmissaoDat}" 
+			                value="{newObjectView>/dtEmissaoDAT}" 
                             valueFormat="dd-MM-yyyy" 
                             displayFormat="short"
 			                change="handleDateChange"
-                            visible="{newObjectView>/State/dtEmissaoDat/Visible}"
-                            enabled="{newObjectView>/State/dtEmissaoDat/Enabled}"
+                            visible="{newObjectView>/State/dtEmissaoDAT/Visible}"
+                            enabled="{newObjectView>/State/dtEmissaoDAT/Enabled}"
                         />
                         <Label  text="{i18n>cpfDriver}"/> 
                         <MaskInput
@@ -206,7 +204,7 @@
                             showSecondaryValues= "true"
                             items="{ 
                                 path: '/Airport',
-                                length: '5000'
+                                length: '100'
                             }"
                         >
                             <core:ListItem key="{ID}" text="{iata}" additionalText="{airportDescription}"/>
@@ -220,7 +218,7 @@
                             showSecondaryValues= "true"
                             items="{ 
                                 path: '/Airport',
-                                length: '5000'
+                                length: '100'
                             }"
                         >
                             <core:ListItem key="{ID}" text="{iata}" additionalText="{airportDescription}"/>
@@ -234,7 +232,7 @@
                             showSecondaryValues= "true"
                             items="{ 
                                 path: '/Airport',
-                                length: '5000'
+                                length: '100'
                             }"
                         >
                             <core:ListItem key="{ID}" text="{iata}" additionalText="{airportDescription}"/>
@@ -250,13 +248,13 @@
                             showSecondaryValues= "true"
                             items="{ 
                                 path: '/Airport',
-                                length: '5000'
+                                length: '100'
                             }"
                         >
                             <core:ListItem key="{ID}" text="{iata}" additionalText="{airportDescription}"/>
                         </ComboBox>
                         <Label text="{i18n>express}"/>
-                        <CheckBox selected="{express}"/>    
+                        <CheckBox selected="{newObjectView>/express}"/>    
                         <Label text="{i18n>bagDesacomp}"/> 
                         <CheckBox selected="{newObjectView>/bagDesacomp}"/>       
                            
@@ -429,9 +427,10 @@
                 <FlexBox
                     id="confirm"
                     alignItems="Center"
-                    justifyContent="Center">
+                    justifyContent="Center"
+                >
                     <items>
-                        <Switch state="{newObjectView>/confirm}" customTextOn="Sim" customTextOff="Não" />
+                        <Switch change="onValidationFields" state="{newObjectView>/confirm}" customTextOn="Sim" customTextOff="Não" />
                     </items>
                 </FlexBox>
             </Panel>
@@ -446,7 +445,7 @@
             <semantic:FooterMainAction 
                 text="{i18n>ObjectButtonSave}" 
                 press="onPresSave"
-                enabled="{newObjectView>/State/buttonConfirm/Enabled}"
+                enabled="{newObjectView>/State/buttonSave/Enabled}"
                 id="saveButton"
             />
         </semantic:footerMainAction>

@@ -83,12 +83,12 @@ sap.ui.define([
 		},
 
         onValidationFields: function(oEvent){
-            let aFieldClass = ["awb", "hawb", "ruc", "cpfDriver"],
+            let aFieldClass = ["awb", "ruc", "cpfDriver", "confirm"],
                 oModel      = this.getModel("newObjectView").getData(),
                 bValid      = true;
 
             aFieldClass.forEach(sField =>{
-                if(oModel[sField] === ""){
+                if(oModel[sField] === "" || oModel[sField] === false){
                     oModel.State[sField].ValueState     = sap.ui.core.ValueState.Error;
                     oModel.State[sField].ValueStateText = this.getResourceBundle().getText("validationRequiredField");
                     bValid = false;
@@ -99,9 +99,9 @@ sap.ui.define([
             });
 
             if(!bValid){
-                oModel.State.confirm.Enabled = false;
+                oModel.State.buttonSave.Enabled = false;
             }else{
-                oModel.State.confirm.Enabled = true;
+                oModel.State.buttonSave.Enabled = true;
             }
 
             this.getModel("newObjectView").refresh(true);
@@ -113,9 +113,11 @@ sap.ui.define([
             let oModel           = this.getModel("newObjectView").getData(),
                 oObjectPreParcel = this._createObjectPreParcel(oModel);
             
-            this.getModel().create("/PreParcel", oObjectPreParcel, {
+            this.getModel().create("/Parcel", oObjectPreParcel, {
                 success: function(oData){
                     this.getRouter().navTo("worklist");
+
+                    this.getModel().refresh(true);
                     
                     MessageToast.show(this.getResourceBundle().getText("messageSuccessCreatePreParcel"));
 
@@ -149,33 +151,33 @@ sap.ui.define([
             return {
                 awb: this._clearFormatting(sModel.awb),
                 hawb: this._clearFormatting(sModel.hawb),
-                declaracao: "Association to one Declaracao",
+                declaracao: { declaracao: sModel.declaracao },
                 declaracaoNr: sModel.declaracaoNr,
                 ruc: this._clearFormatting(sModel.ruc),
                 transit: sModel.transit,
                 airTransit: sModel.airTransit,
-                origemAwb: "Association to one Airport",
-                destinoAwb: "Association to one Airport",
-                origemHawb: "Association to one Airport",
-                destinoHawb: "Association to one Airport",
+                origemAwb: { ID: sModel.origemAwb },
+                destinoAwb: { ID: sModel.destinoAwb },
+                origemHawb: { ID: sModel.origemHawb },
+                destinoHawb: { ID: sModel.destinoHawb },
                 transDoc: sModel.transDoc,
                 dtEmissaoDAT: Formatter.dateFormat(sModel.dtEmissaoDAT),
                 cpfDriver: this._clearFormatting(sModel.cpfDriver),
                 dseManual: sModel.dseManual,
-                airline: "Association to one Airline",
+                airline: { ID: sModel.airline },
                 express: sModel.express,
                 pesoBruto: this._clearFormatting(Formatter.numberUnit(sModel.pesoBruto)),
                 volume: sModel.volume,
-                package: "Association to one Package",    
+                package: { ID: sModel.package },    
                 conteudo: sModel.conteudo,   
                 bagDesacomp: sModel.bagDesacomp,
-                exportador: "Association to one Partner", 
-                agente: "Association to one Partner",
-                transportador: "Association to one Partner",
-                cobranca: "Association to one PartnerType",
-                natureza: {
-                    natureza: "Association to one Natureza",
-                },
+                exportador: { ID: sModel.exportador }, 
+                agente: { ID: sModel.agente },
+                transportador: { ID: sModel.transportador },
+                cobranca: { partnerTypeCode: sModel.cobranca },
+                /*natureza: [
+                    { naturezaCode: sModel.natureza }
+                ],*/
                 ncm: this._clearFormatting(sModel.ncm),
                 obs: sModel.obs,
                 confirm: sModel.confirm

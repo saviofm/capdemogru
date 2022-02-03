@@ -34,7 +34,7 @@ sap.ui.define([
           natureza: "",
           ncm: "",
           obs: "",           
-          confirm: true,
+          confirm: false,
           State: {
             awb: {
               Enabled: true,
@@ -216,7 +216,7 @@ sap.ui.define([
               ValueState: sap.ui.core.ValueState.None,
               ValueStateText: ""
             },
-            buttonConfirm: {
+            buttonSave: {
               Enabled: false,
               Visible: true,
               ValueState: sap.ui.core.ValueState.None,
