@@ -107,9 +107,13 @@ dist
 
 default-env.json
 
+package-lock.json
+
 gen/
 
 mta_archives/
+
+dist/
 
 app/airline/dist
 
@@ -124,3 +128,9 @@ app/partner/dist
 app/partnertype/dist
 
 app/preparcel/dist
+
+app/parcel/dist
+
+app/cargoreceipt/dist
+
+
