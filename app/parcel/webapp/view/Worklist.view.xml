@@ -122,6 +122,20 @@
                         <Text text="{i18n>destinoAwbTitle}" id="destinoAwbTitle"/>
                     </Column>     
                     <Column 
+                        id="ncmAwbColumn"
+                        demandPopin="true"
+                        minScreenWidth="Large"
+                        popinDisplay="Inline">
+                        <Text text="{i18n>ncmTitle}" id="ncmAwbTitle"/>
+                    </Column>  
+                    <Column 
+                        id="packageAwbColumn"
+                        demandPopin="true"
+                        minScreenWidth="Large"
+                        popinDisplay="Inline">
+                        <Text text="{i18n>packageTitle}" id="packageAwbTitle"/>
+                    </Column>                     
+                    <Column 
                         id="volumeColumn"
                         hAlign="End">
                         <Text text="{i18n>tablevolumeTitle}" id="volumeTitle"/>
@@ -140,7 +154,14 @@
                             <ObjectIdentifier
                                 title="{awb}"/>
                             <Text text="{transDoc}"/>
-                            <Text text="{dtEmissaoDAT}"/>
+                            <Text text="{
+                                path:'dtEmissaoDAT', 
+                                type: 'sap.ui.model.type.Date',
+                                formatOptions: {
+                                    style: 'short',
+                                    UTC: true
+                                }
+                            }"/>
                             <Text text="{airline/airlineCode}"/>
                             <Text text="{
                                 path:'createdAt', 
@@ -152,6 +173,11 @@
                             }"/>
                             <Text text="{origemAwb/iata}"/>
                             <Text text="{destinoAwb/iata}"/>
+                            <Text text="{
+                                    path: 'ncm',
+                                    formatter: '.formatter.ncm'
+                                }"/>
+                            <Text text="{package/packageDescription}"/>
                             <Text text="{volume}"/>
                             <ObjectNumber
                                 number="{

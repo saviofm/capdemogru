@@ -10,8 +10,8 @@ sap.ui.define([
                 declaracao: "",
                 declaracaoNr: "",
                 ruc: "",
-                transit: null,
-                airTransit: null,
+                transit: false,
+                airTransit: false,
                 origemAwb: "",
                 destinoAwb: "",
                 origemHawb: "",
@@ -19,14 +19,14 @@ sap.ui.define([
                 transDoc: "",
                 dtEmissaoDAT: "",
                 cpfDriver: "",
-                dseManual: null,
+                dseManual: false,
                 airline: "",
-                express: null,
+                express: false,
                 pesoBruto: "",
                 volume: 0,
                 package: "",  
                 conteudo: "",
-                bagDesacomp: null,
+                bagDesacomp: false,
                 exportador: "",
                 agente: "",
                 transportador: "",
@@ -34,7 +34,7 @@ sap.ui.define([
                 natureza: "",
                 ncm: "",
                 obs: "",           
-                confirm: null
+                confirm: false
 			};
 		}
 	};

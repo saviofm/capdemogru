@@ -7,10 +7,12 @@ sap.ui.define([
     "sap/m/ColumnListItem",
 	"sap/m/Label",
 	"sap/m/Token",
-	"sap/ui/core/Fragment"
-], function (BaseController, JSONModel, History, formatter, NewObject, ColumnListItem, Label, Token, Fragment) {
+	"sap/ui/core/Fragment",
+    "sap/ui/core/Core",
+	"sap/ui/core/library"
+], function (BaseController, JSONModel, History, formatter, NewObject, ColumnListItem, Label, Token, Fragment, Core, CoreLibrary) {
     "use strict";
-
+    var ValueState = CoreLibrary.ValueState;
     return BaseController.extend("capdemogru.app.parcel.controller.NewObject", {
 
         formatter: formatter,
@@ -74,6 +76,8 @@ sap.ui.define([
 
             this.getModel("newObjectView").setData(NewObject.initModel());
             this.getModel("newObjectView").refresh(true);
+            this.getView().byId("saveButton").setEnabled(false);
+            
         },
 
         /**
@@ -101,7 +105,18 @@ sap.ui.define([
                 }
             });
         },
+        handleDateChange: function (oEvent) {
+			var 
+				oDP = oEvent.getSource(),	
+				bValid = oEvent.getParameter("valid");
 
+			
+			if (bValid) {
+				oDP.setValueState(ValueState.None);
+			} else {
+				oDP.setValueState(ValueState.Error);
+			}
+		},
         _onBindingChange : function () {
             var oView = this.getView(),
                 oViewModel = this.getModel("newObjectView"),
