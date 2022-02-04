@@ -354,7 +354,7 @@
                                 path: '/Natureza',
                                 sorter: { path: 'naturezaCode' }
                             }"
-                            selectedItems="{natureza}"
+                            selectedKeys="{natureza}"
                             enabled="false">
                             <core:ListItem key="{ID}" text="{naturezaCode}" additionalText="{naturezaDescription}"/>
                         </MultiComboBox>                            

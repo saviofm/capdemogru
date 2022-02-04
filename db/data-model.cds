@@ -412,13 +412,17 @@ entity PreParcel : cuid, managed {
   agente              : Association to one Partner;
   transportador       : Association to one Partner;
   cobranca            : Association to one PartnerType;
-  natureza            : Composition of many {
-      natureza: Association to one Natureza;
-  };
+  natureza            : Composition of many PreParcelNatureza on natureza.preParcel = $self;
   ncm                 : String(8);
   obs                 : LargeString;
   confirm             : Boolean;
 }
+
+entity PreParcelNatureza : cuid {
+    preParcel: Association to one PreParcel;
+    natureza : Association to one Natureza;
+}
+
 
 //Annotation
 annotate PreParcel with @(

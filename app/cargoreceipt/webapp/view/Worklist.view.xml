@@ -42,7 +42,7 @@
                 items="{
                     path: '/CargoReceipt',
                     parameters: {
-                                expand: 'declaracao,origemAwb,destinoAwb,origemHawb,destinoHawb,airline'
+                                expand: 'declaracao,origemAwb,destinoAwb,origemHawb,destinoHawb,airline,natureza'
                             },
                     sorter: {
                         path: 'awb',

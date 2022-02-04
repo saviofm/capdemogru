@@ -186,7 +186,7 @@ sap.ui.define([
 
             let aNatureza = [];
             for (let i = 0; i < sModel.natureza.length; i++) {
-                if (sModel.natureza[i] != "") aNatureza.push({natureza_ID: sModel.natureza[i]}); 
+                if (sModel.natureza[i] != "") aNatureza.push({ natureza: { ID: sModel.natureza[i] }}); 
             }
 
             if (sModel.natureza.length != 0) Model.natureza = aNatureza;
