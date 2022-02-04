@@ -316,7 +316,7 @@
                     expanded="true"
                     headerText="{i18n>image}"> 
                 <Image  
-                        src="{image}"
+                        src="{newObjectView>/image}"
 					    decorative="false"/>
 
 		        <uni:FileUploader 

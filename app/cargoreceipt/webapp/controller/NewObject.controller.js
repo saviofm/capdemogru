@@ -136,6 +136,7 @@ sap.ui.define([
             //onUploadCompleted(oEvent){
             //    console.log(oEvent);
             //},
+            
         onScanSuccess: function(oEvent) {
             var oResourceBundle = this.getResourceBundle();
             if (oEvent.getParameter("cancelled")) {
@@ -144,10 +145,10 @@ sap.ui.define([
                 if (oEvent.getParameter("text")) {         
                     this.getModel("newObjectView").setProperty("/barcode", oEvent.getParameter("text"));
 
-                    //this.getView().byId("barcodeInput").setValue(oEvent.getParameter("text"));
+                  
                 } else {
                     this.getModel("newObjectView").setProperty("/barcode", "");
-                    //this.getView().byId("barcodeInput").setValue('');
+                  
                     
                 }
             }
