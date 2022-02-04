@@ -399,7 +399,7 @@ entity PreParcel : cuid, managed {
   destinoHawb         : Association to one Airport;
   transDoc            : String;
   dtEmissaoDAT        : Date;
-  cpfDriver           : String @assert.format : '[0-9]+';
+  cpfDriver           : String(11);
   dseManual           : Boolean;
   airline             : Association to one Airline;
   express             : Boolean;
@@ -452,16 +452,12 @@ annotate PreParcel with @(
     hawb           @(
         title       : '{i18n>hawb}',
         description : '{i18n>hawb}',
-        //Common      : {
-        //    FieldControl             : #Mandatory,
-        //   TextFor                  : ID
-        //}
+
     );
     declaracao    @(
         title       : '{i18n>declaracao}',
         description : '{i18n>declaracao}',
         Common      : {
-            FieldControl             : #Mandatory,
             Label : '{i18n>declaracao}',
             ValueList : {
                 CollectionPath  : 'Declaracao',
@@ -483,9 +479,6 @@ annotate PreParcel with @(
     declaracaoNr @(
         title       : '{i18n>declaracaoNr}',
         description : '{i18n>declaracaoNr}',
-        Common      : {
-            FieldControl             : #Mandatory
-        }
     );
     ruc @(
         title       : '{i18n>ruc}',
@@ -643,7 +636,6 @@ annotate PreParcel with @(
         title       : '{i18n>airline}',
         description : '{i18n>airline}',
         Common      : {
-            FieldControl             : #Mandatory,
             Label : '{i18n>Airline}',
             Text : {
                 $value                 :  airline.airlineDescription,
@@ -683,7 +675,6 @@ annotate PreParcel with @(
         title       : '{i18n>package}',
         description : '{i18n>package}',
         Common      : {
-            FieldControl             : #Mandatory,
             Text : {
                 $value                 :  package.packageDescription,
                 ![@UI.TextArrangement] : #TextOnly
@@ -719,7 +710,6 @@ annotate PreParcel with @(
         title       : '{i18n>exportador}',
         description : '{i18n>exportador}',
         Common      : {
-            FieldControl             : #Mandatory,
             Text : {
                 $value                 :  exportador.partnerDescription,
                 ![@UI.TextArrangement] : #TextOnly
@@ -746,7 +736,6 @@ annotate PreParcel with @(
         title       : '{i18n>agente}',
         description : '{i18n>agente}',
         Common      : {
-            FieldControl             : #Mandatory,
             Text : {
                 $value                 :  transportador.partnerDescription,
                 ![@UI.TextArrangement] : #TextOnly
@@ -772,7 +761,6 @@ annotate PreParcel with @(
         title       : '{i18n>transportador}',
         description : '{i18n>transportador}',
         Common      : {
-            FieldControl             : #Mandatory,
             Text : {
                 $value                 :  transportador.partnerDescription,
                 ![@UI.TextArrangement] : #TextOnly
@@ -799,7 +787,6 @@ annotate PreParcel with @(
         title       : '{i18n>cobranca}',
         description : '{i18n>cobranca}',
         Common      : {
-            FieldControl             : #Mandatory,
             ValueList : {
                 CollectionPath  : 'PartnerType',
                 Label : '{i18n>PartnerType}', 
@@ -964,7 +951,6 @@ annotate CargoReceipt with @(
         title       : '{i18n>declaracao}',
         description : '{i18n>declaracao}',
         Common      : {
-            FieldControl             : #Mandatory,
             Label : '{i18n>declaracao}',
             ValueList : {
                 CollectionPath  : 'Declaracao',
@@ -986,9 +972,6 @@ annotate CargoReceipt with @(
     declaracaoNr @(
         title       : '{i18n>declaracaoNr}',
         description : '{i18n>declaracaoNr}',
-        Common      : {
-            FieldControl             : #Mandatory
-        }
     );
     bagDesacomp    @(
         title       : '{i18n>bagDesacomp}',
@@ -998,7 +981,6 @@ annotate CargoReceipt with @(
         title       : '{i18n>airline}',
         description : '{i18n>airline}',
         Common      : {
-            FieldControl             : #Mandatory,
             Label : '{i18n>Airline}',
             Text : {
                 $value                 :  airline.airlineDescription,

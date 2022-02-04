@@ -123,10 +123,6 @@ modules:
       name: capdemogruapppartner
       target-path: resources/
     - artifacts:
-      - capdemogruapppreparcel.zip
-      name: capdemogruapppreparcel
-      target-path: resources/
-    - artifacts:
       - capdemogruappparcel.zip
       name: capdemogruappparcel
       target-path: resources/
@@ -200,18 +196,6 @@ modules:
 # ------------------------------------------------------------
   type: html5
   path: app/partner
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm run build:cf
-    supported-platforms: []
-
-# --------------------- HTML5 MODULE -------------------------    
-- name: capdemogruapppreparcel
-# ------------------------------------------------------------
-  type: html5
-  path: app/preparcel
   build-parameters:
     build-result: dist
     builder: custom

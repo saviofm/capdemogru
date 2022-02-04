@@ -19,27 +19,7 @@ service CatalogService {// @( requires:'authenticated-user') {
 
     @odata.draft.enabled : true
     entity Partner as projection on capdemogru.Partner;
-    
-    @odata.draft.enabled : true
-    entity PreParcel  as projection on capdemogru.PreParcel {
-        *,
-        airline : redirected to Airline,
-        declaracao: redirected to Declaracao,
-        package: redirected to Package,
-        origemAwb: redirected to Airport,       
-        destinoAwb: redirected to Airport,
-        origemHawb: redirected to Airport,
-        destinoHawb: redirected to Airport,
-        cobranca: redirected to PartnerType,
-        transportador: redirected to Partner,
-        exportador: redirected to Partner,
-        agente: redirected to Partner,
-        
-    };
-   
 
-
-@cds.redirection.target
     entity Parcel  as projection on capdemogru.PreParcel {
         *,
         airline : redirected to Airline,

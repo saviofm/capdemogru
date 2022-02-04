@@ -1,12 +1,50 @@
 @server = http://localhost:4004
 @me = Authorization: Basic {{$processEnv USER}}:
-
+@basic = Authorization: Basic admin:admin
 ### ------------------------------------------------------------------------
 # Create Plant
-POST {{server}}/catalog/MaterialPlantCRUD 
-Content-Type: application/json
+POST {{server}}/v2/catalog/Parcel 
+content-type: application/json
+Accept-Encoding: "CESU-16"
+{{me}}
 
 {
-    "plantCode": "1000",
-    "plantDescription": "Matriz"
+  "agente": {
+    "ID": "6d513a9d-512d-4663-ab9d-111df2cebdd4"
+  },
+  "airline": {
+    "ID": "038701f4-465a-4024-bdc3-19043b1a3c0a"
+  },
+  "awb": "94204920940",
+  "cobranca": {
+    "partnerTypeCode": "EX"
+  },
+  "conteudo": "",
+  "cpfDriver": "21313123131",
+  "declaracao": {
+    "declaracao": "DSE"
+  },
+  "declaracaoNr": "098908098098",
+  "destinoAwb": {
+    "ID": "0053cde4-33b9-4283-9aec-e02e7fb3c84f"
+  },
+  "dtEmissaoDAT": "2022-02-09",
+  "exportador": {
+    "ID": "277354cf-8ef1-4a82-8721-648f292b24f8"
+  },
+  "hawb": "242444444",
+  "ncm": "90909099",
+  "obs": "Lata",
+  "origemAwb": {
+    "ID": "0035065c-cdb7-47ed-ae74-c9b91c65c279"
+  },
+  "package": {
+    "ID": "6e90f700-201f-4313-a001-5763589e3a9d"
+  },
+  "pesoBruto": "89000",
+  "ruc": "09099999999",
+  "transDoc": "09809809890809",
+  "transportador": {
+    "ID": "6d513a9d-512d-4663-ab9d-111df2cebdd4"
+  }
 }

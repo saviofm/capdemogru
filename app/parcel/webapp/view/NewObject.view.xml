@@ -147,9 +147,11 @@
 			                value="{newObjectView>/dtEmissaoDAT}" 
                             valueFormat="dd-MM-yyyy" 
                             displayFormat="short"
-			                change="handleDateChange"
-                            visible="{newObjectView>/State/dtEmissaoDAT/Visible}"
+			                visible="{newObjectView>/State/dtEmissaoDAT/Visible}"
                             enabled="{newObjectView>/State/dtEmissaoDAT/Enabled}"
+                            valueState="{newObjectView>/State/dtEmissaoDAT/ValueState}"
+                            valueStateText="{newObjectView>/State/dtEmissaoDAT/ValueStateText}"
+                            change="onValidationFields"
                         />
                         <Label  text="{i18n>cpfDriver}"/> 
                         <MaskInput
@@ -236,7 +238,6 @@
                             }"
                         >
                             <core:ListItem key="{ID}" text="{iata}" additionalText="{airportDescription}"/>
-            
                         </ComboBox>
 
                         <Label text="{i18n>destinoHawb}"/>        
@@ -406,9 +407,9 @@
                                 path: '/Natureza',
                                 sorter: { path: 'naturezaCode' }
                             }"
-                            selectedItems="{newObjectView>/natureza}"
+                            selectedKeys="{newObjectView>/natureza}"
                         >
-                            <core:ListItem key="{ID}" text="{naturezaCode}" additionalText="{naturezaDescription}"/>
+                        <core:ListItem key="{ID}" text="{naturezaCode}" additionalText="{naturezaDescription}"/>
                         </MultiComboBox>                            
                         <Label text="{i18n>obs}"/> 
                         <TextArea

@@ -17,13 +17,13 @@ sap.ui.define([
           origemHawb: "",
           destinoHawb: "",
           transDoc: "",
-          dtEmissaoDAT: "",
+          dtEmissaoDAT: null,
           cpfDriver: "",
           dseManual: false,
           airline: "",
           express: false,
-          pesoBruto: "",
-          volume: 0,
+          pesoBruto: null,
+          volume: null,
           package: "",  
           conteudo: "",
           bagDesacomp: false,
@@ -225,6 +225,6 @@ sap.ui.define([
           }
         };
       }
-	  };
+    };
   }
 );

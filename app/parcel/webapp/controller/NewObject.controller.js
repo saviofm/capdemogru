@@ -83,12 +83,12 @@ sap.ui.define([
 		},
 
         onValidationFields: function(oEvent){
-            let aFieldClass = ["awb", "ruc", "cpfDriver", "confirm"],
+            let aFieldClass = ["awb", "ruc", "cpfDriver", "confirm", "dtEmissaoDAT"],
                 oModel      = this.getModel("newObjectView").getData(),
                 bValid      = true;
 
             aFieldClass.forEach(sField =>{
-                if(oModel[sField] === "" || oModel[sField] === false){
+                if(oModel[sField] === "" || oModel[sField] === false || oModel[sField] === null){
                     oModel.State[sField].ValueState     = sap.ui.core.ValueState.Error;
                     oModel.State[sField].ValueStateText = this.getResourceBundle().getText("validationRequiredField");
                     bValid = false;
@@ -148,40 +148,53 @@ sap.ui.define([
         },
 
         _createObjectPreParcel: function(sModel){
-            return {
+            let Model = {
                 awb: this._clearFormatting(sModel.awb),
-                hawb: this._clearFormatting(sModel.hawb),
-                declaracao: { declaracao: sModel.declaracao },
-                declaracaoNr: sModel.declaracaoNr,
+                hawb: this._clearFormatting(sModel.hawb),     
                 ruc: this._clearFormatting(sModel.ruc),
+                declaracaoNr: sModel.declaracaoNr,
                 transit: sModel.transit,
-                airTransit: sModel.airTransit,
-                origemAwb: { ID: sModel.origemAwb },
-                destinoAwb: { ID: sModel.destinoAwb },
-                origemHawb: { ID: sModel.origemHawb },
-                destinoHawb: { ID: sModel.destinoHawb },
+                airTransit: sModel.airTransit,       
                 transDoc: sModel.transDoc,
                 dtEmissaoDAT: Formatter.dateFormat(sModel.dtEmissaoDAT),
                 cpfDriver: this._clearFormatting(sModel.cpfDriver),
                 dseManual: sModel.dseManual,
-                airline: { ID: sModel.airline },
                 express: sModel.express,
-                pesoBruto: this._clearFormatting(Formatter.numberUnit(sModel.pesoBruto)),
-                volume: sModel.volume,
-                package: { ID: sModel.package },    
+                volume: sModel.volume,   
                 conteudo: sModel.conteudo,   
                 bagDesacomp: sModel.bagDesacomp,
-                exportador: { ID: sModel.exportador }, 
-                agente: { ID: sModel.agente },
-                transportador: { ID: sModel.transportador },
-                cobranca: { partnerTypeCode: sModel.cobranca },
-                /*natureza: [
-                    { naturezaCode: sModel.natureza }
-                ],*/
                 ncm: this._clearFormatting(sModel.ncm),
                 obs: sModel.obs,
                 confirm: sModel.confirm
+            
             }
+
+            if (sModel.pesoBruto)       Model.pesoBruto     = this._clearFormatting(Formatter.numberUnit(sModel.pesoBruto));
+            if (sModel.declaracao)      Model.declaracao    = { declaracao: sModel.declaracao };
+            if (sModel.origemAwb)       Model.origemAwb     = { ID: sModel.origemAwb };
+            if (sModel.destinoAwb)      Model.destinoAwb    = { ID: sModel.destinoAwb };
+            if (sModel.origemHawb)      Model.origemHawb    = { ID: sModel.origemHawb };
+            if (sModel.destinoHawb)     Model.destinoHawb   = { ID: sModel.destinoHawb };
+            if (sModel.airline)         Model.airline       = { ID: sModel.airline };
+            if (sModel.package)         Model.package       = { ID: sModel.package };
+            if (sModel.exportador)      Model.exportador    = { ID: sModel.exportador };
+            if (sModel.agente)          Model.agente        = { ID: sModel.agente };
+            if (sModel.transportador)   Model.transportador = { ID: sModel.transportador };
+            if (sModel.cobranca)        Model.cobranca      = { partnerTypeCode: sModel.cobranca };
+
+
+
+            let aNatureza = [];
+            for (let i = 0; i < sModel.natureza.length; i++) {
+                if (sModel.natureza[i] != "") aNatureza.push({natureza_ID: sModel.natureza[i]}); 
+            }
+
+            if (sModel.natureza.length != 0) Model.natureza = aNatureza;
+            
+
+
+            return Model; 
+
         },
 
         _clearFormatting: function(sValue){
