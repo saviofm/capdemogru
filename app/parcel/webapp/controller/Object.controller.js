@@ -26,8 +26,12 @@ sap.ui.define([
                     busy : true,
                     delay : 0
                 });
+            var oViewModelAux = new JSONModel({
+                    natureza: []
+                });
             this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
             this.setModel(oViewModel, "objectView");
+            this.setModel(oViewModelAux, "objectViewAux");
         },
         /* =========================================================== */
         /* event handlers                                              */
@@ -63,7 +67,28 @@ sap.ui.define([
         _onObjectMatched : function (oEvent) {
             var sObjectId =  oEvent.getParameter("arguments").objectId;
             this._bindView("/Parcel" + sObjectId);
-        },
+
+            var aNaturezaBinding = [];
+            this.getView().getModel().read( `/Parcel${sObjectId}/natureza`, {
+
+                success: function(oData, aNatureza) {
+                    if (aNatureza.data && aNatureza.data.results){
+                        for (let natureza of aNatureza.data.results){
+                            aNaturezaBinding.push(natureza.natureza_ID);
+                        }
+                    }
+                    this.getView().getModel("objectViewAux").setProperty('/natureza', aNaturezaBinding);
+                }.bind(this)
+                });
+            /*var aNatureza = this.getView().getModel().getObject("/Parcel" + sObjectId +'/natureza');
+            for (let i = 0; i < aNatureza.length; i++){
+                aNatureza[i] = aNatureza[i].substring(
+                    aNatureza[i].indexOf("'") + 1, 
+                    aNatureza[i].lastIndexOf("'")
+                );
+            }
+            //this.getView().byId("naturezaBox").setSelectedKeys(aNatureza);*/
+        },  
 
         /**
          * Binds the view to the object path.

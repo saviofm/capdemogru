@@ -47,8 +47,10 @@ sap.ui.define([
                     busy : true,
                     delay : 0
                 });
+
             this.getRouter().getRoute("newObject").attachPatternMatched(this._onObjectMatched, this);
             this.setModel(oViewModel, "newObjectView");
+
         },
         /* =========================================================== */
         /* event handlers                                              */
@@ -115,11 +117,14 @@ sap.ui.define([
             
             this.getModel().create("/Parcel", oObjectPreParcel, {
                 success: function(oData){
+
+                    MessageToast.show(this.getResourceBundle().getText("messageSuccessCreatePreParcel"), {duration: 3000, closeOnBrowserNavigation: false});
                     this.getRouter().navTo("worklist");
 
                     this.getModel().refresh(true);
                     
-                    MessageToast.show(this.getResourceBundle().getText("messageSuccessCreatePreParcel"));
+                   
+                                          
 
                     this.setAppBusy(false);
                 }.bind(this),
@@ -144,7 +149,7 @@ sap.ui.define([
         _onObjectMatched : function (oEvent) {
             this.getModel("newObjectView").setData(NewObject.initModel());
             this.getModel("newObjectView").refresh(true);
-            //this.getView().byId("saveButton").setEnabled(false);  
+           
         },
 
         _createObjectPreParcel: function(sModel){

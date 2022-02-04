@@ -348,13 +348,14 @@
                                 
                         <Label text="{i18n>natureza}"/>
                         <MultiComboBox
+                            id="naturezaBox"
                             showSecondaryValues= "true"
                             width="500px"
                             items="{
                                 path: '/Natureza',
                                 sorter: { path: 'naturezaCode' }
                             }"
-                            selectedKeys="{natureza}"
+                            selectedKeys="{objectViewAux>/natureza}"
                             enabled="false">
                             <core:ListItem key="{ID}" text="{naturezaCode}" additionalText="{naturezaDescription}"/>
                         </MultiComboBox>                            

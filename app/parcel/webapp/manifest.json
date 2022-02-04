@@ -92,7 +92,8 @@
 					"synchronizationMode": "None",
           "autoExpandSelect":true,
           "defaultBindingMode": "TwoWay",
-          "refreshAfterChange": true
+          "refreshAfterChange": true,
+          "earlyRequests": true
         }
       }
     },
