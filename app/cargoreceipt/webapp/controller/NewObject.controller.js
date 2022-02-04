@@ -12,6 +12,7 @@ sap.ui.define([
     "../model/formatter",
     "sap/m/MessageToast",
     "sap/m/MessageBox",
+    "sap/ui/Device"
 ], function (BaseController,
 	JSONModel,
 	History,
@@ -24,7 +25,8 @@ sap.ui.define([
 	library,
 	Formatter,
     MessageToast,
-    MessageBox) {
+    MessageBox,
+    Device) {
     "use strict";
     var ValueState = library.ValueState;
     return BaseController.extend("capdemogru.app.cargoreceipt.controller.NewObject", {
@@ -47,8 +49,17 @@ sap.ui.define([
                     busy : true,
                     delay : 0
                 });
+                var bIsPhone = Device.system.phone;
+
+            var oViewModelAux = new JSONModel({
+                    imageHeight: bIsPhone ? "5em" : "10em",
+                    imageWidth: bIsPhone ? "5em" : "10em",
+                    imageBackgroundSize: "2em",
+                    natureza: []
+                });
             this.getRouter().getRoute("newObject").attachPatternMatched(this._onObjectMatched, this);
             this.setModel(oViewModel, "newObjectView");
+            this.getView().setModel(oViewModelAux, "objectViewAux");
         },
         /* =========================================================== */
         /* event handlers                                              */

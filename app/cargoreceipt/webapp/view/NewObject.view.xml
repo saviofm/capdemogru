@@ -317,7 +317,14 @@
                     headerText="{i18n>image}"> 
                 <Image  
                         src="{newObjectView>/image}"
-					    decorative="false"/>
+					    decorative="false"
+                        mode="{objectViewAux>/imageMode}"
+						height="{objectViewAux>/imageHeight}"
+						width="{objectViewAux>/imageWidth}" >
+                        <layoutData>
+							<FlexItemData growFactor="1" />
+						</layoutData>
+                </Image>
 
 		        <uni:FileUploader 
                     iconOnly="false" 

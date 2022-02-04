@@ -2,13 +2,14 @@ sap.ui.define([
     "./BaseController",
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/routing/History",
-    "../model/formatter"
-], function (BaseController, JSONModel, History, formatter) {
+    "../model/formatter",
+    "sap/ui/Device"
+], function (BaseController, JSONModel, History, Formatter, Device) {
     "use strict";
 
     return BaseController.extend("capdemogru.app.cargoreceipt.controller.Object", {
 
-        formatter: formatter,
+        formatter: Formatter,
 
         /* =========================================================== */
         /* lifecycle methods                                           */
