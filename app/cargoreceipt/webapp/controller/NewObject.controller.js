@@ -2,18 +2,31 @@ sap.ui.define([
     "./BaseController",
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/routing/History",
-    "../model/formatter",
-    "../model/newObject",
+    "../model/newObject",    
     "sap/m/ColumnListItem",
 	"sap/m/Label",
 	"sap/m/Token",
 	"sap/ui/core/Fragment",
     "sap/ui/core/Core",
 	"sap/ui/core/library",
-    "sap/m/MessageToast"
-], function (BaseController, JSONModel, History, Formatter, NewObject, ColumnListItem, Label, Token, Fragment, Core, CoreLibrary, MessageToast) {
+    "../model/formatter",
+    "sap/m/MessageToast",
+    "sap/m/MessageBox",
+], function (BaseController,
+	JSONModel,
+	History,
+	NewObject,
+	ColumnListItem,
+	Label,
+	Token,
+	Fragment,
+	Core,
+	library,
+	Formatter,
+    MessageToast,
+    MessageBox) {
     "use strict";
-    var ValueState = CoreLibrary.ValueState;
+    var ValueState = library.ValueState;
     return BaseController.extend("capdemogru.app.cargoreceipt.controller.NewObject", {
 
         formatter: Formatter,
@@ -49,7 +62,6 @@ sap.ui.define([
          * @public
          */
         onNavBack : function() {
-            var oResourceBundle = this.getResourceBundle();
             var sPreviousHash = History.getInstance().getPreviousHash();
             if (sPreviousHash !== undefined) {
                 // eslint-disable-next-line sap-no-history-manipulation
@@ -184,7 +196,7 @@ sap.ui.define([
             this.getModel().create("/CargoReceipt", oObjectPreParcel, {
                 success: function(oData){
 
-                    MessageToast.show(this.getResourceBundle().getText("messageSuccessCreatePreParcel"), {duration: 3000, closeOnBrowserNavigation: false});
+                    MessageToast.show(this.getResourceBundle().getText("messageSuccessCreateCargoReceipt"), {duration: 3000, closeOnBrowserNavigation: false});
                     this.getRouter().navTo("worklist");
 
                     this.getModel().refresh(true);
@@ -195,7 +207,7 @@ sap.ui.define([
                     this.setAppBusy(false);
                 }.bind(this),
                 error: function(oError){
-                    MessageBox.error(this.getResourceBundle().getText("messageErrorCreatePreParcel"));
+                    MessageBox.error(this.getResourceBundle().getText("messageErrorCreateCargoReceipt"));
 
                     this.setAppBusy(false);
                 }.bind(this)
@@ -215,60 +227,12 @@ sap.ui.define([
          * @private
          */
         _onObjectMatched : function (oEvent) {
- 
             this.getModel("newObjectView").setData(NewObject.initModel());
             this.getModel("newObjectView").refresh(true);
             
         },
 
-        /**
-         * Binds the view to the object path.
-         * @function
-         * @param {string} sObjectPath path to the object to be bound
-         * @private
-         */
-        _bindView : function (sObjectPath) {
-            var oViewModel = this.getModel("newObjectView");
-
-            this.getView().bindElement({
-                path: sObjectPath,
-                parameters:{
-                    expand: 'declaracao,origemAwb,destinoAwb,origemHawb,destinoHawb,airline'
-                },
-                events: {
-                    change: this._onBindingChange.bind(this),
-                    dataRequested: function () {
-                        oViewModel.setProperty("/busy", true);
-                    },
-                    dataReceived: function () {
-                        oViewModel.setProperty("/busy", false);
-                    }
-                }
-            });
-        },
-
-        _onBindingChange : function () {
-            var oView = this.getView(),
-                oViewModel = this.getModel("newObjectView"),
-                oElementBinding = oView.getElementBinding();
-
-            // No data for the binding
-            if (!oElementBinding.getBoundContext()) {
-                this.getRouter().getTargets().display("objectNotFound");
-                return;
-            }
-
-            var oResourceBundle = this.getResourceBundle(),
-                oObject = oView.getBindingContext().getObject(),
-                sObjectId = oObject.awb,
-                sObjectName = oObject.Parcel;
-
-                oViewModel.setProperty("/busy", false);
-                oViewModel.setProperty("/shareSendEmailSubject",
-                    oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId]));
-                oViewModel.setProperty("/shareSendEmailMessage",
-                    oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
-        },
+ 
         _createObjectCargoReceipt: function(sModel){
             let Model = {
                 awb: this._clearFormatting(sModel.awb),
@@ -320,7 +284,6 @@ sap.ui.define([
                          .replace("-", "");
         }
     });
-    });
-
+    
 });
 
