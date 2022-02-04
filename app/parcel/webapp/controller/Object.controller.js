@@ -70,7 +70,6 @@ sap.ui.define([
 
             var aNaturezaBinding = [];
             this.getView().getModel().read( `/Parcel${sObjectId}/natureza`, {
-
                 success: function(oData, aNatureza) {
                     if (aNatureza.data && aNatureza.data.results){
                         for (let natureza of aNatureza.data.results){
@@ -79,7 +78,7 @@ sap.ui.define([
                     }
                     this.getView().getModel("objectViewAux").setProperty('/natureza', aNaturezaBinding);
                 }.bind(this)
-                });
+            });
             /*var aNatureza = this.getView().getModel().getObject("/Parcel" + sObjectId +'/natureza');
             for (let i = 0; i < aNatureza.length; i++){
                 aNatureza[i] = aNatureza[i].substring(

@@ -7,6 +7,8 @@ sap.ui.define([
 	"sap/m/Label",
 	"sap/m/Token",
 	"sap/ui/core/Fragment",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator",
     "sap/ui/core/Core",
 	"sap/ui/core/library",
     "../model/formatter",
@@ -21,6 +23,8 @@ sap.ui.define([
 	Label,
 	Token,
 	Fragment,
+    Filter,
+    FilterOperator,
 	Core,
 	library,
 	Formatter,
@@ -57,9 +61,24 @@ sap.ui.define([
                     imageBackgroundSize: "2em",
                     natureza: []
                 });
+
             this.getRouter().getRoute("newObject").attachPatternMatched(this._onObjectMatched, this);
             this.setModel(oViewModel, "newObjectView");
             this.getView().setModel(oViewModelAux, "objectViewAux");
+
+
+			if (!this._pDialog) {
+				this._pDialog = Fragment.load({
+					id: this.getView().getId(),
+					name: "capdemogru.app.cargoreceipt.view.fragment.Dialog",
+					controller: this
+				}).then(
+                    function(oDialog){
+                        this.getView().addDependent(oDialog);
+                        oDialog.open();
+				    }.bind(this)
+                );
+            }
         },
         /* =========================================================== */
         /* event handlers                                              */
@@ -106,7 +125,7 @@ sap.ui.define([
             this.getModel("newObjectView").refresh(true);
         },
 
-        onChangeCamera : function(oEvent){
+        onChangeCamera: function(oEvent){
             //oFileUploader = oEvent.getSource();
 
             var afile = oEvent.getParameters().files[0];
@@ -199,13 +218,70 @@ sap.ui.define([
 			}
 		},
 
+        onPress: function(oEvent){
+            this.setAppBusy(true);
+
+            let oParcel = oEvent.getParameter("selectedItem").getBindingContext().getObject();
+
+            let sKeyParcel = this.getModel().createKey("/Parcel", {
+                ID: oParcel.ID
+            });
+
+            this.getView().getModel().read(sKeyParcel, {
+                urlParameters:{ 
+                    "$expand": 'origemAwb,destinoAwb,origemHawb,destinoHawb,airline,declaracao,natureza',
+                },
+                success: function(oData){
+                    this.setAppBusy(false);
+                    console.log(oData);
+                }.bind(this),
+                error: function(oError){
+                    this.setAppBusy(false);
+                    console.log(oError);
+                }.bind(this)
+            });
+        },
+
+        handleSearch: function(oEvent){
+            if (oEvent.getParameters().refreshButtonPressed) {
+                // Search field's 'refresh' button has been pressed.
+                // This is visible if you select any main list item.
+                // In this case no new search is triggered, we only
+                // refresh the list binding.
+                this.onRefresh();
+            } else {
+                var aTableSearchState = [];
+                var sQuery = oEvent.getParameter("value");
+
+                if (sQuery && sQuery.length > 0) {
+                    aTableSearchState = new Filter({
+                        and: false,
+                        filters: [
+                            new Filter("awb",     FilterOperator.Contains, sQuery),
+                            new Filter("transDoc",      FilterOperator.Contains, sQuery),
+                            new Filter("airline/airlineCode",     FilterOperator.Contains, sQuery),
+                            new Filter("origemAwb/iata", FilterOperator.Contains, sQuery),
+                            new Filter("destinoAwb/iata", FilterOperator.Contains, sQuery),
+                            new Filter("ncm",      FilterOperator.Contains, sQuery),
+                            new Filter("package/packageDescription",      FilterOperator.Contains, sQuery),
+                        ]
+                    })
+                }
+                this._applySearch(aTableSearchState);
+            }
+        },
+
+        handleClose: function(oEvent){
+            this._pDialog.close();
+        },
+
         onPressSave: function(oEvent){
             this.setAppBusy(true);
 
-            let oModel           = this.getModel("newObjectView").getData(),
-                oObjectPreParcel = this._createObjectCargoReceipt(oModel);
+            let oModel              = this.getModel("newObjectView").getData(),
+                oObjectCargoReceipt = this._createObjectCargoReceipt(oModel);
             
-            this.getModel().create("/CargoReceipt", oObjectPreParcel, {
+            this.getModel().create("/CargoReceipt", oObjectCargoReceipt, {
                 success: function(oData){
 
                     MessageToast.show(this.getResourceBundle().getText("messageSuccessCreateCargoReceipt"), {duration: 3000, closeOnBrowserNavigation: false});
@@ -213,9 +289,6 @@ sap.ui.define([
 
                     this.getModel().refresh(true);
                     
-                   
-                                          
-
                     this.setAppBusy(false);
                 }.bind(this),
                 error: function(oError){
@@ -241,7 +314,6 @@ sap.ui.define([
         _onObjectMatched : function (oEvent) {
             this.getModel("newObjectView").setData(NewObject.initModel());
             this.getModel("newObjectView").refresh(true);
-            
         },
 
  
@@ -294,6 +366,18 @@ sap.ui.define([
             return sValue.replaceAll(".", "")
                          .replace(",", "")
                          .replace("-", "");
+        },
+
+        _applySearch: function(aTableSearchState) {
+            var oTable     = this.byId("myDialog"),
+                oViewModel = this.getModel("newObjectView");
+
+            oTable.getBinding("items").filter(aTableSearchState, "Application");
+
+            // changes the noDataText of the list in case there are no filter results
+            if (aTableSearchState.length !== 0) {
+                oViewModel.setProperty("/tableNoDataText", this.getResourceBundle().getText("worklistNoDataWithSearchText"));
+            }
         }
     });
     
