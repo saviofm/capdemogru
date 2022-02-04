@@ -11,12 +11,12 @@ sap.ui.define([
     "sap/ui/core/Core",
 	"sap/ui/core/library",
     "sap/m/MessageToast"
-], function (BaseController, JSONModel, History, formatter, NewObject, ColumnListItem, Label, Token, Fragment, Core, CoreLibrary, MessageToast) {
+], function (BaseController, JSONModel, History, Formatter, NewObject, ColumnListItem, Label, Token, Fragment, Core, CoreLibrary, MessageToast) {
     "use strict";
     var ValueState = CoreLibrary.ValueState;
     return BaseController.extend("capdemogru.app.cargoreceipt.controller.NewObject", {
 
-        formatter: formatter,
+        formatter: Formatter,
 
         /* =========================================================== */
         /* lifecycle methods                                           */
@@ -58,6 +58,31 @@ sap.ui.define([
                 this.getRouter().navTo("worklist", {}, true);
             }
         },
+        onValidationFields: function(oEvent){
+            let aFieldClass = ["awb", "ruc", "uld", "pesoBruto", "pesoLiquido", "volume"],
+                oModel      = this.getModel("newObjectView").getData(),
+                bValid      = true;
+
+            aFieldClass.forEach(sField =>{
+                if(oModel[sField] === "" || oModel[sField] === false || oModel[sField] === null){
+                    oModel.State[sField].ValueState     = sap.ui.core.ValueState.Error;
+                    oModel.State[sField].ValueStateText = this.getResourceBundle().getText("validationRequiredField");
+                    bValid = false;
+                }else {
+                    oModel.State[sField].ValueState     = sap.ui.core.ValueState.None;
+                    oModel.State[sField].ValueStateText = "";
+                }
+            });
+
+            if(!bValid){
+                oModel.State.buttonSave.Enabled = false;
+            }else{
+                oModel.State.buttonSave.Enabled = true;
+            }
+
+            this.getModel("newObjectView").refresh(true);
+        },
+
         onChangeCamera : function(oEvent){
             //oFileUploader = oEvent.getSource();
 
@@ -94,7 +119,7 @@ sap.ui.define([
                 });
                 */
 
-            },
+        },
 
             //onUploadCompleted(oEvent){
             //    console.log(oEvent);
@@ -106,10 +131,11 @@ sap.ui.define([
             } else {
                 if (oEvent.getParameter("text")) {         
                     this.getModel("newObjectView").setProperty("/barcode", oEvent.getParameter("text"));
-                    this.getView().byId("barcodeInput").setValue(oEvent.getParameter("text"));
+
+                    //this.getView().byId("barcodeInput").setValue(oEvent.getParameter("text"));
                 } else {
                     this.getModel("newObjectView").setProperty("/barcode", "");
-                    this.getView().byId("barcodeInput").setValue('');
+                    //this.getView().byId("barcodeInput").setValue('');
                     
                 }
             }
@@ -131,7 +157,7 @@ sap.ui.define([
                 $(oScanButton.getDomRef()).on("click", function(){
                     //oScanResultText.setText('');
                     this.getModel("newObjectView").setProperty("/barcode", "");
-                    this.getView().byId("barcodeInput").setValue('');
+                    //this.getView().byId("barcodeInput").setValue('');
                 }.bind(this));
             }
         },
@@ -150,7 +176,30 @@ sap.ui.define([
 		},
 
         onPressSave: function(oEvent){
+            this.setAppBusy(true);
 
+            let oModel           = this.getModel("newObjectView").getData(),
+                oObjectPreParcel = this._createObjectCargoReceipt(oModel);
+            
+            this.getModel().create("/CargoReceipt", oObjectPreParcel, {
+                success: function(oData){
+
+                    MessageToast.show(this.getResourceBundle().getText("messageSuccessCreatePreParcel"), {duration: 3000, closeOnBrowserNavigation: false});
+                    this.getRouter().navTo("worklist");
+
+                    this.getModel().refresh(true);
+                    
+                   
+                                          
+
+                    this.setAppBusy(false);
+                }.bind(this),
+                error: function(oError){
+                    MessageBox.error(this.getResourceBundle().getText("messageErrorCreatePreParcel"));
+
+                    this.setAppBusy(false);
+                }.bind(this)
+            });
         },
 
 
@@ -219,7 +268,59 @@ sap.ui.define([
                     oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId]));
                 oViewModel.setProperty("/shareSendEmailMessage",
                     oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
+        },
+        _createObjectCargoReceipt: function(sModel){
+            let Model = {
+                awb: this._clearFormatting(sModel.awb),
+                hawb: this._clearFormatting(sModel.hawb),     
+                ruc: this._clearFormatting(sModel.ruc),
+                declaracaoNr: sModel.declaracaoNr,
+                transit: sModel.transit,
+                express: sModel.express,
+                manualCargo: sModel.manualCargo,
+                dseManual: sModel.dseManual,            
+                volume: sModel.volume,   
+                conteudo: sModel.conteudo,   
+                bagDesacomp: sModel.bagDesacomp,
+                ncm: this._clearFormatting(sModel.ncm),
+                image: sModel.image,
+                barcode: sModel.barcode
+            
+            }
+            if (sModel.preParcel)       Model.preParcel     = { ID: sModel.preParcel };
+            if (sModel.pesoBruto)       Model.pesoBruto     = this._clearFormatting(Formatter.numberUnit(sModel.pesoBruto));
+            if (sModel.pesoLiquido)     Model.pesoLiquido   = this._clearFormatting(Formatter.numberUnit(sModel.pesoLiquido));
+            if (sModel.tara)            Model.tara   = this._clearFormatting(Formatter.numberUnit(sModel.tara));
+            if (sModel.declaracao)      Model.declaracao    = { declaracao: sModel.declaracao };
+            if (sModel.origemAwb)       Model.origemAwb     = { ID: sModel.origemAwb };
+            if (sModel.destinoAwb)      Model.destinoAwb    = { ID: sModel.destinoAwb };
+            if (sModel.origemHawb)      Model.origemHawb    = { ID: sModel.origemHawb };
+            if (sModel.destinoHawb)     Model.destinoHawb   = { ID: sModel.destinoHawb };
+            if (sModel.airline)         Model.airline       = { ID: sModel.airline };
+   
+     
+
+
+            let aNatureza = [];
+            for (let i = 0; i < sModel.natureza.length; i++) {
+                if (sModel.natureza[i] != "") aNatureza.push({ natureza: { ID: sModel.natureza[i] }}); 
+            }
+
+            if (sModel.natureza.length != 0) Model.natureza = aNatureza;
+            
+
+
+            return Model; 
+
+        },
+
+        _clearFormatting: function(sValue){
+            return sValue.replaceAll(".", "")
+                         .replace(",", "")
+                         .replace("-", "");
         }
+    });
     });
 
 });
+
