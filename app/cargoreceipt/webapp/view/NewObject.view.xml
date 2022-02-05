@@ -238,7 +238,7 @@
                                 formatOptions: {
                                     minFractionDigits:3,
                                     maxFractionDigits:3,
-                                    decimals: 2,
+                                    decimals: 3,
                                     decimalSeparator: '.',
                                     roundingMode: 'HALF_CEILING',
                                     groupingEnabled: false
@@ -259,7 +259,7 @@
                                 formatOptions: {
                                     minFractionDigits:3,
                                     maxFractionDigits:3,
-                                    decimals: 2,
+                                    decimals: 3,
                                     decimalSeparator: '.',
                                     roundingMode: 'HALF_CEILING',
                                     groupingEnabled: false
@@ -279,7 +279,7 @@
                                 formatOptions: {
                                     minFractionDigits:3,
                                     maxFractionDigits:3,
-                                    decimals: 2,
+                                    decimals: 3,
                                     decimalSeparator: '.',
                                     roundingMode: 'HALF_CEILING',
                                     groupingEnabled: false
