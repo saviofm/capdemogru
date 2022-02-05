@@ -38,4 +38,12 @@ service CatalogService {// @( requires:'authenticated-user') {
   
    entity CargoReceipt as projection on capdemogru.CargoReceipt;
 
+    type returnWeight {
+        pesoBruto   : Decimal(15,3);
+        pesoLiquido : Decimal(15,3);
+        tara        : Decimal(15,3);
+    }
+
+   function getWeight() returns returnWeight;
+
 }
