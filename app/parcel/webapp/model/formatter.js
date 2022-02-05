@@ -46,7 +46,7 @@ sap.ui.define([], function () {
                 return "";
             }  
             sValue =  sValue.padStart(11, "0")
-            return `${sValue.substring(0,3)}.${sValue.substring(3,6)}.${sValue.substring(6,9)}-${sValue.substring(9,11)}-${sValue.substring(12,14)}`;
+            return `${sValue.substring(0,3)}.${sValue.substring(3,6)}.${sValue.substring(6,9)}-${sValue.substring(9,11)}`;
         },
 
         awb : function (sValue) {

@@ -6,3 +6,13 @@
 GET  {{server}}/v2/catalog/getWeight 
 content-type: application/json
 {{me}}
+
+
+
+### ------------------------------------------------------------------------
+# Get Weight
+GET  {{server}}/v2/catalog/Parcel(203ef2a8-2b65-4694-bbc9-6ff3d3243849) 
+content-type: application/json
+{{me}}
+
+
