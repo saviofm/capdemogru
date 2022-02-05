@@ -94,7 +94,7 @@ sap.ui.define([
             this.getView().bindElement({
                 path: sObjectPath,
                 parameters:{
-                    expand: 'declaracao,origemAwb,destinoAwb,origemHawb,destinoHawb,airline,package,exportador,agente,transportador,natureza'
+                    expand: 'declaracao,origemAwb,destinoAwb,origemHawb,destinoHawb,airline,package,exportador,agente,transportador,natureza,cobranca'
                 },
                 events: {
                     change: this._onBindingChange.bind(this),

@@ -10,7 +10,7 @@ content-type: application/json
 
 
 ### ------------------------------------------------------------------------
-# Get Weight
+# Get Parcel
 GET  {{server}}/v2/catalog/Parcel(203ef2a8-2b65-4694-bbc9-6ff3d3243849) 
 content-type: application/json
 {{me}}

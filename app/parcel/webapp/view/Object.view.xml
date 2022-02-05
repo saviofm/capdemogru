@@ -337,7 +337,7 @@
                         </Text>
                         <Text  text="{transportador/partnerDescription}"/>   
                         <Label text="{i18n>cobranca}"/>                        
-                        <Text text="{cobranca/partnerTypeDescription}"/> 
+                        <Text text="{cobranca/partnerTypeCodeDescription}"/> 
 
                         <core:Title text="{i18n>Material}"/>
                         <Label text="{i18n>ncm}"/>                        
