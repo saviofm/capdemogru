@@ -14,7 +14,8 @@ sap.ui.define([
     "../model/formatter",
     "sap/m/MessageToast",
     "sap/m/MessageBox",
-    "sap/ui/Device"
+    "sap/ui/Device",
+    "sap/ui/core/syncStyleClass"
 ], function (BaseController,
 	JSONModel,
 	History,
@@ -30,7 +31,8 @@ sap.ui.define([
 	Formatter,
     MessageToast,
     MessageBox,
-    Device) {
+    Device,
+    syncStyleClass) {
     "use strict";
     var ValueState = library.ValueState;
     return BaseController.extend("capdemogru.app.cargoreceipt.controller.NewObject", {
@@ -275,6 +277,31 @@ sap.ui.define([
             this._pDialog.close();
         },
 
+        onGetWeight: function(oEvent){
+            // load BusyDialog fragment asynchronously
+			if (!this._pBusyDialog) {
+				this._pBusyDialog = Fragment.load({
+                    id: this.getView().getId(),
+					name: "capdemogru.app.cargoreceipt.view.fragment.BusyDialog",
+					controller: this
+				}).then(
+                    function (oBusyDialog) {
+                        this.getView().addDependent(oBusyDialog);
+                        syncStyleClass("sapUiSizeCompact", this.getView(), oBusyDialog);
+                        return oBusyDialog
+                       
+				}.bind(this));
+			}
+
+            this._pBusyDialog.then(function(oBusyDialog) {
+				oBusyDialog.open();
+                this._getWeight();
+			}.bind(this));
+            
+
+        },
+
+
         onPressSave: function(oEvent){
             this.setAppBusy(true);
 
@@ -299,7 +326,16 @@ sap.ui.define([
             });
         },
 
-
+        onDialogClosed: function (oEvent) {
+            this._pBusyDialog.close();
+            /*
+			if (oEvent.getParameter("cancelPressed")) {
+				MessageToast.show("The operation has been cancelled");
+			} else {
+				MessageToast.show("The operation has been completed");
+			}
+            */
+		},
 
         /* =========================================================== */
         /* internal methods                                            */
@@ -316,7 +352,28 @@ sap.ui.define([
             this.getModel("newObjectView").refresh(true);
         },
 
- 
+        _getWeight: function () {
+
+            this.getView().getModel().callFunction("/getWeight", {    // function import name
+                method: "GET",                             // http method
+                //urlParameters: {"parameter1" : "value1"  }, // function import parameters        
+                success: function(oData, response) { 
+                    this.getModel("newObjectView").setProperty("/pesoBruto", response.data.getWeight.pesoBruto); 
+                    this.getModel("newObjectView").setProperty("/pesoLiquido", response.data.getWeight.pesoLiquido); 
+                    this.getModel("newObjectView").setProperty("/tara", response.data.getWeight.tara); 
+                    this._pBusyDialog.then(function(oBusyDialog) {
+                        oBusyDialog.close();
+                    });
+                }.bind(this),      // callback function for success
+                error: function(oError){ 
+                    this._pBusyDialog.then(function(oBusyDialog) {
+                        oBusyDialog.close();
+                    });
+                }.bind(this)                  // callback function for error
+            });
+            
+		},
+
         _createObjectCargoReceipt: function(sModel){
             let Model = {
                 awb: this._clearFormatting(sModel.awb),

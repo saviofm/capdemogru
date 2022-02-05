@@ -232,34 +232,75 @@
                             visible="{newObjectView>/State/volume/Visible}"
                             enabled="{newObjectView>/State/volume/Enabled}"/>                             
                         <Label text="{i18n>pesoBruto}"/> 
-                        <MaskInput mask="999999,999" 
-                            placeholderSymbol="_" 
-                            required="false" 
-                            value="{newObjectView>/pesoBruto}"
+                        <Input value="{
+                                path:'newObjectView>/pesoBruto', 
+                                type:'sap.ui.model.type.Float',
+                                formatOptions: {
+                                    minFractionDigits:3,
+                                    maxFractionDigits:3,
+                                    decimals: 2,
+                                    decimalSeparator: '.',
+                                    roundingMode: 'HALF_CEILING',
+                                    groupingEnabled: false
+                                }, 
+                                constraints: {
+                                    precision: 15,
+                                    scale: 3
+                                    
+                                }
+                            }"
                             visible="{newObjectView>/State/pesoBruto/Visible}"
-                            enabled="{newObjectView>/State/pesoBruto/Enabled}"/> 
-                        <Label text="{i18n>pesoBruto}"/> 
-                        <MaskInput mask="999999,999" 
-                            placeholderSymbol="_" 
-                            required="false" 
-                            value="{newObjectView>/pesoLiquido}"
+                            enabled="{newObjectView>/State/pesoBruto/Enabled}"/>
+                        
+                        <Label text="{i18n>pesoLiquido}"/> 
+                        <Input value="{
+                                path:'newObjectView>/pesoLiquido', 
+                                type:'sap.ui.model.type.Float',
+                                formatOptions: {
+                                    minFractionDigits:3,
+                                    maxFractionDigits:3,
+                                    decimals: 2,
+                                    decimalSeparator: '.',
+                                    roundingMode: 'HALF_CEILING',
+                                    groupingEnabled: false
+                                }, 
+                                constraints: {
+                                    precision: 15,
+                                    scale: 3
+                                    
+                                }
+                            }"
                             visible="{newObjectView>/State/pesoLiquido/Visible}"
                             enabled="{newObjectView>/State/pesoLiquido/Enabled}"/>                                             
                         <Label text="{i18n>tara}"/> 
-                        <MaskInput mask="999999,999" 
-                            placeholderSymbol="_" 
-                            required="false" 
-                            value="{newObjectView>/tara}"
+                        <Input value="{
+                                path:'newObjectView>/tara', 
+                                type:'sap.ui.model.type.Float',
+                                formatOptions: {
+                                    minFractionDigits:3,
+                                    maxFractionDigits:3,
+                                    decimals: 2,
+                                    decimalSeparator: '.',
+                                    roundingMode: 'HALF_CEILING',
+                                    groupingEnabled: false
+                                }, 
+                                constraints: {
+                                    precision: 15,
+                                    scale: 3
+                                    
+                                }
+                            }"
                             visible="{newObjectView>/State/tara/Visible}"
                             enabled="{newObjectView>/State/tara/Enabled}"/>                                             
                           
                         <Label text=""/>
                         <Button 
                             icon="sap-icon://pdf-reader"
-                            press="getWeight" 
+                            press="onGetWeight" 
                             text="{i18n>getWeight}"
                             type="Emphasized"
-                            visible="true"/>
+                            visible="true"
+                            ariaHasPopup="Dialog"/>
                         
                     </f:content>      
                 </f:SimpleForm> 

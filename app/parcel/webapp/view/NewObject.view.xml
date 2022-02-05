@@ -275,15 +275,25 @@
                             <core:ListItem key="{ID}" text="{airlineCode}" additionalText="{airlineDescription}"/>
                         </ComboBox>                             
                         <Label text="{i18n>pesoBruto}"/> 
-                        <MaskInput
-                            id="pesoBruto"
-                            mask="999999,999" 
-                            placeholderSymbol="_" 
-                            required="false" 
-                            value="{newObjectView>/pesoBruto}"
+                        <Input value="{
+                                path:'newObjectView>/pesoBruto', 
+                                type:'sap.ui.model.type.Float',
+                                formatOptions: {
+                                    minFractionDigits:3,
+                                    maxFractionDigits:3,
+                                    decimals: 2,
+                                    decimalSeparator: '.',
+                                    roundingMode: 'HALF_CEILING',
+                                    groupingEnabled: false
+                                }, 
+                                constraints: {
+                                    precision: 15,
+                                    scale: 3
+                                    
+                                }
+                            }"
                             visible="{newObjectView>/State/pesoBruto/Visible}"
-                            enabled="{newObjectView>/State/pesoBruto/Enabled}"
-                        />                                            
+                            enabled="{newObjectView>/State/pesoBruto/Enabled}"/>                                            
                         <Label text="{i18n>volume}"/> 
                         <Input
                             id="volume"

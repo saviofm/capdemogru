@@ -25,6 +25,7 @@ sap.ui.define([
 		 */
         setAppBusy: function(bBusy) {
 			this.getModel("appView").setProperty("/busy", bBusy);
+            
 		},
 
         /**
