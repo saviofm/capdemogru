@@ -12,8 +12,8 @@
         id="page"
         headerPinnable="false"
         toggleHeaderOnTitleClick="false"
-        busy="{objectView>/busy}"
-        busyIndicatorDelay="{objectView>/delay}"
+        busy="{newObjectView>/busy}"
+        busyIndicatorDelay="{newObjectView>/delay}"
         showFooter="true"
     >
 

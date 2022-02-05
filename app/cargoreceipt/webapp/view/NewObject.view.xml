@@ -15,8 +15,8 @@
         id="page"
         headerPinnable="false"
         toggleHeaderOnTitleClick="false"
-        busy="{objectView>/busy}"
-        busyIndicatorDelay="{objectView>/delay}"
+        busy="{newObjectView>/busy}"
+        busyIndicatorDelay="{newObjectView>/delay}"
         showFooter="true"
     >
 
@@ -315,32 +315,72 @@
                     expandable="{device>/system/phone}"
                     expanded="true"
                     headerText="{i18n>image}"> 
-                <Image  
-                        src="{newObjectView>/image}"
-					    decorative="false"
-                        mode="{objectViewAux>/imageMode}"
-						height="{objectViewAux>/imageHeight}"
-						width="{objectViewAux>/imageWidth}" >
-                        <layoutData>
-							<FlexItemData growFactor="1" />
-						</layoutData>
-                </Image>
-
-		        <uni:FileUploader 
-                    iconOnly="false" 
-                    multiple="false" 
-                    buttonOnly="true" 
-                    icon="sap-icon://add-photo" 
-                    uploadOnChange="false" 
-                    sendXHR="true"
-                    useMultipart="false" 
-                    fileType="JPG,JPEG,jpeg,jpg,PNG,png"
-					sameFilenameAllowed="true" 
-                    typeMissmatch="onTypeMissmatch" 
-                    change="onChangeCamera" 
-                    buttonText="{i18n>getPhoto}"
-                    uploadComplete="onUploadCompleted"/>
-
+                     <VBox>
+                <f:SimpleForm id="imageForm"
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="4"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="0"
+                    emptySpanL="2"
+                    emptySpanM="0"
+                    emptySpanS="0"
+                    columnsXL="2"
+                    columnsL="2"
+                    columnsM="2"
+                    singleContainerFullSize="false">
+                    <f:content>    
+                        <HBox justifyContent="Center" fitContainer="true">
+                            <Image  
+                                src="{newObjectView>/image}"
+                                decorative="false"
+                                mode="{objectViewAux>/imageMode}"
+                                height="{objectViewAux>/imageHeight}"
+                                width="{objectViewAux>/imageWidth}" >
+                               
+                            </Image>
+                        </HBox>
+                    </f:content>
+                </f:SimpleForm>                            
+                <f:SimpleForm id="imagecaptureForm"
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="4"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="0"
+                    emptySpanL="2"
+                    emptySpanM="0"
+                    emptySpanS="0"
+                    columnsXL="2"
+                    columnsL="2"
+                    columnsM="2"
+                    singleContainerFullSize="false">
+                    <f:content> 
+                        <HBox justifyContent="Center" fitContainer="true">
+                            <uni:FileUploader 
+                                iconOnly="false" 
+                                multiple="false" 
+                                buttonOnly="true" 
+                                icon="sap-icon://add-photo" 
+                                uploadOnChange="false" 
+                                sendXHR="true"
+                                useMultipart="false" 
+                                fileType="JPG,JPEG,jpeg,jpg,PNG,png"
+                                sameFilenameAllowed="true" 
+                                typeMissmatch="onTypeMissmatch" 
+                                change="onChangeCamera" 
+                                buttonText="{i18n>getPhoto}"
+                                uploadComplete="onUploadCompleted"/>
+                            </HBox>
+                        </f:content>
+                    </f:SimpleForm>
+                    </VBox>
                 </Panel>
                <Panel backgroundDesign="Transparent"
                     expandable="{device>/system/phone}"

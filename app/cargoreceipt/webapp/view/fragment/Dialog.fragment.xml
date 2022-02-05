@@ -5,7 +5,7 @@
 	<TableSelectDialog
 		id="myDialog"
 		noDataText="No data"
-		title="Select Product"
+		title="{i18n>selectParcel}"
 		search="handleSearch"
         confirm="onPress"
 		cancel="handleClose"

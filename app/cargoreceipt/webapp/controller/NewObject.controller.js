@@ -56,8 +56,8 @@ sap.ui.define([
                 var bIsPhone = Device.system.phone;
 
             var oViewModelAux = new JSONModel({
-                    imageHeight: bIsPhone ? "5em" : "10em",
-                    imageWidth: bIsPhone ? "5em" : "10em",
+                    imageHeight: "10em",
+                    imageWidth:  "10em",
                     imageBackgroundSize: "2em",
                     natureza: []
                 });

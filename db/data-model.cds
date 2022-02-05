@@ -866,7 +866,7 @@ entity CargoReceipt : cuid, managed {
   destinoAwb          : Association to one Airport;
   origemHawb          : Association to one Airport;
   destinoHawb         : Association to one Airport;
-  natureza            : String;
+  natureza            : Composition of many CargoReceiptNatureza on natureza.cargoReceipt = $self;
   volume              : Integer;  
   position            : String(20) not null;
   uld                 : String(11) not null;
@@ -877,6 +877,10 @@ entity CargoReceipt : cuid, managed {
   barcode             : String;
 }
 
+entity CargoReceiptNatureza : cuid {
+    cargoReceipt: Association to one CargoReceipt;
+    natureza : Association to one Natureza;
+}
 
 //Annotation
 annotate CargoReceipt with @(

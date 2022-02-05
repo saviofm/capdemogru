@@ -79,14 +79,7 @@ sap.ui.define([
                     this.getView().getModel("objectViewAux").setProperty('/natureza', aNaturezaBinding);
                 }.bind(this)
             });
-            /*var aNatureza = this.getView().getModel().getObject("/Parcel" + sObjectId +'/natureza');
-            for (let i = 0; i < aNatureza.length; i++){
-                aNatureza[i] = aNatureza[i].substring(
-                    aNatureza[i].indexOf("'") + 1, 
-                    aNatureza[i].lastIndexOf("'")
-                );
-            }
-            //this.getView().byId("naturezaBox").setSelectedKeys(aNatureza);*/
+
         },  
 
         /**

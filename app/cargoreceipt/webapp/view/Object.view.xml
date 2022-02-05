@@ -317,7 +317,7 @@
                                 path: '/Natureza',
                                 sorterimage: { path: 'naturezaCode' }
                             }"
-                            selectedItems="{natureza}"
+                            selectedKeys="{objectViewAux>/natureza}"
                             enabled="false">
                             <core:ListItem key="{ID}" text="{naturezaCode}" additionalText="{naturezaDescription}"/>
                         </MultiComboBox>                            

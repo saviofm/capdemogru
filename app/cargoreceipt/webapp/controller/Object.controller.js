@@ -27,8 +27,15 @@ sap.ui.define([
                     busy : true,
                     delay : 0
                 });
+            var oViewModelAux = new JSONModel({
+                imageHeight: "10em",
+                imageWidth:  "10em",
+                imageBackgroundSize: "2em",
+                natureza: []
+            });
             this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
             this.setModel(oViewModel, "objectView");
+            this.setModel(oViewModelAux, "objectViewAux");
         },
         /* =========================================================== */
         /* event handlers                                              */
@@ -65,7 +72,17 @@ sap.ui.define([
             var sObjectId =  oEvent.getParameter("arguments").objectId;
             this._bindView("/CargoReceipt" + sObjectId);
 
-            
+            var aNaturezaBinding = [];
+            this.getView().getModel().read( `/CargoReceipt${sObjectId}/natureza`, {
+                success: function(oData, aNatureza) {
+                    if (aNatureza.data && aNatureza.data.results){
+                        for (let natureza of aNatureza.data.results){
+                            aNaturezaBinding.push(natureza.natureza_ID);
+                        }
+                    }
+                    this.getView().getModel("objectViewAux").setProperty('/natureza', aNaturezaBinding);
+                }.bind(this)
+            });
         },
 
         /**
