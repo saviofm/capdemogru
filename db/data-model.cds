@@ -874,7 +874,7 @@ entity CargoReceipt : cuid, managed {
   pesoBruto           : Decimal(15,3);
   pesoLiquido         : Decimal(15,3);
   tara                : Decimal(15,3);
-  image               : LargeString @Core.MediaType: 'image/png';
+  image               : LargeString; //@Core.MediaType: 'image/png';
   barcode             : String;
 }
 

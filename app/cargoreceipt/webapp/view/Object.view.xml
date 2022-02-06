@@ -73,30 +73,6 @@
                                     UTC: true
                                 }
                             }"/>
-                            <Label text="{i18n>tablepositionTitle}"
-                            visible="{= ${position} ? true : false }"/>
-                            <Text text="{position}"
-                            visible="{= ${volume} ? true : false }"/>
-                            <Label text="{i18n>tablevolumeTitle}"
-                            visible="{= ${volume} ? true : false }"/>
-                            <Text text="{volume}"
-                            visible="{= ${volume} ? true : false }"/>
-                            <Label text="{i18n>tablepesoLiquidoTitle}"
-                            visible="{= ${pesoLiquido} ? true : false }"/>
-                            <ObjectNumber
-                                number="{
-                                    path: 'pesoLiquido',
-                                    formatter: '.formatter.numberUnit'
-                                }"
-                                visible="{= ${pesoBruto} ? true : false }"/>  
-                            <Label text="{i18n>tableUnitNumberColumnTitle}"
-                            visible="{= ${pesoBruto} ? true : false }"/>
-                            <ObjectNumber
-                                number="{
-                                    path: 'pesoBruto',
-                                    formatter: '.formatter.numberUnit'
-                                }"
-                                visible="{= ${pesoBruto} ? true : false }"/>  
                         </f:content>      
                     </f:SimpleForm>                                     
             </FlexBox>
@@ -166,6 +142,8 @@
                         <Text  text="{ruc}"/>
                         <Label text="{i18n>uld}"/>
                         <Text  text="{uld}"/>
+                        <Label text="{i18n>position}"/>
+                        <Text  text="{position}"/>
                         <Label text="{i18n>declaracao}"/>
                         <HBox >
                             <items>
@@ -315,32 +293,77 @@
                             width="500px"
                             items="{
                                 path: '/Natureza',
-                                sorterimage: { path: 'naturezaCode' }
+                                sorter: { path: 'naturezaCode' }
                             }"
                             selectedKeys="{objectViewAux>/natureza}"
                             enabled="false">
                             <core:ListItem key="{ID}" text="{naturezaCode}" additionalText="{naturezaDescription}"/>
                         </MultiComboBox>                            
-                        <Label text="{i18n>obs}"/> 
-                        <TextArea enabled="false" value="{obs}"/>
                     </f:content>      
                 </f:SimpleForm> 
             </Panel>
             <Panel backgroundDesign="Transparent"
                     expandable="{device>/system/phone}"
                     expanded="true"
-                    headerText="{i18n>}"> 
-                    <Label text="{i18n>image}"/> 
-                    <Image  
-                        src="{image}"
-					    decorative="false"/>
+                    headerText="{i18n>image}"> 
+                <f:SimpleForm id="imageForm"
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="4"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="0"
+                    emptySpanL="2"
+                    emptySpanM="0"
+                    emptySpanS="0"
+                    columnsXL="2"
+                    columnsL="2"
+                    columnsM="2"
+                    singleContainerFullSize="false">
+                    <f:content>    
+                        <HBox justifyContent="Center" fitContainer="true">
+                            <Image  
+                                src="{image}"
+                                decorative="false"
+                                mode="{objectViewAux>/imageMode}"
+                                height="{objectViewAux>/imageHeight}"
+                                width="{objectViewAux>/imageWidth}" >
+                               
+                            </Image>
+                        </HBox>
+                    </f:content>
+                </f:SimpleForm> 
             </Panel>
             <Panel backgroundDesign="Transparent"
                     expandable="{device>/system/phone}"
                     expanded="true"
                     headerText="{i18n>barcode}"> 
-                    <Label text="{i18n>barcode}"/> 
-                    <Text text="{barcode}"/>
+                <f:SimpleForm id="BarcodeForm"
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="4"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="0"
+                    emptySpanL="2"
+                    emptySpanM="0"
+                    emptySpanS="0"
+                    columnsXL="2"
+                    columnsL="2"
+                    columnsM="2"
+                    singleContainerFullSize="false">
+                    <f:content>
+                        <Input 
+                        id="barcodeInput"
+                        value="{barcode}"
+                        visible="true"
+                        enabled="false"/> 
+                    </f:content>
+                </f:SimpleForm>                        
             </Panel>
             </VBox>             
         </semantic:content>

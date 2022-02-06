@@ -100,8 +100,20 @@ sap.ui.define([
                 var sQuery = oEvent.getParameter("query");
 
                 if (sQuery && sQuery.length > 0) {
-                    aTableSearchState = [new Filter("awb", FilterOperator.Contains, sQuery)];
+                    aTableSearchState = new Filter({
+                        and: false,
+                        filters: [
+                            new Filter("awb",     FilterOperator.Contains, sQuery),
+                            new Filter("airline/airlineCode",     FilterOperator.Contains, sQuery),
+                            new Filter("uld",      FilterOperator.Contains, sQuery),
+                            new Filter("origemAwb/iata", FilterOperator.Contains, sQuery),
+                            new Filter("destinoAwb/iata", FilterOperator.Contains, sQuery),
+                            new Filter("ncm",      FilterOperator.Contains, sQuery),
+                            new Filter("posicao",      FilterOperator.Contains, sQuery),
+                        ]
+                    })
                 }
+               
                 this._applySearch(aTableSearchState);
             }
 

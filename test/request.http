@@ -16,3 +16,9 @@ content-type: application/json
 {{me}}
 
 
+### ------------------------------------------------------------------------
+# Get CargoReceipt
+GET  {{server}}/v2/catalog/CargoReceipt(c95cddc6-077e-4a78-aaaa-b90e82419d79) 
+content-type: application/json
+{{me}}
+
