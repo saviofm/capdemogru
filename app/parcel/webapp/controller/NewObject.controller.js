@@ -85,7 +85,7 @@ sap.ui.define([
 		},
 
         onValidationFields: function(oEvent){
-            let aFieldClass = ["awb", "ruc", "cpfDriver", "confirm", "dtEmissaoDAT"],
+            let aFieldClass = ["awb", "cpfDriver", "confirm", "dtEmissaoDAT"],
                 oModel      = this.getModel("newObjectView").getData(),
                 bValid      = true;
 

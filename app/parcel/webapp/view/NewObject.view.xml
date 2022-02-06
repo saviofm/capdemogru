@@ -100,7 +100,7 @@
                             id="ruc"
                             mask="99999999999" 
                             placeholderSymbol="_" 
-                            required="true" 
+                            required="false" 
                             value="{newObjectView>/ruc}"
                             visible="{newObjectView>/State/ruc/Visible}"
                             enabled="{newObjectView>/State/ruc/Enabled}"
