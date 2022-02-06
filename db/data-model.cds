@@ -390,7 +390,7 @@ entity PreParcel : cuid, managed {
   hawb                : String(20);
   declaracao          : Association to one Declaracao;
   declaracaoNr        : String(15);
-  ruc                 : String(11) not null;
+  ruc                 : String(11) ;
   transit             : Boolean;
   airTransit          : Boolean;
   origemAwb           : Association to one Airport;
@@ -852,7 +852,7 @@ entity CargoReceipt : cuid, managed {
   awb                 : String(11) not null; //
   hawb                : String(20); //
   preParcel           : Association to one PreParcel;
-  ruc                 : String not null; //
+  ruc                 : String ; //
   transit             : Boolean; //
   express             : Boolean; //
   manualCargo         : Boolean; 
@@ -874,7 +874,7 @@ entity CargoReceipt : cuid, managed {
   pesoBruto           : Decimal(15,3);
   pesoLiquido         : Decimal(15,3);
   tara                : Decimal(15,3);
-  image               : LargeBinary @Core.MediaType: 'image/png';
+  image               : LargeString @Core.MediaType: 'image/png';
   barcode             : String;
 }
 
@@ -932,9 +932,9 @@ annotate CargoReceipt with @(
     ruc @(
         title       : '{i18n>ruc}',
         description : '{i18n>ruc}',
-        Common      : {
-            FieldControl             : #Mandatory
-        }
+        //Common      : {
+        //    FieldControl             : #Mandatory
+        //}
     );
     transit       @(
         title       : '{i18n>transit}',
@@ -1146,8 +1146,8 @@ annotate CargoReceipt with @(
         description : '{i18n>position}'
     ); 
     uld @(
-        title       : '{i18n>position}',
-        description : '{i18n>position}'
+        title       : '{i18n>uld}',
+        description : '{i18n>uld}'
     ); 
     pesoBruto @(
         title       : '{i18n>pesoBruto}',
@@ -1171,7 +1171,7 @@ annotate CargoReceipt with @(
     );
 };
 
-
+/*
 //------------------------ ULD -------------------------//
 //------------------------------------------------------//
 //------------------------------------------------------//
@@ -1368,3 +1368,4 @@ annotate PackageDimension with @(
         }
    );   
 };
+*/

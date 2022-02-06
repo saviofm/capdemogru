@@ -7,11 +7,12 @@ sap.ui.define([
 			return {
 				awb: "",
         hawb: "",
+        ruc: "",
         uld: "",
         preParcel: "",
         declaracao: "",
         declaracaoNr: "",
-        ruc: "",
+        position: "",
         transit: false,
         express: false,
         manualCargo: false,
@@ -49,6 +50,12 @@ sap.ui.define([
             ValueState: sap.ui.core.ValueState.None,
             ValueStateText: ""
           },
+          ruc: {
+            Enabled: true,
+            Visible: true,
+            ValueState: sap.ui.core.ValueState.None,
+            ValueStateText: ""
+          },
           declaracao: {
             Enabled: true,
             Visible: true,
@@ -61,7 +68,7 @@ sap.ui.define([
             ValueState: sap.ui.core.ValueState.None,
             ValueStateText: ""
           },
-          ruc: {
+          position: {
             Enabled: true,
             Visible: true,
             ValueState: sap.ui.core.ValueState.None,

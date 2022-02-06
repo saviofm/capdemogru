@@ -103,7 +103,7 @@ sap.ui.define([
             }
         },
         onValidationFields: function(oEvent){
-            let aFieldClass = ["awb", "ruc", "uld", "pesoBruto", "pesoLiquido", "volume"],
+            let aFieldClass = ["awb", "position", "uld", "pesoBruto", "pesoLiquido", "volume"],
                 oModel      = this.getModel("newObjectView").getData(),
                 bValid      = true;
 
@@ -383,6 +383,7 @@ sap.ui.define([
             Model.setProperty("/awb", oData.awb);
             Model.setProperty("/hawb", oData.hawb);
             Model.setProperty("/ruc", oData.ruc);
+            Model.setProperty("/position", oData.position);
             Model.setProperty("/declaracaoNr", oData.declaracaoNr);
             Model.setProperty("/transit", oData.transit);
             Model.setProperty("/express", oData.express);
@@ -411,15 +412,16 @@ sap.ui.define([
             let Model = {
                 awb: this._clearFormatting(sModel.awb),
                 hawb: this._clearFormatting(sModel.hawb),     
-                ruc: this._clearFormatting(sModel.ruc),
+                ruc:  sModel.ruc,
+                uld:  sModel.uld,
                 declaracaoNr: sModel.declaracaoNr,
                 transit: sModel.transit,
                 express: sModel.express,
                 manualCargo: sModel.manualCargo,
                 dseManual: sModel.dseManual,            
                 volume: sModel.volume,   
-                conteudo: sModel.conteudo,   
                 bagDesacomp: sModel.bagDesacomp,
+                position: sModel.position,
                 ncm: this._clearFormatting(sModel.ncm),
                 image: sModel.image,
                 barcode: sModel.barcode

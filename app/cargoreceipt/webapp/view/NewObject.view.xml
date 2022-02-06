@@ -83,9 +83,10 @@
                         />
                         <Label text="{i18n>ruc}"/>
                         <MaskInput
+                            id="ruc"
                             mask="99999999999" 
                             placeholderSymbol="_" 
-                            required="true" 
+                            required="false" 
                             value="{newObjectView>/ruc}"
                             visible="{newObjectView>/State/ruc/Visible}"
                             enabled="{newObjectView>/State/ruc/Enabled}"
@@ -93,6 +94,7 @@
                             valueStateText="{newObjectView>/State/ruc/ValueStateText}"
                             change="onValidationFields"
                         />
+                        
                         <Label text="{i18n>uld}"/>
                         <Input
                             required="true" 
@@ -103,6 +105,17 @@
                             valueStateText="{newObjectView>/State/uld/ValueStateText}"
                             change="onValidationFields"
                         />
+                        
+                        <Label text="{i18n>position}"/>
+                        <Input 
+                            required="true" 
+                            value="{newObjectView>/position}"
+                            visible="{newObjectView>/State/position/Visible}"
+                            enabled="{newObjectView>/State/position/Enabled}"
+                            valueState="{newObjectView>/State/position/ValueState}"
+                            valueStateText="{newObjectView>/State/position/ValueStateText}"
+                            change="onValidationFields"/>
+                        
                         <Label text="{i18n>declaracao}"/>
                         <HBox >
                             <items>
@@ -127,7 +140,8 @@
                                  </Input>
                             </items>      
                         </HBox> 
-                        
+                       
+
                         <core:Title text="{i18n>details2}"/>
                         <Label  text="{i18n>transit}"/>
                         <CheckBox selected="{newObjectView>/transit}"/>  
