@@ -867,6 +867,7 @@ entity CargoReceipt : cuid, managed {
   origemHawb          : Association to one Airport;
   destinoHawb         : Association to one Airport;
   natureza            : Composition of many CargoReceiptNatureza on natureza.cargoReceipt = $self;
+  ncm                 : String(8);
   volume              : Integer;  
   position            : String(20) not null;
   uld                 : String(11) not null;

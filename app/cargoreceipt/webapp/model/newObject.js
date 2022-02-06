@@ -7,6 +7,7 @@ sap.ui.define([
 			return {
 				awb: "",
         hawb: "",
+        uld: "",
         preParcel: "",
         declaracao: "",
         declaracaoNr: "",
@@ -37,6 +38,12 @@ sap.ui.define([
             ValueStateText: ""
           },
           hawb: {
+            Enabled: true,
+            Visible: true,
+            ValueState: sap.ui.core.ValueState.None,
+            ValueStateText: ""
+          },
+          uld: {
             Enabled: true,
             Visible: true,
             ValueState: sap.ui.core.ValueState.None,
@@ -165,6 +172,12 @@ sap.ui.define([
           },
           barcode: {
             Enabled: true,
+            Visible: true,
+            ValueState: sap.ui.core.ValueState.None,
+            ValueStateText: ""
+          },
+          buttonSave: {
+            Enabled: false,
             Visible: true,
             ValueState: sap.ui.core.ValueState.None,
             ValueStateText: ""

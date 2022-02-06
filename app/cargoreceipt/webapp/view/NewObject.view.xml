@@ -65,15 +65,21 @@
                             value="{newObjectView>/awb}"
                             visible="{newObjectView>/State/awb/Visible}"
                             enabled="{newObjectView>/State/awb/Enabled}"
+                            valueState="{newObjectView>/State/awb/ValueState}"
+                            valueStateText="{newObjectView>/State/awb/ValueStateText}"
+                            change="onValidationFields"
                         />
                         <Label text="{i18n>hawb}"/>
                         <MaskInput 
                             mask="999-99999999" 
                             placeholderSymbol="_" 
-                            required="true"
+                            required="false"
                             value="{newObjectView>/hawb}"
                             visible="{newObjectView>/State/hawb/Visible}"
                             enabled="{newObjectView>/State/hawb/Enabled}"
+                            valueState="{newObjectView>/State/hawb/ValueState}"
+                            valueStateText="{newObjectView>/State/hawb/ValueStateText}"
+                            change="onValidationFields"
                         />
                         <Label text="{i18n>ruc}"/>
                         <MaskInput
@@ -83,6 +89,9 @@
                             value="{newObjectView>/ruc}"
                             visible="{newObjectView>/State/ruc/Visible}"
                             enabled="{newObjectView>/State/ruc/Enabled}"
+                            valueState="{newObjectView>/State/ruc/ValueState}"
+                            valueStateText="{newObjectView>/State/ruc/ValueStateText}"
+                            change="onValidationFields"
                         />
                         <Label text="{i18n>uld}"/>
                         <Input
@@ -90,6 +99,9 @@
                             value="{newObjectView>/uld}"
                             visible="{newObjectView>/State/uld/Visible}"
                             enabled="{newObjectView>/State/uld/Enabled}"
+                            valueState="{newObjectView>/State/uld/ValueState}"
+                            valueStateText="{newObjectView>/State/uld/ValueStateText}"
+                            change="onValidationFields"
                         />
                         <Label text="{i18n>declaracao}"/>
                         <HBox >
@@ -230,7 +242,10 @@
                             required="false" 
                             value="{newObjectView>/volume}"
                             visible="{newObjectView>/State/volume/Visible}"
-                            enabled="{newObjectView>/State/volume/Enabled}"/>                             
+                            enabled="{newObjectView>/State/volume/Enabled}"
+                            valueState="{newObjectView>/State/volume/ValueState}"
+                            valueStateText="{newObjectView>/State/volume/ValueStateText}"
+                            change="onValidationFields"/>                             
                         <Label text="{i18n>pesoBruto}"/> 
                         <Input value="{
                                 path:'newObjectView>/pesoBruto', 
@@ -250,7 +265,10 @@
                                 }
                             }"
                             visible="{newObjectView>/State/pesoBruto/Visible}"
-                            enabled="{newObjectView>/State/pesoBruto/Enabled}"/>
+                            enabled="{newObjectView>/State/pesoBruto/Enabled}"
+                            valueState="{newObjectView>/State/pesoBruto/ValueState}"
+                            valueStateText="{newObjectView>/State/pesoBruto/ValueStateText}"
+                            change="onValidationFields"/>
                         
                         <Label text="{i18n>pesoLiquido}"/> 
                         <Input value="{
@@ -271,7 +289,10 @@
                                 }
                             }"
                             visible="{newObjectView>/State/pesoLiquido/Visible}"
-                            enabled="{newObjectView>/State/pesoLiquido/Enabled}"/>                                             
+                            enabled="{newObjectView>/State/pesoLiquido/Enabled}"
+                            valueState="{newObjectView>/State/pesoLiquido/ValueState}"
+                            valueStateText="{newObjectView>/State/pesoLiquido/ValueStateText}"
+                            change="onValidationFields"/>                                             
                         <Label text="{i18n>tara}"/> 
                         <Input value="{
                                 path:'newObjectView>/tara', 
@@ -345,7 +366,7 @@
                                 path: '/Natureza',
                                 sorter: { path: 'naturezaCode' }
                             }"
-                            selectedItems="{newObjectView>/natureza}"
+                            selectedKeys="{newObjectView>/natureza}"
                         >
                             <core:ListItem key="{ID}" text="{naturezaCode}" additionalText="{naturezaDescription}"/>
                         </MultiComboBox>                            
@@ -475,7 +496,7 @@
             <semantic:FooterMainAction 
                 text="{i18n>ObjectButtonSave}" 
                 press="onPressSave"
-                enabled="{newObjectView>/confirm}"
+                enabled="{newObjectView>/State/buttonSave/Enabled}"
                 id="saveButton"
             />
         </semantic:footerMainAction>

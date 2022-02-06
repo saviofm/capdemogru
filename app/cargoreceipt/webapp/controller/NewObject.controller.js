@@ -236,6 +236,7 @@ sap.ui.define([
                 success: function(oData){
                     this.setAppBusy(false);
                     console.log(oData);
+                    this._moveParcelFields(oData);
                 }.bind(this),
                 error: function(oError){
                     this.setAppBusy(false);
@@ -361,6 +362,7 @@ sap.ui.define([
                     this.getModel("newObjectView").setProperty("/pesoBruto", response.data.getWeight.pesoBruto); 
                     this.getModel("newObjectView").setProperty("/pesoLiquido", response.data.getWeight.pesoLiquido); 
                     this.getModel("newObjectView").setProperty("/tara", response.data.getWeight.tara); 
+                    this.onValidationFields();
                     this._pBusyDialog.then(function(oBusyDialog) {
                         oBusyDialog.close();
                     });
@@ -373,6 +375,37 @@ sap.ui.define([
             });
             
 		},
+
+        _moveParcelFields: function(oData) {
+            let Model = this.getModel("newObjectView");
+            Model.setProperty("/preParcel", oData.ID);
+            Model.setProperty("/State/awb/Enabled", false);
+            Model.setProperty("/awb", oData.awb);
+            Model.setProperty("/hawb", oData.hawb);
+            Model.setProperty("/ruc", oData.ruc);
+            Model.setProperty("/declaracaoNr", oData.declaracaoNr);
+            Model.setProperty("/transit", oData.transit);
+            Model.setProperty("/express", oData.express);
+            Model.setProperty("/dseManual", oData.dseManual);
+            Model.setProperty("/volume", oData.volume);
+            Model.setProperty("/pesoBruto", oData.pesoBruto);
+            Model.setProperty("/ncm", oData.ncm);
+            Model.setProperty("/declaracao", oData.declaracao.declaracao);
+            Model.setProperty("/origemAwb", oData.origemAwb.ID);
+            Model.setProperty("/destinoAwb", oData.destinoAwb.ID);
+            Model.setProperty("/origemHawb", oData.origemHawb.ID);
+            Model.setProperty("/destinoHawb", oData.destinoHawb.ID);
+            Model.setProperty("/airline", oData.airline.ID);
+
+            //Natureza
+            var aNaturezaBinding = [];
+            if (oData.natureza && oData.natureza.results ){
+                for (let natureza of oData.natureza.results){
+                    aNaturezaBinding.push(natureza.natureza_ID);
+                }
+            }
+            Model.setProperty("/natureza", aNaturezaBinding);
+        },
 
         _createObjectCargoReceipt: function(sModel){
             let Model = {
