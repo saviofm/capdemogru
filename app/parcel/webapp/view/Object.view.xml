@@ -259,14 +259,15 @@
                                 <Text  text=" - "/> 
                                 <Text  text="{airline/airlineDescription}"/>
                             </items>                      
-                        </HBox>    
+                        </HBox>  
+                        <Label text="{i18n>volume}"/> 
+                        <Text text="{volume}"/>  
                         <Label text="{i18n>pesoBruto}"/> 
                         <Text text="{
                                     path: 'pesoBruto',
                                     formatter: '.formatter.numberUnit'
                                 }" />                                            
-                        <Label text="{i18n>volume}"/> 
-                        <Text text="{volume}"/>
+                        
                         <Label text="{i18n>package}"/>
                         <HBox >
                             <items>

@@ -94,7 +94,7 @@ sap.ui.define([
                     oModel.State[sField].ValueState     = sap.ui.core.ValueState.Error;
                     oModel.State[sField].ValueStateText = this.getResourceBundle().getText("validationRequiredField");
                     bValid = false;
-                    buttonSave    }else {
+                } else {
                     oModel.State[sField].ValueState     = sap.ui.core.ValueState.None;
                     oModel.State[sField].ValueStateText = "";
                 }

@@ -76,7 +76,8 @@
                 </headerToolbar>
 
                 <columns>
-                    <Column id="nameColumn">
+                    <Column id="nameColumn"
+                        width="8em">
                         <Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
                     </Column>
                     <Column 

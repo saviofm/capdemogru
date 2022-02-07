@@ -248,16 +248,24 @@
                             }">
                             <core:ListItem key="{ID}" text="{airlineCode}" additionalText="{airlineDescription}"/>
                         </ComboBox>   
-                        <Label text="{i18n>volume}"/>  
-                        <MaskInput mask="99999" 
-                            placeholderSymbol="_" 
-                            required="false" 
-                            value="{newObjectView>/volume}"
+                        <Label text="{i18n>volume}"/>
+                        <Input
+                            id="volume"
+                            type="Number"
+                            value="{
+                                path 'newObjectView>/volume',
+                                type: 'sap.ui.model.type.Integer',
+                                formatOptions: {
+                                    minIntegerDigits: 0,
+                                    maxIntegerDigits: 5
+                                }
+                            }"
                             visible="{newObjectView>/State/volume/Visible}"
                             enabled="{newObjectView>/State/volume/Enabled}"
                             valueState="{newObjectView>/State/volume/ValueState}"
                             valueStateText="{newObjectView>/State/volume/ValueStateText}"
-                            change="onValidationFields"/>                             
+                            change="onValidationFields"
+                        />              
                         <Label text="{i18n>pesoBruto}"/> 
                         <Input value="{
                                 path:'newObjectView>/pesoBruto', 

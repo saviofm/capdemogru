@@ -152,6 +152,7 @@
                             valueState="{newObjectView>/State/dtEmissaoDAT/ValueState}"
                             valueStateText="{newObjectView>/State/dtEmissaoDAT/ValueStateText}"
                             change="onValidationFields"
+                            required="true"
                         />
                         <Label  text="{i18n>cpfDriver}"/> 
                         <MaskInput
@@ -274,8 +275,25 @@
                         >
                             <core:ListItem key="{ID}" text="{airlineCode}" additionalText="{airlineDescription}"/>
                         </ComboBox>                             
+                                         
+                        <Label text="{i18n>volume}"/> 
+                        <Input
+                            id="volume"
+                            type="Number"
+                            value="{
+                                path 'newObjectView>/volume',
+                                type: 'sap.ui.model.type.Integer',
+                                formatOptions: {
+                                    minIntegerDigits: 0,
+                                    maxIntegerDigits: 5
+                                }
+                            }"
+                            visible="{newObjectView>/State/volume/Visible}"
+                            enabled="{newObjectView>/State/volume/Enabled}"
+                        />       
                         <Label text="{i18n>pesoBruto}"/> 
-                        <Input value="{
+                        <Input 
+                            value="{
                                 path:'newObjectView>/pesoBruto', 
                                 type:'sap.ui.model.type.Float',
                                 formatOptions: {
@@ -293,16 +311,7 @@
                                 }
                             }"
                             visible="{newObjectView>/State/pesoBruto/Visible}"
-                            enabled="{newObjectView>/State/pesoBruto/Enabled}"/>                                            
-                        <Label text="{i18n>volume}"/> 
-                        <Input
-                            id="volume"
-                            type="Number"
-                            value="{newObjectView>/volume}"
-                            visible="{newObjectView>/State/volume/Visible}"
-                            enabled="{newObjectView>/State/volume/Enabled}"
-                        />       
-                        
+                            enabled="{newObjectView>/State/pesoBruto/Enabled}"/>   
                         <Label text="{i18n>package}"/>
                         <ComboBox
                             id="package"

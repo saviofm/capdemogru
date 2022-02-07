@@ -17,10 +17,11 @@
 |**Add Eslint configuration**<br>False|
 |**Enable Telemetry**<br>False|
 
-## parcel
-
-Pré-Cadastro
-
+## CAPDEMO
+TO DO:
+AJUST VIEWS MODELS WHO CONTROLS BUSY AND DELAY to APP VIEW in both apps (parcel/cargoreceipt)
+INTEGRATE IMAGE CAPTURE WITH S3
+ADD A COLLECTION TO UPLOAD AND SEE PDFs and INTEGRATE WITH S3
 ### Starting the generated app
 
 -   This app has been generated using the SAP Fiori tools - App Generator, as part of the SAP Fiori tools suite.  In order to launch the generated app, simply run the following from the generated app root folder:

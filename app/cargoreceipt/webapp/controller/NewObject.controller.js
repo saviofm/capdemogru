@@ -58,7 +58,7 @@ sap.ui.define([
                     busy : true,
                     delay : 0
                 });
-            let bIsPhone = Device.system.phone;
+            //let bIsPhone = Device.system.phone;
 
             let oViewModelAux = new JSONModel({
                     imageHeight: "10em",
@@ -115,7 +115,7 @@ sap.ui.define([
                     oModel.State[sField].ValueState     = sap.ui.core.ValueState.Error;
                     oModel.State[sField].ValueStateText = this.getResourceBundle().getText("validationRequiredField");
                     bValid = false;
-                }else {
+                } else {
                     oModel.State[sField].ValueState     = sap.ui.core.ValueState.None;
                     oModel.State[sField].ValueStateText = "";
                 }
