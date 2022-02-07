@@ -47,17 +47,20 @@ sap.ui.define([
          * Called when the worklist controller is instantiated.
          * @public
          */
+        /**
+         * @override
+         */
         onInit : function () {
             // Model used to manipulate control states. The chosen values make sure,
             // detail page shows busy indication immediately so there is no break in
             // between the busy indication for loading the view's meta data
-            var oViewModel = new JSONModel({
+            let oViewModel = new JSONModel({
                     busy : true,
                     delay : 0
                 });
-                var bIsPhone = Device.system.phone;
+            let bIsPhone = Device.system.phone;
 
-            var oViewModelAux = new JSONModel({
+            let oViewModelAux = new JSONModel({
                     imageHeight: "10em",
                     imageWidth:  "10em",
                     imageBackgroundSize: "2em",
@@ -67,21 +70,21 @@ sap.ui.define([
             this.getRouter().getRoute("newObject").attachPatternMatched(this._onObjectMatched, this);
             this.setModel(oViewModel, "newObjectView");
             this.getView().setModel(oViewModelAux, "objectViewAux");
+        },
 
-
-			if (!this._pDialog) {
-				this._pDialog = Fragment.load({
-					id: this.getView().getId(),
-					name: "capdemogru.app.cargoreceipt.view.fragment.Dialog",
-					controller: this
-				}).then(
-                    function(oDialog){
-                        this.getView().addDependent(oDialog);
-                        oDialog.open();
-				    }.bind(this)
-                );
+        onAfterRendering: function() {
+            // Reset the scan result
+            var oScanButton = this.getView().byId('BarcodeScannerButton');
+            if (oScanButton) {
+                $(oScanButton.getDomRef()).on("click", function(){
+                    //oScanResultText.setText('');
+                    this.getModel("newObjectView").setProperty("/barcode", "");
+                    //this.getView().byId("barcodeInput").setValue('');
+                }.bind(this));
             }
         },
+
+
         /* =========================================================== */
         /* event handlers                                              */
         /* =========================================================== */
@@ -195,18 +198,6 @@ sap.ui.define([
             // User can implement the validation about inputting value
         },
 
-        onAfterRendering: function() {
-            // Reset the scan result
-            var oScanButton = this.getView().byId('BarcodeScannerButton');
-            if (oScanButton) {
-                $(oScanButton.getDomRef()).on("click", function(){
-                    //oScanResultText.setText('');
-                    this.getModel("newObjectView").setProperty("/barcode", "");
-                    //this.getView().byId("barcodeInput").setValue('');
-                }.bind(this));
-            }
-        },
-
         handleDateChange: function (oEvent) {
 			var 
 				oDP = oEvent.getSource(),	
@@ -275,7 +266,14 @@ sap.ui.define([
         },
 
         handleClose: function(oEvent){
-            this._pDialog.close();
+            let oBinding = this.byId("myDialog").getBinding("items");
+
+			oBinding.filter([]);
+
+			var aContexts = oEvent.getParameter("selectedContexts");
+			if (aContexts && aContexts.length) {
+				//MessageToast.show("You have chosen " + aContexts.map(function (oContext) { return oContext.getObject().Name; }).join(", "));
+			}
         },
 
         onGetWeight: function(oEvent){
@@ -328,6 +326,10 @@ sap.ui.define([
         },
 
         onDialogClosed: function (oEvent) {
+            /*this._pBusyDialog.then(function(oBusyDialog) {
+                oBusyDialog.close();
+            });*/
+
             this._pBusyDialog.close();
             /*
 			if (oEvent.getParameter("cancelPressed")) {
@@ -348,9 +350,26 @@ sap.ui.define([
          * @param {sap.ui.base.Event} oEvent pattern match event in route 'object'
          * @private
          */
-        _onObjectMatched : function (oEvent) {
+        _onObjectMatched: async function (oEvent) {
             this.getModel("newObjectView").setData(NewObject.initModel());
             this.getModel("newObjectView").refresh(true);
+
+            if(!this._pDialog) {
+				this._pDialog = await Fragment.load({
+					id: this.getView().getId(),
+					name: "capdemogru.app.cargoreceipt.view.fragment.Dialog",
+					controller: this
+				}).then(
+                    function(oDialog){
+                        this.getView().addDependent(oDialog);
+                        oDialog.open();
+
+                        return oDialog
+				    }.bind(this)
+                );
+            }else{
+                this._pDialog.open();
+            }
         },
 
         _getWeight: function () {
@@ -461,7 +480,7 @@ sap.ui.define([
         },
 
         _applySearch: function(aTableSearchState) {
-            var oTable     = this.byId("myDialog"),
+            let oTable     = this.byId("myDialog"),
                 oViewModel = this.getModel("newObjectView");
 
             oTable.getBinding("items").filter(aTableSearchState, "Application");

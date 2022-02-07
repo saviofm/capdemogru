@@ -2,11 +2,9 @@
     controllerName="capdemogru.app.cargoreceipt.controller.NewObject"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
     xmlns:semantic="sap.f.semantic"
     xmlns:core="sap.ui.core"
-    xmlns:smartField="sap.ui.comp.smartfield" 
     xmlns:ndc="sap.ndc"
     xmlns:uni="sap.ui.unified"
 >
@@ -335,7 +333,7 @@
                             text="{i18n>getWeight}"
                             type="Emphasized"
                             visible="true"
-                            ariaHasPopup="Dialog"/>
+                        />
                         
                     </f:content>      
                 </f:SimpleForm> 
