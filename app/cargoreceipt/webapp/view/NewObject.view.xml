@@ -188,7 +188,7 @@
                             showSecondaryValues= "true"
                             items="{ 
                                 path: '/Airport',
-                                length: '5000'
+                                length: '500'
                             }">
                             <core:ListItem key="{ID}" text="{iata}" additionalText="{airportDescription}"/>
             
@@ -201,7 +201,7 @@
                             showSecondaryValues= "true"
                             items="{ 
                                 path: '/Airport',
-                                length: '5000'
+                                length: '500'
                             }">
                             <core:ListItem key="{ID}" text="{iata}" additionalText="{airportDescription}"/>
                         </ComboBox>
@@ -213,7 +213,7 @@
                             showSecondaryValues= "true"
                             items="{ 
                                 path: '/Airport',
-                                length: '5000'
+                                length: '500'
                             }">
                             <core:ListItem key="{ID}" text="{iata}" additionalText="{airportDescription}"/>
             
@@ -227,7 +227,7 @@
                             showSecondaryValues= "true"
                             items="{ 
                                 path: '/Airport',
-                                length: '5000'
+                                length: '500'
                             }">
                             <core:ListItem key="{ID}" text="{iata}" additionalText="{airportDescription}"/>
                         </ComboBox>
@@ -244,7 +244,7 @@
                             showSecondaryValues= "true"
                             items="{ 
                                 path: '/Airline',
-                                length: '200'
+                                length: '500'
                             }">
                             <core:ListItem key="{ID}" text="{airlineCode}" additionalText="{airlineDescription}"/>
                         </ComboBox>   

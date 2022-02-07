@@ -15,6 +15,25 @@ GET  {{server}}/v2/catalog/Parcel(203ef2a8-2b65-4694-bbc9-6ff3d3243849)
 content-type: application/json
 {{me}}
 
+### ------------------------------------------------------------------------
+# Get Parcel ONLY ID
+GET  {{server}}/v2/catalog/Parcel?$select=ID
+content-type: application/json
+{{me}}
+
+### ------------------------------------------------------------------------
+# Delete Parcel
+DELETE   {{server}}/v2/catalog/Parcel(19b61d51-6dcb-4d87-a0ea-908912334c34) 
+content-type: application/json
+{{me}} 
+
+### ------------------------------------------------------------------------
+# Get Parcel ONLY ID
+GET  {{server}}/v2/catalog/Package
+content-type: application/json
+{{me}}
+
+
 
 ### ------------------------------------------------------------------------
 # Get CargoReceipt
@@ -22,9 +41,22 @@ GET  {{server}}/v2/catalog/CargoReceipt(c95cddc6-077e-4a78-aaaa-b90e82419d79)
 content-type: application/json
 {{me}}
 
+### ------------------------------------------------------------------------
+# Delete CargoReceipt
+DELETE   {{server}}/v2/catalog/Parcel(c95cddc6-077e-4a78-aaaa-b90e82419d79) 
+content-type: application/json
+{{me}} 
 
 ### ------------------------------------------------------------------------
-# Get CargoReceipt
+# Get CargoReceipt ONLY ID
+GET  {{server}}/v2/catalog/CargoReceipt?$select=ID,preParcel
+content-type: application/json
+{{me}}
+
+
+
+### ------------------------------------------------------------------------
+# Patch CargoReceipt
 PATCH   {{server}}/v2/catalog/CargoReceipt(c95cddc6-077e-4a78-aaaa-b90e82419d79) 
 content-type: application/json
 {{me}} 
@@ -32,4 +64,10 @@ content-type: application/json
 {
     "image": ""
 }
+### ------------------------------------------------------------------------
+# Delete CargoReceipt
+DELETE   {{server}}/v2/catalog/CargoReceipt(c95cddc6-077e-4a78-aaaa-b90e82419d79) 
+content-type: application/json
+
+
 
