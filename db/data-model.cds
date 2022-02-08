@@ -487,9 +487,6 @@ annotate PreParcel with @(
     ruc @(
         title       : '{i18n>ruc}',
         description : '{i18n>ruc}',
-        Common      : {
-            FieldControl             : #Mandatory
-        }
     );
     transit       @(
         title       : '{i18n>transit}',

@@ -17,7 +17,7 @@ content-type: application/json
 
 ### ------------------------------------------------------------------------
 # Get Parcel ONLY ID
-GET  {{server}}/v2/catalog/Parcel?$select=ID
+GET  {{server}}/v2/catalog/Airline
 content-type: application/json
 {{me}}
 
@@ -71,3 +71,11 @@ content-type: application/json
 
 
 
+
+
+
+### ------------------------------------------------------------------------
+# Post Airline
+GET  {{server}}/v2/catalog/Airline
+content-type: application/json
+{{me}}

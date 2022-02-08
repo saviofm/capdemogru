@@ -1,4 +1,4 @@
-PartnerTypeCode;PartnerTypeCodeDescription;
-AG;Agente;
-EX;Exportador;
-TR;Transportadora;
+PartnerTypeCode;PartnerTypeCodeDescription
+AG;Agente
+EX;Exportador
+TR;Transportadora
