@@ -11,7 +11,7 @@ content-type: application/json
 
 ### ------------------------------------------------------------------------
 # Get Parcel
-GET  {{server}}/v2/catalog/Parcel(203ef2a8-2b65-4694-bbc9-6ff3d3243849) 
+GET  {{server}}/v2/catalog/Parcel
 content-type: application/json
 {{me}}
 
@@ -23,7 +23,7 @@ content-type: application/json
 
 ### ------------------------------------------------------------------------
 # Delete Parcel
-DELETE   {{server}}/v2/catalog/Parcel(19b61d51-6dcb-4d87-a0ea-908912334c34) 
+DELETE   {{server}}/v2/catalog/Parcel(5e3199a2-c3a5-434f-8848-6ab95ff761d8) 
 content-type: application/json
 {{me}} 
 
