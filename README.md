@@ -1,2 +1,2 @@
 # capdemowm
-Demo GRU Airport
+Demo WM Airport

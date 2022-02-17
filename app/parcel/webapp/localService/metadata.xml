@@ -2775,8 +2775,8 @@
                     <Annotation Term="Core.Description" String="Observações"/>
                 </Annotations>
                 <Annotations Target="CatalogService.PreParcel/confirm" xmlns="http://docs.oasis-open.org/odata/ns/edm">
-                    <Annotation Term="Common.Label" String="Ao realizar o Pré-cadastro, o exportador concorda com os termpos e condições de uso do Terminal de CArga de Exportação, disponível em http://www.grucargo.com.br/"/>
-                    <Annotation Term="Core.Description" String="Ao realizar o Pré-cadastro, o exportador concorda com os termpos e condições de uso do Terminal de CArga de Exportação, disponível em http://www.grucargo.com.br/"/>
+                    <Annotation Term="Common.Label" String="Ao realizar o Pré-cadastro, o exportador concorda com os termos e condições de uso"/>
+                    <Annotation Term="Core.Description" String="Ao realizar o Pré-cadastro, o exportador concorda com os termos e condições de uso"/>
                 </Annotations>
                 <Annotations Target="CatalogService.PreParcel/IsActiveEntity" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                     <Annotation Term="UI.Hidden" Bool="true"/>
@@ -3241,8 +3241,8 @@
                     <Annotation Term="Core.Description" String="Observações"/>
                 </Annotations>
                 <Annotations Target="CatalogService.Parcel/confirm" xmlns="http://docs.oasis-open.org/odata/ns/edm">
-                    <Annotation Term="Common.Label" String="Ao realizar o Pré-cadastro, o exportador concorda com os termpos e condições de uso do Terminal de CArga de Exportação, disponível em http://www.grucargo.com.br/"/>
-                    <Annotation Term="Core.Description" String="Ao realizar o Pré-cadastro, o exportador concorda com os termpos e condições de uso do Terminal de CArga de Exportação, disponível em http://www.grucargo.com.br/"/>
+                    <Annotation Term="Common.Label" String="Ao realizar o Pré-cadastro, o exportador concorda com os termos e condições de uso"/>
+                    <Annotation Term="Core.Description" String="Ao realizar o Pré-cadastro, o exportador concorda com os termos e condições de uso"/>
                 </Annotations>
                 <Annotations Target="CatalogService.Danfe/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                     <Annotation Term="UI.HiddenFilter" Bool="true"/>

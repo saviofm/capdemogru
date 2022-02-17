@@ -10,8 +10,8 @@
         "@sap/cds-dk": "^4.8.0",
         "@sap/cds-odata-v2-adapter-proxy": "1.8.6",
         "@sap/textbundle": "4.1.0",
-        "@sap/xsenv": "3.1.1",
-        "@sap/xssec": "3.2.12",
+        "@sap/xsenv": "3.2.0",
+        "@sap/xssec": "3.2.13",
         "aws-sdk": "^2.1051.0",
         "cds-swagger-ui-express": "^0.3.0",
         "convert-excel-to-json": "^1.7.0",
@@ -31,7 +31,7 @@
         "sqlite3": "^5.0.2"
     },
     "engines": {
-        "node": "16.11.1",
+        "node": "16.13.1",
         "npm": "8.4.0"
     },
     "scripts": {
