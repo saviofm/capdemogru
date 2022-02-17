@@ -1,5 +1,5 @@
 _schema-version: "3.1"
-ID: capdemogru
+ID: capdemowm
 description: A simple CAP project.
 version: 1.0.1
 parameters:
@@ -21,7 +21,7 @@ build-parameters:
 modules:
 
 # --------------------- CAP SERVER MODULE ------------------------
-- name: capdemogru-srv
+- name: capdemowm-srv
 # ----------------------------------------------------------------
   type: nodejs
   path: gen/srv
@@ -29,9 +29,9 @@ modules:
     SAP_JWT_TRUST_ACL: '[{"clientid":"*","identityzone":"*"}]'
   requires:
   # Resources extracted from CAP configuration
-  - name: capdemogru-db
-  - name: capdemogru-xsuaa-service
-  - name: capdemogru-destination-service
+  - name: capdemowm-db
+  - name: capdemowm-xsuaa-service
+  - name: capdemowm-destination-service
     parameters:
       content-target: true
   provides:
@@ -44,96 +44,96 @@ modules:
     memory: 512M
 
 # -------------- SIDECAR MODULE - DB DEPLOYER----------------- 
-- name: capdemogru-db-deployer
+- name: capdemowm-db-deployer
 # ------------------------------------------------------------
   type: hdb
   path: gen/db
   requires:
-  - name: capdemogru-db
+  - name: capdemowm-db
   parameters:
     buildpack: nodejs_buildpack
 
 # -------------------- HTML5 Content ----------------------
-- name: capdemogru-destination-content
+- name: capdemowm-destination-content
 # ---------------------------------------------------------
   type: com.sap.application.content
   requires:
-  - name: capdemogru-xsuaa-service
+  - name: capdemowm-xsuaa-service
     parameters:
       service-key:
-        name: capdemogru_xsuaa-key
-  - name: capdemogru-html5-host
+        name: capdemowm_xsuaa-key
+  - name: capdemowm-html5-host
     parameters:
       service-key:
-        name: capdemogru_html5_host-key
-  - name: capdemogru-destination-service
+        name: capdemowm_html5_host-key
+  - name: capdemowm-destination-service
     parameters:
       content-target: true        
   parameters:
     content:
       subaccount:
         destinations:
-        - Name: capdemogru_html5_host
-          ServiceInstanceName: capdemogru-html5-host-service
-          ServiceKeyName: capdemogru_html5_host-key
-          sap.cloud.service: capdemogru
+        - Name: capdemowm_html5_host
+          ServiceInstanceName: capdemowm-html5-host-service
+          ServiceKeyName: capdemowm_html5_host-key
+          sap.cloud.service: capdemowm
         - Authentication: OAuth2UserTokenExchange
-          Name: capdemogru_xsuaa
-          ServiceInstanceName: capdemogru-xsuaa-service
-          ServiceKeyName: capdemogru_xsuaa-key
-          sap.cloud.service: capdemogru
+          Name: capdemowm_xsuaa
+          ServiceInstanceName: capdemowm-xsuaa-service
+          ServiceKeyName: capdemowm_xsuaa-key
+          sap.cloud.service: capdemowm
         existing_destinations_policy: update    
   build-parameters:
     no-source: true
 
 # -------------- UI DEPLOYER MODULE - APP CONTENT ------------
-- name: capdemogru-ui-deployer
+- name: capdemowm-ui-deployer
 # ------------------------------------------------------------
   type: com.sap.application.content
   path: .
   requires:
-  - name: capdemogru-html5-host
+  - name: capdemowm-html5-host
     parameters:
       content-target: true
   build-parameters:
     build-result: resources
     requires:
     - artifacts:
-      - capdemogruappairport.zip
-      name: capdemogruappairport
+      - capdemowmappairport.zip
+      name: capdemowmappairport
       target-path: resources/
     - artifacts:
-      - capdemogruapppartnertype.zip
-      name: capdemogruapppartnertype
+      - capdemowmapppartnertype.zip
+      name: capdemowmapppartnertype
       target-path: resources/
     - artifacts:
-      - capdemogruappdeclaracao.zip
-      name: capdemogruappdeclaracao
+      - capdemowmappdeclaracao.zip
+      name: capdemowmappdeclaracao
       target-path: resources/
     - artifacts:
-      - capdemogruapppackage.zip
-      name: capdemogruapppackage
+      - capdemowmapppackage.zip
+      name: capdemowmapppackage
       target-path: resources/
     - artifacts:
-      - capdemogruappairline.zip
-      name: capdemogruappairline
+      - capdemowmappairline.zip
+      name: capdemowmappairline
       target-path: resources/
     - artifacts:
-      - capdemogruapppartner.zip
-      name: capdemogruapppartner
+      - capdemowmapppartner.zip
+      name: capdemowmapppartner
       target-path: resources/
     - artifacts:
-      - capdemogruappparcel.zip
-      name: capdemogruappparcel
+      - capdemowmappparcel.zip
+      name: capdemowmappparcel
       target-path: resources/
     - artifacts:
-      - capdemogruappcargoreceipt.zip
-      name: capdemogruappcargoreceipt
+      - capdemowmappcargoreceipt.zip
+      name: capdemowmappcargoreceipt
       target-path: resources/
 
 
 # --------------------- HTML5 MODULE -------------------------
-- name: capdemogruappairport
+- name: capdemowmappairport
 # ------------------------------------------------------------
   type: html5
   path: app/airport
@@ -144,7 +144,7 @@ modules:
     - npm run build:cf
     supported-platforms: []
 # --------------------- HTML5 MODULE -------------------------
-- name: capdemogruapppartnertype
+- name: capdemowmapppartnertype
 # ------------------------------------------------------------
   type: html5
   path: app/partnertype
@@ -156,7 +156,7 @@ modules:
     supported-platforms: []
 
 # --------------------- HTML5 MODULE -------------------------    
-- name: capdemogruappdeclaracao
+- name: capdemowmappdeclaracao
 # ------------------------------------------------------------
   type: html5
   path: app/declaracao
@@ -168,7 +168,7 @@ modules:
     supported-platforms: []
 
 # --------------------- HTML5 MODULE -------------------------    
-- name: capdemogruapppackage
+- name: capdemowmapppackage
 # ------------------------------------------------------------
   type: html5
   path: app/package
@@ -180,7 +180,7 @@ modules:
     supported-platforms: []
 
 # --------------------- HTML5 MODULE -------------------------    
-- name: capdemogruappairline
+- name: capdemowmappairline
 # ------------------------------------------------------------
   type: html5
   path: app/airline
@@ -192,7 +192,7 @@ modules:
     supported-platforms: []
 
 # --------------------- HTML5 MODULE -------------------------    
-- name: capdemogruapppartner
+- name: capdemowmapppartner
 # ------------------------------------------------------------
   type: html5
   path: app/partner
@@ -204,7 +204,7 @@ modules:
     supported-platforms: []
 
 # --------------------- HTML5 MODULE -------------------------    
-- name: capdemogruappparcel
+- name: capdemowmappparcel
 # ------------------------------------------------------------
   type: html5
   path: app/parcel
@@ -216,7 +216,7 @@ modules:
     supported-platforms: []
 
 # --------------------- HTML5 MODULE -------------------------    
-- name: capdemogruappcargoreceipt
+- name: capdemowmappcargoreceipt
 # ------------------------------------------------------------
   type: html5
   path: app/cargoreceipt
@@ -235,7 +235,7 @@ modules:
 resources:
 
 # --------------------- DB - HDI CONTAINER------------------------
-- name: capdemogru-db
+- name: capdemowm-db
 # ----------------------------------------------------------------
   type: com.sap.xs.hdi-container
   parameters:
@@ -245,17 +245,17 @@ resources:
     hdi-service-name: ${service-name}
 
 # ------------------------ XSUAA Service -------------------------  
-- name: capdemogru-xsuaa-service
+- name: capdemowm-xsuaa-service
 # ----------------------------------------------------------------
   type: org.cloudfoundry.managed-service
   parameters:
     path: ./xs-security.json
     service: xsuaa
-    service-name: capdemogru-xsuaa-service
+    service-name: capdemowm-xsuaa-service
     service-plan: application
 
 # ----------------- Destination Service -------------------   
-- name: capdemogru-destination-service
+- name: capdemowm-destination-service
 # ---------------------------------------------------------
   type: org.cloudfoundry.managed-service
   parameters:
@@ -269,24 +269,24 @@ resources:
             HTML5.DynamicDestination: true
             HTML5.ForwardAuthToken: true
             HTML5.Timeout: 300000
-            Name: capdemogru
+            Name: capdemowm
             ProxyType: Internet
             Type: HTTP
             URL: ~{srv-api/srv-url}  
           existing_destinations_policy: update
       version: 1.0.0
     service: destination
-    service-name: capdemogru-destination-service
+    service-name: capdemowm-destination-service
     service-plan: lite
   requires:
   - name: srv-api
 
 # ---------------------- HTML5 Host -------------------------
-- name: capdemogru-html5-host
+- name: capdemowm-html5-host
 # -----------------------------------------------------------
   type: org.cloudfoundry.managed-service
   parameters:
     service: html5-apps-repo
-    service-name: capdemogru-html5-host-service
+    service-name: capdemowm-html5-host-service
     service-plan: app-host
 

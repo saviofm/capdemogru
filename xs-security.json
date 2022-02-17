@@ -1,14 +1,14 @@
 {
-    "xsappname": "capdemogru",
+    "xsappname": "capdemowm",
     "tenant-mode": "dedicated",
     "description": "Security profile of called application",
     "scopes": [
       {
-        "name": "$XSAPPNAME.capdemogru_admin",
+        "name": "$XSAPPNAME.capdemowm_admin",
         "description": "cap admin"
       }, 
       {
-        "name": "$XSAPPNAME.capdemogru_user",
+        "name": "$XSAPPNAME.capdemowm_user",
         "description": "cap user"
       },           
       {
@@ -19,18 +19,18 @@
     "attributes": [],
     "role-templates": [
       {
-        "name": "capdemogru_admin",
+        "name": "capdemowm_admin",
         "description": "Cap Administrator",
         "scope-references": [
-            "$XSAPPNAME.capdemogru_admin"
+            "$XSAPPNAME.capdemowm_admin"
         ],
         "attribute-references": []
       }, 
       {
-        "name": "capdemogru_user",
+        "name": "capdemowm_user",
         "description": "CAP User",
         "scope-references": [
-            "$XSAPPNAME.capdemogru_user"
+            "$XSAPPNAME.capdemowm_user"
         ],
         "attribute-references": []
       },                                 
@@ -47,15 +47,15 @@
             "name": "CAP_GRU_Admin",
             "description": "CAP Admin Role Collection",
             "role-template-references": [
-                "$XSAPPNAME.capdemogru_admin",
-                "$XSAPPNAME.capdemogru_user"
+                "$XSAPPNAME.capdemowm_admin",
+                "$XSAPPNAME.capdemowm_user"
             ]
         },
         {
             "name": "CAP_GRU_User",
             "description": "CAP User Role Collection",
             "role-template-references": [
-                "$XSAPPNAME.capdemogru_user"
+                "$XSAPPNAME.capdemowm_user"
             ]
         }                               
     ]

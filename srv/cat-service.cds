@@ -1,26 +1,26 @@
-using capdemogru as capdemogru from '../db/data-model';
+using capdemowm as capdemowm from '../db/data-model';
 
 service CatalogService {// @( requires:'authenticated-user') {
     // Serviços para criação de APP FIORI DE CADASTROS
     @odata.draft.enabled : true
-    entity Airport   as projection on capdemogru.Airport;
+    entity Airport   as projection on capdemowm.Airport;
    
     @readonly
-    entity PartnerType as projection on capdemogru.PartnerType;
+    entity PartnerType as projection on capdemowm.PartnerType;
 
     @readonly
-    entity Declaracao as projection on capdemogru.Declaracao;
+    entity Declaracao as projection on capdemowm.Declaracao;
     
     @odata.draft.enabled : true
-    entity Package as projection on capdemogru.Package;
+    entity Package as projection on capdemowm.Package;
 
     @odata.draft.enabled : true
-    entity Airline as projection on capdemogru.Airline;
+    entity Airline as projection on capdemowm.Airline;
 
     @odata.draft.enabled : true
-    entity Partner as projection on capdemogru.Partner;
+    entity Partner as projection on capdemowm.Partner;
 
-    entity Parcel  as projection on capdemogru.PreParcel {
+    entity Parcel  as projection on capdemowm.PreParcel {
         *,
         airline : redirected to Airline,
         declaracao: redirected to Declaracao,
@@ -32,11 +32,11 @@ service CatalogService {// @( requires:'authenticated-user') {
         
         
     };
-   entity Danfe as projection on capdemogru.Danfe;
+   entity Danfe as projection on capdemowm.Danfe;
 
-   entity Natureza as projection on capdemogru.Natureza;
+   entity Natureza as projection on capdemowm.Natureza;
   
-   entity CargoReceipt as projection on capdemogru.CargoReceipt;
+   entity CargoReceipt as projection on capdemowm.CargoReceipt;
 
     type returnWeight {
         pesoBruto   : Decimal(15,3);

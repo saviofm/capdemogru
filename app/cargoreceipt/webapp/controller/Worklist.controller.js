@@ -7,7 +7,7 @@ sap.ui.define([
 ], function (BaseController, JSONModel, formatter, Filter, FilterOperator) {
     "use strict";
 
-    return BaseController.extend("capdemogru.app.cargoreceipt.controller.Worklist", {
+    return BaseController.extend("capdemowm.app.cargoreceipt.controller.Worklist", {
 
         formatter: formatter,
 

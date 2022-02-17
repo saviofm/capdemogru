@@ -8,7 +8,7 @@ using {
 } from '@sap/cds/common';
 
 
-namespace capdemogru;
+namespace capdemowm;
 
 //----------------------- Airport  ---------------------//
 //------------------------------------------------------//

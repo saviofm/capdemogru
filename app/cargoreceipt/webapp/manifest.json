@@ -1,7 +1,7 @@
 {
     "_version": "1.32.0",
     "sap.app": {
-        "id": "capdemogru.app.cargoreceipt",
+        "id": "capdemowm.app.cargoreceipt",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -22,7 +22,7 @@
         },
         "crossNavigation": {
             "inbounds": {
-                "capdemogru-app-cargoreceipt-inbound": {
+                "capdemowm-app-cargoreceipt-inbound": {
                     "signature": {
                         "parameters": {},
                         "additionalParameters": "allowed"
@@ -37,7 +37,7 @@
         }
     },
     "sap.cloud": {
-        "service": "capdemogru",
+        "service": "capdemowm",
         "public": true
     }, 
     "sap.ui": {
@@ -74,7 +74,7 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "capdemogru.app.cargoreceipt.i18n.i18n"
+                    "bundleName": "capdemowm.app.cargoreceipt.i18n.i18n"
                 }
             },
             "appView": {
@@ -104,7 +104,7 @@
             "config": {
                 "routerClass": "sap.m.routing.Router",
                 "viewType": "XML",
-                "viewPath": "capdemogru.app.cargoreceipt.view",
+                "viewPath": "capdemowm.app.cargoreceipt.view",
                 "controlId": "app",
                 "controlAggregation": "pages",
                 "bypassed": {
@@ -167,7 +167,7 @@
             }
         },
         "rootView": {
-            "viewName": "capdemogru.app.cargoreceipt.view.App",
+            "viewName": "capdemowm.app.cargoreceipt.view.App",
             "type": "XML",
             "async": true,
             "id": "app"

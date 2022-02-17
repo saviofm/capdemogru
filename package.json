@@ -1,5 +1,5 @@
 {
-    "name": "capdemogru",
+    "name": "capdemowm",
     "version": "1.0.0",
     "description": "CAP project with objectstore",
     "repository": "",
@@ -36,7 +36,7 @@
     },
     "scripts": {
         "start": "cds run",
-        "undeploy": "cf undeploy capdemogru --delete-services --delete-service-keys",
+        "undeploy": "cf undeploy capdemowm --delete-services --delete-service-keys",
         "watch-airline": "cds watch --open airline/webapp/index.html#fe-lrop-v4",
         "watch-partnertype": "cds watch --open partnertype/webapp/index.html#fe-lrop-v4",
         "watch-declaracao": "cds watch --open declaracao/webapp/index.html#fe-lrop-v4",

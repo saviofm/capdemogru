@@ -8,7 +8,7 @@ sap.ui.define([
     // shortcut for sap.m.URLHelper
     var URLHelper = mobileLibrary.URLHelper;
 
-    return Controller.extend("capdemogru.app.cargoreceipt.controller.BaseController", {
+    return Controller.extend("capdemowm.app.cargoreceipt.controller.BaseController", {
         /**
          * Convenience method for accessing the router.
          * @public

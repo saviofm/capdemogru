@@ -27,7 +27,7 @@ sap.ui.define([
     MessageBox) {
     "use strict";
     var ValueState = library.ValueState;
-    return BaseController.extend("capdemogru.app.parcel.controller.NewObject", {
+    return BaseController.extend("capdemowm.app.parcel.controller.NewObject", {
 
         formatter: Formatter,
 

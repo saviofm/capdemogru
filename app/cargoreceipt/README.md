@@ -7,10 +7,10 @@
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Floorplan Used**<br>1worklist|
 |**Service Type**<br>OData Url|
-|**Service URL**<br>https://sap-presales-cloud--neo-foundry--sappsbr-dev-capdemogru-srv.cfapps.eu10.hana.ondemand.com/v2/catalog
+|**Service URL**<br>https://sap-presales-cloud--neo-foundry--sappsbr-dev-capdemowm-srv.cfapps.eu10.hana.ondemand.com/v2/catalog
 |**Module Name**<br>cargoreceipt|
 |**Application Title**<br>Carga|
-|**Namespace**<br>capdemogru.app|
+|**Namespace**<br>capdemowm.app|
 |**UI5 Theme**<br>sap_fiori_3|
 |**UI5 Version**<br>Latest|
 |**Enable Code Assist Libraries**<br>True|

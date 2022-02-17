@@ -1,6 +1,6 @@
 specVersion: '2.4'
 metadata:
-  name: capdemogru.app.partnertype
+  name: capdemowm.app.partnertype
 type: application
 resources:
   configuration:
@@ -19,6 +19,6 @@ builder:
   - name: ui5-task-zipper
     afterTask: generateCachebusterInfo
     configuration:
-      archiveName: capdemogruapppartnertype
+      archiveName: capdemowmapppartnertype
       additionalFiles:
       - xs-app.json

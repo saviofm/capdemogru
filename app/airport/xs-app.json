@@ -8,13 +8,13 @@
     {
         "csrfProtection": false,
         "source": "^/v2/catalog/",
-        "destination": "capdemogru",
+        "destination": "capdemowm",
         "authenticationType": "xsuaa"
     },
     {
         "csrfProtection": false,
         "source": "^/catalog/",
-        "destination": "capdemogru",
+        "destination": "capdemowm",
         "authenticationType": "xsuaa"
     },
     {

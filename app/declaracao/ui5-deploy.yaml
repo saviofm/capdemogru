@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
 specVersion: '2.4'
 metadata:
-  name: capdemogru.app.declaracao
+  name: capdemowm.app.declaracao
 type: application
 resources:
   configuration:
@@ -20,6 +20,6 @@ builder:
   - name: ui5-task-zipper
     afterTask: generateCachebusterInfo
     configuration:
-      archiveName: capdemogruappdeclaracao
+      archiveName: capdemowmappdeclaracao
       additionalFiles:
       - xs-app.json

@@ -7,7 +7,7 @@ sap.ui.define([
 ], function (BaseController, JSONModel, History, Formatter, Device) {
     "use strict";
 
-    return BaseController.extend("capdemogru.app.cargoreceipt.controller.Object", {
+    return BaseController.extend("capdemowm.app.cargoreceipt.controller.Object", {
 
         formatter: Formatter,
 

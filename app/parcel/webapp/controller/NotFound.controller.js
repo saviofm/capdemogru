@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (BaseController) {
     "use strict";
 
-    return BaseController.extend("capdemogru.app.parcel.controller.NotFound", {
+    return BaseController.extend("capdemowm.app.parcel.controller.NotFound", {
 
         /**
          * Navigates to the worklist when the link is pressed

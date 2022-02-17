@@ -6,7 +6,7 @@ sap.ui.define([
 ], function (UIComponent, Device, models, ErrorHandler) {
     "use strict";
 
-    return UIComponent.extend("capdemogru.app.parcel.Component", {
+    return UIComponent.extend("capdemowm.app.parcel.Component", {
 
         metadata : {
             manifest: "json"

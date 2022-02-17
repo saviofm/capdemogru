@@ -1,7 +1,7 @@
 {
     "_version": "1.32.0",
     "sap.app": {
-        "id": "capdemogru.app.package",
+        "id": "capdemowm.app.package",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -26,7 +26,7 @@
         },
         "crossNavigation": {
             "inbounds": {
-                "capdemogru-app-package-inbound": {
+                "capdemowm-app-package-inbound": {
                     "signature": {
                         "parameters": {},
                         "additionalParameters": "allowed"
@@ -41,7 +41,7 @@
         }
     },
     "sap.cloud": {
-        "service": "capdemogru",
+        "service": "capdemowm",
         "public": true
     },    
     "sap.ui": {

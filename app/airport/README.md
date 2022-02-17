@@ -10,7 +10,7 @@
 |**Service URL**<br>/catalog/
 |**Module Name**<br>airline|
 |**Application Title**<br>App Title|
-|**Namespace**<br>capdemogru.app|
+|**Namespace**<br>capdemowm.app|
 |**UI5 Theme**<br>sap_fiori_3|
 |**UI5 Version**<br>Latest|
 |**Enable Code Assist Libraries**<br>False|

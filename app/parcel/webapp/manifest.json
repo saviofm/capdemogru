@@ -1,7 +1,7 @@
 {
   "_version": "1.32.0",
   "sap.app": {
-    "id": "capdemogru.app.parcel",
+    "id": "capdemowm.app.parcel",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -22,7 +22,7 @@
     },
     "crossNavigation": {
       "inbounds": {
-          "capdemogru-app-parcel-inbound": {
+          "capdemowm-app-parcel-inbound": {
               "signature": {
                   "parameters": {},
                   "additionalParameters": "allowed"
@@ -37,7 +37,7 @@
     }
   },
   "sap.cloud": {
-    "service": "capdemogru",
+    "service": "capdemowm",
     "public": true
   }, 
   "sap.ui": {
@@ -74,7 +74,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "capdemogru.app.parcel.i18n.i18n"
+          "bundleName": "capdemowm.app.parcel.i18n.i18n"
         }
       },
       "appView": {
@@ -104,7 +104,7 @@
       "config": {
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
-        "viewPath": "capdemogru.app.parcel.view",
+        "viewPath": "capdemowm.app.parcel.view",
         "controlId": "app",
         "controlAggregation": "pages",
         "bypassed": {
@@ -167,7 +167,7 @@
       }
     },
     "rootView": {
-      "viewName": "capdemogru.app.parcel.view.App",
+      "viewName": "capdemowm.app.parcel.view.App",
       "type": "XML",
       "async": true,
       "id": "app"

@@ -7,7 +7,7 @@
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Floorplan Used**<br>1worklist|
 |**Service Type**<br>OData Url|
-|**Service URL**<br>https://sap-presales-cloud--neo-foundry--sappsbr-dev-capdemogru-srv.cfapps.eu10.hana.ondemand.com/v2/catalog
+|**Service URL**<br>https://sap-presales-cloud--neo-foundry--sappsbr-dev-capdemowm-srv.cfapps.eu10.hana.ondemand.com/v2/catalog
 |**Module Name**<br>parcel|
 |**Application Title**<br>Carga de Exportação|
 |**Namespace**<br>|

@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="capdemogru.app.cargoreceipt.controller.Object"
+    controllerName="capdemowm.app.cargoreceipt.controller.Object"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:l="sap.ui.layout"

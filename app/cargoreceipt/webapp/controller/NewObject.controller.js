@@ -35,7 +35,7 @@ sap.ui.define([
     syncStyleClass) {
     "use strict";
     var ValueState = library.ValueState;
-    return BaseController.extend("capdemogru.app.cargoreceipt.controller.NewObject", {
+    return BaseController.extend("capdemowm.app.cargoreceipt.controller.NewObject", {
 
         formatter: Formatter,
 
@@ -281,7 +281,7 @@ sap.ui.define([
 			if (!this._pBusyDialog) {
 				this._pBusyDialog = Fragment.load({
                     id: this.getView().getId(),
-					name: "capdemogru.app.cargoreceipt.view.fragment.BusyDialog",
+					name: "capdemowm.app.cargoreceipt.view.fragment.BusyDialog",
 					controller: this
 				}).then(
                     function (oBusyDialog) {
@@ -357,7 +357,7 @@ sap.ui.define([
             if(!this._pDialog) {
 				this._pDialog = await Fragment.load({
 					id: this.getView().getId(),
-					name: "capdemogru.app.cargoreceipt.view.fragment.Dialog",
+					name: "capdemowm.app.cargoreceipt.view.fragment.Dialog",
 					controller: this
 				}).then(
                     function(oDialog){

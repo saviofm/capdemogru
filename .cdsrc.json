@@ -7,8 +7,8 @@
                     "password": "admin",
                     "ID": "admin",
                     "roles": [
-                        "capdemogru_admin",
-                        "capdemogru_user",
+                        "capdemowm_admin",
+                        "capdemowm_user",
                         "nfse_display",
                         "nfse_adminkeyuser",
                         "nfse_adminview",
@@ -20,7 +20,7 @@
                     "password": "user",
                     "ID": "user",
                     "roles": [
-                        "capdemogru_user"
+                        "capdemowm_user"
                     ]                    
                 }
             }

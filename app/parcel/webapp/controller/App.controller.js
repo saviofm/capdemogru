@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (BaseController) {
     "use strict";
 
-    return BaseController.extend("capdemogru.app.parcel.controller.App", {
+    return BaseController.extend("capdemowm.app.parcel.controller.App", {
 
         onInit : function () {
             // apply content density mode to root view
