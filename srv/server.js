@@ -15,7 +15,7 @@ cds.on("bootstrap", app => {
 
             cds_swagger(
                 {
-                    "basePath": "/swagger",
+                    //"basePath": "/swagger",
                     "diagram": "true"
                 }
             )
