@@ -402,12 +402,14 @@ sap.ui.define([
             Model.setProperty("/awb", oData.awb);
             Model.setProperty("/hawb", oData.hawb);
             Model.setProperty("/ruc", oData.ruc);
-            Model.setProperty("/position", oData.position);
+            //Model.setProperty("/position", oData.position);
             Model.setProperty("/declaracaoNr", oData.declaracaoNr);
             Model.setProperty("/transit", oData.transit);
             Model.setProperty("/express", oData.express);
             Model.setProperty("/dseManual", oData.dseManual);
-            Model.setProperty("/volume", oData.volume);
+            if (oData.volume){
+                Model.setProperty("/volume", oData.volume);
+            }
             Model.setProperty("/pesoBruto", oData.pesoBruto);
             Model.setProperty("/ncm", oData.ncm);
             Model.setProperty("/declaracao", oData.declaracao.declaracao);
