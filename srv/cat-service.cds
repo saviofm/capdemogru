@@ -1,6 +1,14 @@
 using capdemowm as capdemowm from '../db/data-model';
 
 service CatalogService {// @( requires:'authenticated-user') {
+   //Serviços para Analiticos
+   
+   entity Expenses as projection on capdemowm.Expenses;
+   
+   @readonly
+   view ExpensesAnalytics as select from capdemowm.ExpensesAnalytics;
+
+
     // Serviços para criação de APP FIORI DE CADASTROS
     @odata.draft.enabled : true
     entity Airport   as projection on capdemowm.Airport;
