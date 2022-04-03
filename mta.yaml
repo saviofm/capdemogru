@@ -2,60 +2,34 @@ _schema-version: "3.1"
 ID: capdemowm
 description: A simple CAP project.
 version: 1.0.1
-parameters:
-  ###deploy_mode: html5-repo
-  enable-parallel-deployments: true
-build-parameters:
-  before-all:
-  - builder: custom
-    commands:
-    - npm install --production
-    - npx -p @sap/cds-dk cds build --production
-
-
-# ----------------------------------------------------------------
-# ----------------------------------------------------------------
-# ----------------------------MODULES-----------------------------
-# ----------------------------------------------------------------
-# ----------------------------------------------------------------
 modules:
-
-# --------------------- CAP SERVER MODULE ------------------------
 - name: capdemowm-srv
-# ----------------------------------------------------------------
   type: nodejs
   path: gen/srv
   properties:
     SAP_JWT_TRUST_ACL: '[{"clientid":"*","identityzone":"*"}]'
   requires:
-  # Resources extracted from CAP configuration
   - name: capdemowm-db
   - name: capdemowm-xsuaa-service
   - name: capdemowm-destination-service
     parameters:
       content-target: true
   provides:
-  - name: srv-api # required by consumers of CAP services (e.g. approuter)
+  - name: srv-api
     properties:
       srv-url: ${default-url}
   parameters:
     buildpack: nodejs_buildpack
     disk-quota: 1024M
     memory: 512M
-
-# -------------- SIDECAR MODULE - DB DEPLOYER----------------- 
 - name: capdemowm-db-deployer
-# ------------------------------------------------------------
   type: hdb
   path: gen/db
   requires:
   - name: capdemowm-db
   parameters:
     buildpack: nodejs_buildpack
-
-# -------------------- HTML5 Content ----------------------
 - name: capdemowm-destination-content
-# ---------------------------------------------------------
   type: com.sap.application.content
   requires:
   - name: capdemowm-xsuaa-service
@@ -68,7 +42,7 @@ modules:
         name: capdemowm_html5_host-key
   - name: capdemowm-destination-service
     parameters:
-      content-target: true        
+      content-target: true
   parameters:
     content:
       subaccount:
@@ -82,13 +56,10 @@ modules:
           ServiceInstanceName: capdemowm-xsuaa-service
           ServiceKeyName: capdemowm_xsuaa-key
           sap.cloud.service: capdemowm
-        existing_destinations_policy: update    
+        existing_destinations_policy: update
   build-parameters:
     no-source: true
-
-# -------------- UI DEPLOYER MODULE - APP CONTENT ------------
 - name: capdemowm-ui-deployer
-# ------------------------------------------------------------
   type: com.sap.application.content
   path: .
   requires:
@@ -130,10 +101,11 @@ modules:
       - capdemowmappcargoreceipt.zip
       name: capdemowmappcargoreceipt
       target-path: resources/
-
-# --------------------- HTML5 MODULE -------------------------
+    - artifacts:
+      - capdemowmappexpenses.zip
+      name: capdemowmappexpenses
+      target-path: resources/
 - name: capdemowmappairport
-# ------------------------------------------------------------
   type: html5
   path: app/airport
   build-parameters:
@@ -142,9 +114,7 @@ modules:
     commands:
     - npm run build:cf
     supported-platforms: []
-# --------------------- HTML5 MODULE -------------------------
 - name: capdemowmapppartnertype
-# ------------------------------------------------------------
   type: html5
   path: app/partnertype
   build-parameters:
@@ -153,10 +123,7 @@ modules:
     commands:
     - npm run build:cf
     supported-platforms: []
-
-# --------------------- HTML5 MODULE -------------------------    
 - name: capdemowmappdeclaracao
-# ------------------------------------------------------------
   type: html5
   path: app/declaracao
   build-parameters:
@@ -165,10 +132,7 @@ modules:
     commands:
     - npm run build:cf
     supported-platforms: []
-
-# --------------------- HTML5 MODULE -------------------------    
 - name: capdemowmapppackage
-# ------------------------------------------------------------
   type: html5
   path: app/package
   build-parameters:
@@ -177,10 +141,7 @@ modules:
     commands:
     - npm run build:cf
     supported-platforms: []
-
-# --------------------- HTML5 MODULE -------------------------    
 - name: capdemowmappairline
-# ------------------------------------------------------------
   type: html5
   path: app/airline
   build-parameters:
@@ -189,10 +150,7 @@ modules:
     commands:
     - npm run build:cf
     supported-platforms: []
-
-# --------------------- HTML5 MODULE -------------------------    
 - name: capdemowmapppartner
-# ------------------------------------------------------------
   type: html5
   path: app/partner
   build-parameters:
@@ -201,10 +159,7 @@ modules:
     commands:
     - npm run build:cf
     supported-platforms: []
-
-# --------------------- HTML5 MODULE -------------------------    
 - name: capdemowmappparcel
-# ------------------------------------------------------------
   type: html5
   path: app/parcel
   build-parameters:
@@ -213,10 +168,7 @@ modules:
     commands:
     - npm run build:cf
     supported-platforms: []
-
-# --------------------- HTML5 MODULE -------------------------    
 - name: capdemowmappcargoreceipt
-# ------------------------------------------------------------
   type: html5
   path: app/cargoreceipt
   build-parameters:
@@ -225,53 +177,44 @@ modules:
     commands:
     - npm run build:cf
     supported-platforms: []
-    
-# ----------------------------------------------------------------
-# ----------------------------------------------------------------
-# ---------------------------RESOURCES----------------------------
-# ----------------------------------------------------------------
-# ----------------------------------------------------------------
+- name: capdemowmappexpenses
+  type: html5
+  path: app/expenses
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
 resources:
-
-# --------------------- DB - HDI CONTAINER------------------------
 - name: capdemowm-db
-# ----------------------------------------------------------------
   type: com.sap.xs.hdi-container
   parameters:
     service: hana
     service-plan: hdi-shared
   properties:
     hdi-service-name: ${service-name}
-
-# ------------------------ XSUAA Service -------------------------  
 - name: capdemowm-xsuaa-service
-# ----------------------------------------------------------------
   type: org.cloudfoundry.managed-service
   parameters:
     path: ./xs-security.json
     service: xsuaa
     service-name: capdemowm-xsuaa-service
     service-plan: application
-
-# ----------------- Destination Service -------------------   
 - name: capdemowm-destination-service
-# ---------------------------------------------------------
   type: org.cloudfoundry.managed-service
   parameters:
     config:
-      ##HTML5Runtime_enabled: true
+      HTML5Runtime_enabled: true
       init_data:
-        subaccount:
+        instance:
           destinations:
           - Authentication: NoAuthentication
-            Description: CAP Objectstore Destination Service
-            HTML5.DynamicDestination: true
-            HTML5.ForwardAuthToken: true
-            HTML5.Timeout: 300000
-            Name: capdemowm
+            Name: ui5
             ProxyType: Internet
             Type: HTTP
-            URL: ~{srv-api/srv-url}  
+            URL: https://ui5.sap.com
           existing_destinations_policy: update
       version: 1.0.0
     service: destination
@@ -279,13 +222,18 @@ resources:
     service-plan: lite
   requires:
   - name: srv-api
-
-# ---------------------- HTML5 Host -------------------------
 - name: capdemowm-html5-host
-# -----------------------------------------------------------
   type: org.cloudfoundry.managed-service
   parameters:
     service: html5-apps-repo
     service-name: capdemowm-html5-host-service
     service-plan: app-host
-
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install --production
+    - npx -p @sap/cds-dk cds build --production

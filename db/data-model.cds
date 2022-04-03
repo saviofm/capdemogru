@@ -21,6 +21,7 @@ entity Expenses : cuid {
     postingDate: DateTime @title: 'Posting Date'
 }
 
+//Annotation
 @Aggregation.ApplySupported.PropertyRestrictions: true
 view ExpensesAnalytics as select from Expenses {
   key ID,
