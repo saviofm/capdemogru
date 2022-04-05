@@ -8,9 +8,9 @@
     "dependencies": {
         "@sap/cds": "5.8.0",
         "@sap/cds-dk": "^4.8.0",
-        "@sap/cds-odata-v2-adapter-proxy": "1.8.6",
+        "@sap/cds-odata-v2-adapter-proxy": "1.8.11",
         "@sap/textbundle": "4.1.0",
-        "@sap/xsenv": "3.2.0",
+        "@sap/xsenv": "3.2.1",
         "@sap/xssec": "3.2.13",
         "aws-sdk": "^2.1051.0",
         "cds-swagger-ui-express": "^0.3.0",
@@ -29,12 +29,11 @@
         "@sap/hdi-deploy": "^4.2.3",
         "@sap/ux-specification": "^1.96.2",
         "@sapui5/ts-types": "^1.92.2",
-        "eslint": "^7.32.0",
-        "sqlite3": "^5.0.2"
+        "eslint": "^7.32.0"
     },
     "engines": {
         "node": "16.13.1",
-        "npm": "8.4.0"
+        "npm": "8.5.5"
     },
     "scripts": {
         "start": "cds run",
